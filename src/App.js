@@ -6,6 +6,8 @@ import firebase from 'firebase';
 import ReduxThunk from 'redux-thunk';
 import reducers from './reducers';
 import Router from './Router';
+import HostList from './components/HostList';
+
 
 class App extends Component {
   componentWillMount() {
@@ -29,9 +31,9 @@ class App extends Component {
         //<Provider store={store}>
           //<Router />
         //</Provider>
-        <View>
-          <Text> hejhej </Text>
-        </View>
+        //<View>
+          <HostList />
+        //</View>
       );
     }
   }

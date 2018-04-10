@@ -1,22 +1,33 @@
 import React, { Component } from 'react';
-import { Container, Header, Content, List, ListItem, Thumbnail, Text, Body } from 'native-base';
+//import { TouchableOpacity } from 'react-native';
+import { Container, Header, Content, List, ListItem,
+        Text, Title, Body, Thumbnail } from 'native-base';
+import NationList from '../reducers/NationList.json';
 
-export default class HostList extends Component {
+class HostList extends Component {
+
   render() {
     return (
       <Container>
-        <Header />
+        <Header>
+          <Body>
+            <Title> Choose nation </Title>
+          </Body>
+        </Header>
         <Content>
-          <List>
-            <ListItem>
-              <Thumbnail square size={80} source={{ uri: 'Image URL' }} />
-              <Body>
-                <Text>Sankhadeep</Text>
-              </Body>
-            </ListItem>
-          </List>
+          <List
+            dataArray={NationList}
+            renderRow={(item) =>
+              <ListItem>
+                <Thumbnail source={{ uri: item.img }} />
+                <Text>{item.title}</Text>
+              </ListItem>
+            }
+          />
         </Content>
       </Container>
     );
   }
 }
+
+export default HostList;

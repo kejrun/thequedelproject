@@ -1,18 +1,54 @@
 [
-  {"id": 0,
-    "title": "Webpack",
-  },
   {"id": 1,
-    "title": "Östgöta Nation",
-    "img":
+    "title": "Gotlands Nation",
+    "img": "/src/NationLogos/logo-gotlands.png"
   },
   {"id": 2,
-    "title": "Smålands Nation"
+    "title": "Gästrike-Hälsinge nation",
+    "img": "/src/NationLogos/logo-gh.png"
   },
   {"id": 3,
-    "title": "Södermanland Närkes Nation"
+    "title": "Göteborgs nation",
+    "img": "/src/NationLogos/logo-goteborgs.png"
   },
   {"id": 4,
-    "title": "Värmlands Nation"
-  }
+    "title": "Kalmar nation",
+    "img": "/src/NationLogos/logo-kalmar.png"
+  },
+  {"id": 5,
+    "title": "Norrlands nation",
+    "img": "/src/NationLogos/logo-norrlands.png"
+  },
+  {"id": 6,
+    "title": "Smålands nation",
+    "img": "/src/NationLogos/logo-smalands.png"
+  },
+  {"id": 7,
+    "title": "Stockholms nation",
+    "img": "/src/NationLogos/logo-stockholms.png"
+  },
+  {"id": 8,
+    "title": "Södermanlands-Nerikes nation",
+    "img": "/src/NationLogos/logo-snerikes.png"
+  },
+  {"id": 9,
+    "title": "Uplands nation",
+    "img": "/src/NationLogos/logo-uplands.png"
+  },
+  {"id": 10,
+    "title": "Värmlands nation",
+    "img": "/src/NationLogos/logo-varmlands.png"
+  },
+  {"id": 11,
+    "title": "Västgöta nation",
+    "img": "/src/NationLogos/logo-vg.png"
+  },
+  {"id": 12,
+    "title": "Västmanlands-Dala nation",
+    "img": "/src/NationLogos/logo-vdala.png"
+  },
+  {"id": 13,
+    "title": "Östgöta nation",
+    "img": "/src/NationLogos/logo-og.png"
+  },
 ]
