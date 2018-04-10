@@ -34,7 +34,7 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'center',
     position: 'absolute',
-    flexDirection: 'column'
+    flexDirection: 'row'
   },
   logoImgStyle: {
     position: 'absolute',
@@ -44,8 +44,9 @@ const styles = {
   buttonStyle: {
     alignItems: 'center',
     justifyContent: 'center',
-    marginLeft: screenWidth / 3,
-    marginTop: screenHeight / 2,
+    marginTop: 600,
+    paddingLeft: screenWidth / 3,
+    paddingRight: screenWidth / 3
   }
 };
 
