@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import firebase from 'firebase';
@@ -22,16 +22,14 @@ class App extends Component {
    render() {
       //second argument is for initial state. third is a store enhancer, adding
       //a additional functionality to the store
-
-      //const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
+      const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
 
       return (
-        //<Provider store={store}>
-          //<Router />
-        //</Provider>
-        <View>
-          <Text> hejhej </Text>
-        </View>
+        <Provider store={store}>
+          <View>
+             <Router />
+          </View>
+        </Provider>
       );
     }
   }
