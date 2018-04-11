@@ -25,14 +25,14 @@ class App extends Component {
       //second argument is for initial state. third is a store enhancer, adding
       //a additional functionality to the store
 
-      //const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
+      const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
 
       return (
-        //<Provider store={store}>
-          //<Router />
-        //</Provider>
+        <Provider store={store}>
+        <HostList />
+        </Provider>
         //<View>
-          <HostList />
+
         //</View>
       );
     }
