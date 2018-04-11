@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { ListView } from 'react-native';
-import { Container, Header, Content, List } from 'native-base';
+import { Container, Header, Content, List, Body, Title } from 'native-base';
 import { connect } from 'react-redux';
 import HostListItem from './HostListItem';
 
@@ -20,17 +20,21 @@ class HostList extends Component {
 
   render() {
     return (
-      //<Container>
-      //  <Header />
-      //  <Content>
-//<List>
-                <ListView
-                  dataSource={this.dataSource}
-                  renderRow={this.renderRow}
-                />
-    //        </List>
-  //      </Content>
-  //    </Container>
+      <Container>
+        <Header>
+          <Body>
+            <Title>Choose nation</Title>
+          </Body>
+        </Header>
+        <Content>
+          <List>
+            <ListView
+              dataSource={this.dataSource}
+              renderRow={this.renderRow}
+            />
+          </List>
+       </Content>
+      </Container>
     );
   }
 }
