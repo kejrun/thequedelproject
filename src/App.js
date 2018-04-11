@@ -7,6 +7,7 @@ import ReduxThunk from 'redux-thunk';
 import reducers from './reducers';
 import Router from './Router';
 
+
 class App extends Component {
   componentWillMount() {
     const config = {
@@ -14,7 +15,7 @@ class App extends Component {
        authDomain: 'quedel-8f9b4.firebaseapp.com',
        databaseURL: 'https://quedel-8f9b4.firebaseio.com',
        projectId: 'quedel-8f9b4',
-       storageBucket: '',
+       storageBucket: 'quedel-8f9b4.appspot.com',
        messagingSenderId: '616894797260'
      };
      firebase.initializeApp(config);

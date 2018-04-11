@@ -2,10 +2,15 @@ import React, { Component } from 'react';
 import { Image, Dimensions, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { Container, Button } from 'native-base';
-import { loginUser } from '../actions';
+import { loginUser, welcomeUser } from '../actions';
 
 class StartPage extends Component {
-  componentWillMount() {
+
+componentWillMount() {
+  this.props.welcomeUser();
+  console.log('welcome user');
+}
+  componentDidMount() {
     this.props.loginUser();
   }
   render() {
@@ -51,4 +56,4 @@ const styles = {
 };
 
 export default connect(
-  null, { loginUser })(StartPage);
+  null, { loginUser, welcomeUser })(StartPage);
