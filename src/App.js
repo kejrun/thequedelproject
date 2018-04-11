@@ -5,8 +5,8 @@ import firebase from 'firebase';
 import ReduxThunk from 'redux-thunk';
 import reducers from './reducers';
 import Router from './Router';
-import HostList from './components/HostList';
-import Feed from './components/Feed';
+//import HostList from './components/HostList';
+//import Feed from './components/Feed';
 
 class App extends Component {
   componentWillMount() {
@@ -28,7 +28,7 @@ class App extends Component {
 
       return (
         <Provider store={store}>
-          <Feed />
+          <Router />
         </Provider>
       );
     }
