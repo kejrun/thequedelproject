@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import firebase from 'firebase';
@@ -29,9 +28,7 @@ class App extends Component {
 
       return (
         <Provider store={store}>
-          <View>
-             <Router />
-          </View>
+          <Router />
         </Provider>
       );
     }
