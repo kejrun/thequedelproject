@@ -18,10 +18,10 @@ const RouterComponent = () => {
           <Scene key='HostList' component={HostList} title='Choose nation' />
         </Scene>
 
-        <Scene key='mainFlow'>
-          <Scene key='feed' component={Feed} title='Name of nation (not hardcoded)' />
-          <Scene key='notifyMe' component={NotificationList} title='Notify Me' />
-          <Scene key='userPage' component={UserPage} title='User' />
+        <Scene key='mainFlow' tabs={true}>
+          <Scene key='feed' component={Feed} title='Name of nation (not hardcoded)' wrap={true} />
+          <Scene key='notifyMe' component={NotificationList} title='Notify Me' wrap={true}/>
+          <Scene key='userPage' component={UserPage} title='User' wrap={true}/>
         </Scene>
       </Scene>
     </Router>
