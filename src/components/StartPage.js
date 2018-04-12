@@ -7,12 +7,17 @@ import { loginUser, welcomeUser } from '../actions';
 class StartPage extends Component {
 
 componentWillMount() {
-  this.props.welcomeUser();
-  console.log('welcome user');
+//  this.props.welcomeUser();
+//  console.log('welcome user');
 }
   componentDidMount() {
     this.props.loginUser();
   }
+
+  //onWelcomeUser() {
+  //  welcomeUserTimeout(this.props.dispatch);
+  //}
+
   render() {
     return (
       <Container style={styles.containerStyle}>

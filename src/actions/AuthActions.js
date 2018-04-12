@@ -20,11 +20,23 @@ export const loginUser = () => {
   };
 };
 
+//export const welcomeUser = () => {
+//  return (dispatch) => {
+//    dispatch({ type: WELCOME_USER });
+//    setTimeout(() => dispatch(Actions.hostOverview()), 2000);
+//  };
+//};
+
 export const welcomeUser = () => {
   return (dispatch) => {
     dispatch({ type: WELCOME_USER });
-    setTimeout(() => dispatch(Actions.hostOverview()), 2000);
+    welcomeUserTimeout(dispatch);
   };
 };
 
+function welcomeUserTimeout(dispatch) {
+  setTimeout(() => {
+    dispatch(Actions.hostOverview());
+  }, 2000);
+}
 //Actions.hostOverview();
