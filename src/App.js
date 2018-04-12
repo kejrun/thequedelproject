@@ -2,11 +2,9 @@ import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import firebase from 'firebase';
-import ReduxThunk from 'redux-thunk';
+import thunk from 'redux-thunk';
 import reducers from './reducers';
 import Router from './Router';
-//import HostList from './components/HostList';
-//import Feed from './components/Feed';
 
 class App extends Component {
   componentWillMount() {
@@ -15,7 +13,7 @@ class App extends Component {
        authDomain: 'quedel-8f9b4.firebaseapp.com',
        databaseURL: 'https://quedel-8f9b4.firebaseio.com',
        projectId: 'quedel-8f9b4',
-       storageBucket: '',
+       storageBucket: 'quedel-8f9b4.appspot.com',
        messagingSenderId: '616894797260'
      };
      firebase.initializeApp(config);
@@ -24,7 +22,7 @@ class App extends Component {
       //second argument is for initial state. third is a store enhancer, adding
       //a additional functionality to the store
 
-      const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
+      const store = createStore(reducers, {}, applyMiddleware(thunk));
 
       return (
         <Provider store={store}>
