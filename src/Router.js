@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Router, Scene } from 'react-native-router-flux';
-import { Container, Header, Content, Footer, FooterTab, Button, Text } from 'native-base';
+import { Text } from 'react-native';
 //import StartPage from './components/StartPage';
 //import HostList from './components/HostList';
 import Feed from './components/Feed';
