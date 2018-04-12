@@ -5,7 +5,6 @@ import firebase from 'firebase';
 import thunk from 'redux-thunk';
 import reducers from './reducers';
 import Router from './Router';
-import HostList from './components/HostList';
 
 class App extends Component {
   componentWillMount() {
