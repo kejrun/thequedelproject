@@ -2,7 +2,9 @@ import firebase from 'firebase';
 import { Actions } from 'react-native-router-flux';
 import {
   LOGIN_USER,
-  WELCOME_USER
+  WELCOME_USER,
+  WELCOME_TIMEOUT,
+  PROCEED_TO_OVERVIEW
  } from './types';
 
 export const loginUser = () => {
@@ -20,23 +22,22 @@ export const loginUser = () => {
   };
 };
 
-//export const welcomeUser = () => {
-//  return (dispatch) => {
-//    dispatch({ type: WELCOME_USER });
-//    setTimeout(() => dispatch(Actions.hostOverview()), 2000);
-//  };
-//};
-
-export const welcomeUser = () => {
+export const welcomeTimeout = () => {
   return (dispatch) => {
-    dispatch({ type: WELCOME_USER });
-    welcomeUserTimeout(dispatch);
+      setTimeout(() => {
+      dispatch(proceedToHostOverview(), { type: WELCOME_TIMEOUT });
+    }, 2000);
   };
 };
 
-function welcomeUserTimeout(dispatch) {
-  setTimeout(() => {
-    dispatch(Actions.hostOverview());
-  }, 2000);
-}
-//Actions.hostOverview();
+export const welcomeUser = () => {
+  return { type: WELCOME_USER };
+};
+
+
+export const proceedToHostOverview = () => {
+  return (dispatch) => {
+    dispatch({ type: PROCEED_TO_OVERVIEW });
+    Actions.hostOverview();
+  };
+};
