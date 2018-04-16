@@ -1,12 +1,24 @@
-import React from 'react';
-import { View, Text } from 'react-native';
+import React, { Component } from 'react';
+import { Container, Content, Button, Text } from 'native-base';
+import { Actions } from 'react-native-router-flux';
 
-const Feed = () => {
+class Feed extends Component {
+
+onButtonPress() {
+  Actions.makenewpost();
+}
+
+  render() {
   return (
-    <View>
-      <Text> Feed page </Text>
-    </View>
+    <Container>
+      <Content>
+        <Button onPress={() => { this.onButtonPress(); }}>
+          <Text>Press to make a new post</Text>
+        </Button>
+      </Content>
+    </Container>
   );
-};
+}
+}
 
 export default Feed;

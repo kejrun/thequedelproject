@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 
-const Feed = () => {
+const UserPage = () => {
   return (
     <View>
       <Text> Userpage </Text>
@@ -9,4 +9,4 @@ const Feed = () => {
   );
 };
 
-export default Feed;
+export default UserPage;

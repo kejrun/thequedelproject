@@ -1,20 +1,17 @@
 import React from 'react';
 import { Router, Scene } from 'react-native-router-flux';
 import { Text } from 'react-native';
-import StartPage from './components/StartPage';
+//import StartPage from './components/StartPage';
 import HostList from './components/HostList';
 import Feed from './components/Feed';
 import NotificationList from './components/NotificationList';
 import UserPage from './components/UserPage';
+import NewPostCreate from './components/NewPostCreate';
 
 const RouterComponent = () => {
   return (
     <Router>
       <Scene key="root" hideNavBar>
-
-      <Scene key='auth'>
-        <Scene key='startpage' component={StartPage} title='startpage' hideNavBar />
-      </Scene>
 
       <Scene key='hostOverview'>
         <Scene key='HostList' component={HostList} title='Choose nation' />
@@ -53,6 +50,11 @@ const RouterComponent = () => {
             />
           </Scene>
           </Scene>
+
+          <Scene key='makenewpost' hideNavBar>
+            <Scene key='NewPost' component={NewPostCreate} title='Make a new post' />
+          </Scene>
+
         </Scene>
     </Router>
   );
