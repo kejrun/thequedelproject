@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
 import { ListView } from 'react-native';
-import { Container, Header, Content, List, Body, Title } from 'native-base';
+import { Container, Content, List } from 'native-base';
 import { connect } from 'react-redux';
 import HostListItem from './HostListItem';
 
@@ -22,11 +22,6 @@ class HostList extends Component {
   render() {
     return (
       <Container>
-        <Header>
-          <Body>
-            <Title>Choose nation</Title>
-          </Body>
-        </Header>
         <Content>
           <List>
             <ListView

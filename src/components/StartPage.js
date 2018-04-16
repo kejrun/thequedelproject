@@ -6,14 +6,13 @@ import { loginUser, welcomeUser, welcomeTimeout } from '../actions';
 
 class StartPage extends Component {
 
-componentWillMount() {
-  this.props.welcomeUser();
-  this.props.welcomeTimeout();
-}
-componentDidMount() {
-  this.props.loginUser();
-}
-
+  componentWillMount() {
+    this.props.welcomeUser();
+    this.props.welcomeTimeout();
+  }
+  componentDidMount() {
+    this.props.loginUser();
+  }
 
   render() {
     return (
