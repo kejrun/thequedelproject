@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Button } from 'react-native';
+import { Container, Content, Button, Text } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 
 class Feed extends Component {
@@ -10,13 +10,13 @@ onButtonPress() {
 
   render() {
   return (
-    <View>
-      <Text> Feed page </Text>
-      <Button
-        onPress={() => { this.onButtonPress(); }}
-        title="Press to make a new post"
-      />
-      </View>
+    <Container>
+      <Content>
+        <Button onPress={() => { this.onButtonPress(); }}>
+          <Text>Press to make a new post</Text>
+        </Button>
+      </Content>
+    </Container>
   );
 }
 }

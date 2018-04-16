@@ -6,7 +6,7 @@ import HostList from './components/HostList';
 import Feed from './components/Feed';
 import NotificationList from './components/NotificationList';
 import UserPage from './components/UserPage';
-import NewPost from './components/NewPost';
+import NewPostCreate from './components/NewPostCreate';
 
 const RouterComponent = () => {
   return (
@@ -51,8 +51,8 @@ const RouterComponent = () => {
           </Scene>
           </Scene>
 
-          <Scene key='makenewpost'>
-            <Scene key='NewPost' component={NewPost} title='Make a new post' />
+          <Scene key='makenewpost' hideNavBar>
+            <Scene key='NewPost' component={NewPostCreate} title='Make a new post' />
           </Scene>
 
         </Scene>
