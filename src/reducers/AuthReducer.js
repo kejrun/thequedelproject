@@ -17,8 +17,6 @@ export default (state = INITIAL_STATE, action) => {
     case WELCOME_USER:
       return { ...state, welcoming: true };
     case PROCEED_TO_OVERVIEW:
-      console.log(this.props);
-      console.log(state);
       return { ...state, loading: false, welcoming: false };
     default:
       return state;
