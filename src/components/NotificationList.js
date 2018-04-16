@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 
-const Feed = () => {
+const NotificationList = () => {
   return (
     <View>
       <Text> Nofification Page </Text>
@@ -9,4 +9,4 @@ const Feed = () => {
   );
 };
 
-export default Feed;
+export default NotificationList;
