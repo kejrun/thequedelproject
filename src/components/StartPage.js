@@ -2,21 +2,17 @@ import React, { Component } from 'react';
 import { Image, Dimensions, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { Container, Button } from 'native-base';
-import { loginUser, welcomeUser } from '../actions';
+import { loginUser, welcomeUser, welcomeTimeout } from '../actions';
 
 class StartPage extends Component {
 
-componentWillMount() {
-//  this.props.welcomeUser();
-//  console.log('welcome user');
-}
+  componentWillMount() {
+    this.props.welcomeUser();
+    this.props.welcomeTimeout();
+  }
   componentDidMount() {
     this.props.loginUser();
   }
-
-  //onWelcomeUser() {
-  //  welcomeUserTimeout(this.props.dispatch);
-  //}
 
   render() {
     return (
@@ -60,5 +56,11 @@ const styles = {
   }
 };
 
+const mapStateToProps = ({ auth }) => {
+  const { welcoming } = auth;
+
+  return { welcoming };
+};
+
 export default connect(
-  null, { loginUser, welcomeUser })(StartPage);
+  mapStateToProps, { loginUser, welcomeUser, welcomeTimeout })(StartPage);
