@@ -26,7 +26,7 @@ class HostListItem extends Component {
           onPress={() => { this.props.selectLibrary(id); Actions.feedpage(); }}
         >
           <ListItem>
-            <Thumbnail square size={80} source={{ uri: 'https://d2rfo6yapuixuu.cloudfront.net/h52/hd3/8864539443230/07311042004714.jpg_1463149054792_master_axfood_400' }} />
+            <Thumbnail square size={80} source={require('../NationLogos/logo-gh.png')} />
               <Body>
                 <Text>{title}</Text>
               </Body>
