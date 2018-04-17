@@ -12,16 +12,16 @@ class NewPost extends Component {
       queueLength: undefined
     };
   }
+
   onValueChange(value: string) {
     this.setState({ queueLength: value });
     this.props.makeNewPost({ prop: 'queueLength', value });
   }
 
-onButtonPress() {
-    console.log(this.props.queueLength);
-    console.log('Thank you for making a post!');
-    Actions.pop();
-}
+  onButtonPress() {
+      console.log('Thank you for making a post!');
+      Actions.pop();
+  }
 
   render() {
   return (
@@ -53,13 +53,13 @@ onButtonPress() {
               selectedValue={this.state.queueLength}
               onValueChange={this.onValueChange.bind(this)}
             >
-             <Picker.Item label='0-10 min' value='1-10' />
-             <Picker.Item label='10-20 min' value='10-20' />
-             <Picker.Item label='20-40 min' value='20-40' />
-             <Picker.Item label='40-60 min' value='40-60' />
-             <Picker.Item label='>1h' value='>1h' />
-             <Picker.Item label='>2h' value='>2h' />
-             <Picker.Item label='One-in-one-out' value='one-in-one-out' />
+             <Picker.Item label='0-10 min' value='1-10 min' />
+             <Picker.Item label='10-20 min' value='10-20 min' />
+             <Picker.Item label='20-40 min' value='20-40 min' />
+             <Picker.Item label='40-60 min' value='40-60 min' />
+             <Picker.Item label='>1h' value='>1 hour' />
+             <Picker.Item label='>2h' value='>2 hour' />
+             <Picker.Item label='One-in-one-out' value='One-in-one-out' />
             </Picker>
             </Form>
           <Button onPress={this.onButtonPress.bind(this)}>
