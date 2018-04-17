@@ -5,7 +5,7 @@ import { ListView } from 'react-native';
 import { Container, Content, Button, Text } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import { feedFetch } from '../actions';
-import PostItem from './PostItem';
+import FeedItem from './FeedItem';
 
 class Feed extends Component {
   componentWillMount() {
@@ -30,7 +30,7 @@ createDataSource({ feedpost }) {
 }
 
 renderRow(feedpost) {
-  return <PostItem feedpost={feedpost} />;
+  return <FeedItem feedpost={feedpost} />;
 }
 
   render() {
@@ -40,7 +40,7 @@ renderRow(feedpost) {
         <Button onPress={() => { this.onButtonPress(); }}>
           <Text>Press to make a new post</Text>
         </Button>
-      
+
         <ListView
           enableEmptySections
           dataSource={this.dataSource}
