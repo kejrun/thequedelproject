@@ -37,7 +37,7 @@ renderRow(feedpost) {
   return (
     <Container>
       <Content>
-        <Button onPress={() => { this.onButtonPress(); }}>
+        <Button block onPress={() => { this.onButtonPress(); }}>
           <Text>Press to make a new post</Text>
         </Button>
 
