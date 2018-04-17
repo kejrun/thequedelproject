@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, List, ListItem } from 'native-base';
+import { Text, Card, CardItem } from 'native-base';
 
 class FeedItem extends Component {
 
@@ -7,13 +7,13 @@ class FeedItem extends Component {
     const { queueLength } = this.props.feedpost;
 
     return (
-      <List>
-      <ListItem>
-        <Text>
-          {queueLength}
-        </Text>
-      </ListItem>
-      </List>
+      <Card>
+        <CardItem>
+          <Text>
+            {queueLength}
+          </Text>
+        </CardItem>
+      </Card>
     );
   }
 }
