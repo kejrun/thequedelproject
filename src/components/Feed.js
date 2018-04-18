@@ -27,8 +27,6 @@ createDataSource({ feedpost }) {
   });
 
   this.dataSource = ds.cloneWithRows(feedpost);
-
-  console.log(feedpost);
 }
 
 renderRow(feedpost) {

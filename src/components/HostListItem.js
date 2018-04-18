@@ -11,7 +11,8 @@ class HostListItem extends Component {
     const { library, chosen } = this.props;
 
     if (chosen) {
-      const { chosenNationId } = library.id;
+      const chosenNationId = library.id;
+      console.log(chosenNationId);
       return (
         { chosenNationId }
       );
