@@ -6,13 +6,30 @@ import { updateNewPost } from '../actions';
 class NewPost extends Component {
   render() {
   return (
-         <Form>
+        <Form>
+          <Picker
+            iosHeader="Select"
+            style={{ width: undefined }}
+            iosIcon={<Icon name="ios-arrow-down-outline" />}
+            placeholder="Select nation"
+            itemStyle={{
+              marginLeft: 0,
+              paddingLeft: 10
+            }}
+            selectedValue={this.props.chosenNationId}
+            onValueChange={value => this.props.updateNewPost({ prop: 'chosenNationId', value })}
+          >
+              <Picker.Item label='Östgöta Nation' value='1' />
+              <Picker.Item label='Smålands Nation' value='2' />
+              <Picker.Item label='Stockholms Nation' value='3' />
+            </Picker>
+
             <Picker
               mode="dropdown"
               iosHeader="Select"
               style={{ width: undefined }}
               iosIcon={<Icon name="ios-arrow-down-outline" />}
-              placeholder="Select one"
+              placeholder="Select length of queue"
               itemStyle={{
                 marginLeft: 0,
                 paddingLeft: 10
@@ -28,7 +45,7 @@ class NewPost extends Component {
              <Picker.Item label='>2h' value='>2 hour' />
              <Picker.Item label='One-in-one-out' value='One-in-one-out' />
             </Picker>
-            </Form>
+          </Form>
   );
 }
 }
