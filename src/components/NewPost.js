@@ -1,15 +1,9 @@
 import React, { Component } from 'react';
 import { Picker, Form, Icon } from 'native-base';
 import { connect } from 'react-redux';
-import { Actions } from 'react-native-router-flux';
 import { updateNewPost } from '../actions';
 
 class NewPost extends Component {
-  onButtonPress() {
-      console.log('Thank you for making a post!');
-      Actions.pop();
-  }
-
   render() {
   return (
          <Form>
@@ -40,8 +34,8 @@ class NewPost extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { queueLength } = state.newpost;
-    return { queueLength };
+  const { queueLength, chosenNationId } = state.newpost;
+    return { queueLength, chosenNationId };
 };
 
 export default connect(mapStateToProps, { updateNewPost })(NewPost);
