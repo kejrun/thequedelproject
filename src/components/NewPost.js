@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Picker, Form, Icon } from 'native-base';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
-import { updateNewPost } from '../actions';
+import { updatePost } from '../actions';
 
 class NewPost extends Component {
   onButtonPress() {
@@ -24,7 +24,7 @@ class NewPost extends Component {
                 paddingLeft: 10
               }}
               selectedValue={this.props.queueLength}
-              onValueChange={value => this.props.updateNewPost({ prop: 'queueLength', value })}
+              onValueChange={value => this.props.updatePost({ prop: 'queueLength', value })}
             >
              <Picker.Item label='0-10 min' value='1-10 min' />
              <Picker.Item label='10-20 min' value='10-20 min' />
@@ -44,4 +44,4 @@ const mapStateToProps = (state) => {
     return { queueLength };
 };
 
-export default connect(mapStateToProps, { updateNewPost })(NewPost);
+export default connect(mapStateToProps, { updatePost })(NewPost);

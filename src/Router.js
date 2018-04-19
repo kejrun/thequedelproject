@@ -7,6 +7,11 @@ import Feed from './components/Feed';
 import NotificationList from './components/NotificationList';
 import UserPage from './components/UserPage';
 import NewPostCreate from './components/NewPostCreate';
+//import testComponent from './components/testComponent';
+
+//<Scene key='test'>
+//  <Scene key='testpage' component={testComponent} hideNavBar />
+//</Scene>
 
 const RouterComponent = () => {
   return (

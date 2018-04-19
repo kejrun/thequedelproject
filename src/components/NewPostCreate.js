@@ -7,9 +7,10 @@ import { makeNewPost } from '../actions';
 import NewPost from './NewPost';
 
 class NewPostCreate extends Component {
-  onButtonPress() {
-  const { queueLength } = this.props;
-  this.props.makeNewPost({ queueLength });
+  onCreatePress() {
+  const { queueLength, agreements, disagreements } = this.props;
+  //console.log(this.props);
+  this.props.makeNewPost({ queueLength, agreements, disagreements });
 }
 
 render() {
@@ -29,7 +30,7 @@ render() {
          <Content>
          <Text> How long is the queue at arrival?</Text>
         <NewPost {...this.props} />
-        <Button block onPress={this.onButtonPress.bind(this)}>
+        <Button block onPress={this.onCreatePress.bind(this)}>
           <Text>Create post</Text>
         </Button>
     </Content>
@@ -39,8 +40,8 @@ render() {
 }
 
 const mapStateToProps = (state) => {
-  const { queueLength } = state.newpost;
-  return { queueLength };
+  const { queueLength, agreements, disagreements } = state.newpost;
+  return { queueLength, agreements, disagreements };
 };
 
 export default connect(mapStateToProps, { makeNewPost })(NewPostCreate);
