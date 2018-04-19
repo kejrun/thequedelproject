@@ -18,6 +18,8 @@ export const makeNewPost = ({ queueLength, chosenNationId }) => {
 
   return (dispatch) => {
     firebase.database().ref(`/users/${currentUser.uid}/user_posts`)
+    .push({ queueLength, chosenNationId });
+    firebase.database().ref('/feed_posts')
     .push({ queueLength, chosenNationId })
     .then(() => {
       dispatch({ type: NEW_POST });
@@ -27,10 +29,8 @@ export const makeNewPost = ({ queueLength, chosenNationId }) => {
 };
 
 export const feedFetch = () => {
-  const { currentUser } = firebase.auth();
-
   return (dispatch) => {
-    firebase.database().ref(`/users/${currentUser.uid}/user_posts`)
+    firebase.database().ref('/feed_posts')
     .on('value', snapshot => {
       dispatch({ type: FEED_FETCH_SUCCESS, payload: snapshot.val() });
     });
