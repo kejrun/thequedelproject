@@ -40,6 +40,8 @@ render() {
 
 const mapStateToProps = (state) => {
   const { queueLength, chosenNationId } = state.newpost;
+  //console.log(state.newpost);
+  //console.log(state.selectedLibraryId);
   return { queueLength, chosenNationId };
 };
 
