@@ -8,34 +8,6 @@ class NewPost extends Component {
   render() {
   return (
         <Form>
-          <Picker
-            mode="dropdown"
-            iosHeader="Select"
-            style={{ width: undefined }}
-            iosIcon={<Icon name="ios-arrow-down-outline" />}
-            placeholder="Select nation"
-            itemStyle={{
-              marginLeft: 0,
-              paddingLeft: 10
-            }}
-            selectedValue={this.props.chosenNationId}
-            onValueChange={value => this.props.updateNewPost({ prop: 'chosenNationId', value })}
-          >
-              <Picker.Item label='Gotlands Nation' value='1' />
-              <Picker.Item label='Gästrike-Hälsinge nation' value='2' />
-              <Picker.Item label='Göteborgs nation' value='3' />
-              <Picker.Item label='Kalmar nation' value='4' />
-              <Picker.Item label='Norrlands nation' value='5' />
-              <Picker.Item label='Smålands nation' value='6' />
-              <Picker.Item label='Stockholms nation' value='7' />
-              <Picker.Item label='Södermanlands-Nerikes nation' value='8' />
-              <Picker.Item label='Uplands nation' value='9' />
-              <Picker.Item label='Värmlands nation' value='10' />
-              <Picker.Item label='Västgöta nation' value='11' />
-              <Picker.Item label='Västmanlands-Dala nation' value='12' />
-              <Picker.Item label='Östgöta nation' value='13' />
-            </Picker>
-
             <Picker
               mode="dropdown"
               iosHeader="Select"
