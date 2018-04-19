@@ -4,7 +4,8 @@ import {
 } from '../actions/types';
 
 const INITIAL_STATE = {
-  queueLength: ''
+  queueLength: '',
+  chosenNationId: ''
 };
 
 export default (state = INITIAL_STATE, action) => {

@@ -13,12 +13,12 @@ export const updateNewPost = ({ prop, value }) => {
   };
 };
 
-export const makeNewPost = ({ queueLength }) => {
+export const makeNewPost = ({ queueLength, chosenNationId }) => {
   const { currentUser } = firebase.auth();
 
   return (dispatch) => {
     firebase.database().ref(`/users/${currentUser.uid}/user_posts`)
-    .push({ queueLength })
+    .push({ queueLength, chosenNationId })
     .then(() => {
       dispatch({ type: NEW_POST });
       Actions.pop({ type: 'reset' });

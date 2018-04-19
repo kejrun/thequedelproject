@@ -30,6 +30,7 @@ createDataSource({ feedpost }) {
 }
 
 renderRow(feedpost) {
+  //console.log(feedpost);
   return <FeedItem feedpost={feedpost} />;
 }
 
