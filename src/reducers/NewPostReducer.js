@@ -1,5 +1,5 @@
 import {
-  NEW_POST,
+  NEW_POST_SAME_NATION,
   NEW_POST_UPDATE,
 } from '../actions/types';
 
@@ -15,8 +15,8 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, [action.payload.prop]: action.payload.value };
     case 'select_library':
       return { ...state, chosenNationId: action.payload };
-    case NEW_POST:
-      return INITIAL_STATE;
+    case NEW_POST_SAME_NATION:
+      return state;
     default:
       return state;
   }
