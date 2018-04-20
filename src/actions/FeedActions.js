@@ -2,7 +2,6 @@ import firebase from 'firebase';
 import { Actions } from 'react-native-router-flux';
 import {
   POST_UPDATE,
-  NEW_POST,
   FEED_FETCH_SUCCESS,
   AGREE,
   DISAGREE,
@@ -11,7 +10,7 @@ import {
   GET_ID,
   UPDATE_AGREEMENTS,
   UP_VOTE,
-  DOWN_VOTE
+  DOWN_VOTE,
   NEW_POST_SAME_NATION,
 } from './types';
 
@@ -61,7 +60,7 @@ export const postSave = ({ queueLength, chosenNationId, agreements, disagreement
   const { currentUser } = firebase.auth();
     return (dispatch) => {
       firebase.database().ref(`/users/${currentUser.uid}/user_posts/${postId}`)
-      .set({ queueLength, chosenNationId, agreements, disagreements })
+      .set({ queueLength, chosenNationId, agreements, disagreements });
       firebase.database().ref('/feed_posts')
       .set({ queueLength, chosenNationId, agreements, disagreements })
       .then(() => {
@@ -104,4 +103,3 @@ export const getPostId = (pid) => {
     pid
   };
 };
-

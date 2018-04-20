@@ -29,7 +29,7 @@ render() {
          <Content>
          <Text> How long is the queue at arrival?</Text>
         <NewPost {...this.props} />
-        <Button block onPress={this.onCreatePress.bind(this)}>
+        <Button block onPress={this.onButtonPress.bind(this)}>
           <Text>Create post</Text>
         </Button>
     </Content>

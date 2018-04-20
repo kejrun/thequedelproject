@@ -24,11 +24,11 @@ class PostVotes extends Component {
 
   onDisagreePress() {
     const credit = 1;
-    const { thisPost, postId, queueLength, agreements, disagreements } = this.props;
+    const { thisPost, postId, queueLength, chosenNationId, agreements, disagreements } = this.props;
     this.props.getId(postId);
     if (thisPost) {
       this.props.disagree();
-      this.props.postSave({ queueLength, agreements, disagreements, postId });
+      //this.props.postSave({ queueLength, chosenNationId, agreements, disagreements, postId });
     }
   }
 
