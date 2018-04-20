@@ -67,6 +67,7 @@ renderRow(feedpost) {
 
 const mapStateToProps = state => {
   const feedpost = _.map(state.feedpost, (val, uid) => {
+    //console.log(uid);
     return { ...val, uid };
   });
 

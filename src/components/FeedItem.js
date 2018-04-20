@@ -1,10 +1,19 @@
+//import _ from 'lodash';
 import React, { Component } from 'react';
 import { Text, Card, CardItem } from 'native-base';
+import { connect } from 'react-redux';
+import { updatePostStatus, getId } from '../actions';
+import PostVotes from './PostVotes';
 
 class FeedItem extends Component {
 
+  componentWillMount() {
+    const pid = this.props.feedpost.uid;
+    this.props.getId(pid);
+    }
+
   render() {
-    const { queueLength, chosenNationId } = this.props.feedpost;
+    const { queueLength, chosenNationId, agreements, disagreements, uid } = this.props.feedpost;
 
     return (
       <Card>
@@ -12,6 +21,12 @@ class FeedItem extends Component {
           <Text>
             {queueLength}
           </Text>
+          <PostVotes
+            postId={uid}
+            queueLength={queueLength}
+            agreements={agreements}
+            disagreements={disagreements}
+          />
           <Text>
             {chosenNationId}
           </Text>
@@ -21,4 +36,12 @@ class FeedItem extends Component {
   }
 }
 
-export default FeedItem;
+const mapStateToProps = (state) => {
+  const { queueLength, chosenNationId, agreements, disagreements, pid } = state.newpost;
+  return { queueLength, chosenNationId, agreements, disagreements, pid };
+};
+
+export default connect(mapStateToProps, {
+  updatePostStatus,
+  getId
+})(FeedItem);

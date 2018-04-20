@@ -18,6 +18,7 @@ class App extends Component {
      };
      firebase.initializeApp(config);
    }
+
    render() {
       //second argument is for initial state. third is a store enhancer, adding
       //a additional functionality to the store
