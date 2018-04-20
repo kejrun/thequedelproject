@@ -33,7 +33,7 @@ const RouterComponent = () => {
           tabBarStyle={{ backgroundColor: '#FFFFFF' }}
         >
           {/* Tab and it's scenes */}
-          <Scene key="feed" title="Feed" icon={TabIcon}>
+          <Scene key="feed" hideNavBar title="Feed" icon={TabIcon}>
             <Scene
               key="feedpage"
               component={Feed}

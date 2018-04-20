@@ -1,15 +1,17 @@
 import {
-  NEW_POST,
   POST_UPDATE,
   AGREE,
   DISAGREE,
   SAVE_POST,
   UPDATE_AGREEMENTS,
-  GET_POST_ID
+  GET_POST_ID,
+  NEW_POST_SAME_NATION
+
 } from '../actions/types';
 
 const INITIAL_STATE = {
   queueLength: '',
+  chosenNationId: '',
   agreements: 0,
   disagreements: 0,
   pid: ''
@@ -20,8 +22,8 @@ export default (state = INITIAL_STATE, action) => {
     case POST_UPDATE:
       // action.payload === { prop: 'name, value: 'Jane' }
       return { ...state, [action.payload.prop]: action.payload.value };
-    case NEW_POST:
-      return { INITIAL_STATE };
+    case NEW_POST_SAME_NATION:
+      return state;
     case GET_POST_ID:
       return { ...state, pid: action.payload };
     case AGREE:
@@ -34,6 +36,8 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, disagreements: state.disagreements + 1 };
     case SAVE_POST:
       return { ...state };
+    case 'select_library':
+      return { ...state, chosenNationId: action.payload };
     default:
       return state;
   }

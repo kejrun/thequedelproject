@@ -8,13 +8,14 @@ import * as actions from '../actions';
 class HostListItem extends Component {
 
   ifChosenNation() {
-    //const { library, chosen } = this.props;
+    const { library, chosen } = this.props;
 
-    //if (chosen) {
-      //return (
-      //  console.log({ library })
-      //);
-    //}
+    if (chosen) {
+      const chosenNationId = library.id;
+      return (
+        console.log(chosenNationId)
+      );
+    }
   }
 
   render() {

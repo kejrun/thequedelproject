@@ -12,6 +12,7 @@ import {
   UPDATE_AGREEMENTS,
   UP_VOTE,
   DOWN_VOTE
+  NEW_POST_SAME_NATION,
 } from './types';
 
 export const updatePost = ({ prop, value }) => {
@@ -21,37 +22,48 @@ export const updatePost = ({ prop, value }) => {
   };
 };
 
-export const makeNewPost = ({ queueLength, agreements, disagreements }) => {
+
+export const makeNewPost = ({ queueLength, chosenNationId, agreements, disagreements }) => {
   const { currentUser } = firebase.auth();
-  //console.log({ queueLength, agreements, disagreements });
 
   return (dispatch) => {
     console.log({ queueLength, agreements, disagreements });
     firebase.database().ref(`/users/${currentUser.uid}/user_posts`)
-    .push({ queueLength, agreements, disagreements })
+    .push({ queueLength, chosenNationId, agreements, disagreements });
+    firebase.database().ref('/feed_posts')
+    .push({ queueLength, chosenNationId, agreements, disagreements })
     .then(() => {
-      dispatch({ type: NEW_POST });
-      Actions.pop({ type: 'reset' });
+      dispatch({ type: NEW_POST_SAME_NATION });
+      Actions.pop();
     });
   };
 };
 
 export const feedFetch = () => {
-  const { currentUser } = firebase.auth();
-
   return (dispatch) => {
-    firebase.database().ref(`/users/${currentUser.uid}/user_posts`)
-    .on('value', snapshot => {
-      dispatch({ type: FEED_FETCH_SUCCESS, payload: snapshot.val() });
+  firebase.database().ref('/feed_posts')
+  .ref.orderByChild('chosenNationId').equalTo(5).on('value', snapshot => {
+    dispatch({ type: FEED_FETCH_SUCCESS, payload: snapshot.val() });
     });
   };
 };
 
-export const postSave = ({ queueLength, agreements, disagreements, postId }) => {
+
+/* export const feedFetch = () => {
+  return (dispatch) => {
+    firebase.database().ref('/feed_posts')
+    .on('value', snapshot => {
+      dispatch({ type: FEED_FETCH_SUCCESS, payload: snapshot.val() });
+    });
+  }; */
+
+export const postSave = ({ queueLength, chosenNationId, agreements, disagreements, postId }) => {
   const { currentUser } = firebase.auth();
     return (dispatch) => {
       firebase.database().ref(`/users/${currentUser.uid}/user_posts/${postId}`)
-      .set({ queueLength, agreements, disagreements })
+      .set({ queueLength, chosenNationId, agreements, disagreements })
+      firebase.database().ref('/feed_posts')
+      .set({ queueLength, chosenNationId, agreements, disagreements })
       .then(() => {
         dispatch({ type: SAVE_POST });
       });
@@ -92,3 +104,4 @@ export const getPostId = (pid) => {
     pid
   };
 };
+

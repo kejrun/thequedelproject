@@ -1,24 +1,19 @@
 import React, { Component } from 'react';
 import { Picker, Form, Icon } from 'native-base';
 import { connect } from 'react-redux';
-import { Actions } from 'react-native-router-flux';
 import { updatePost } from '../actions';
 
 class NewPost extends Component {
-  onButtonPress() {
-      console.log('Thank you for making a post!');
-      Actions.pop();
-  }
 
   render() {
   return (
-         <Form>
+        <Form>
             <Picker
               mode="dropdown"
               iosHeader="Select"
               style={{ width: undefined }}
               iosIcon={<Icon name="ios-arrow-down-outline" />}
-              placeholder="Select one"
+              placeholder="Select length of queue"
               itemStyle={{
                 marginLeft: 0,
                 paddingLeft: 10
@@ -34,14 +29,14 @@ class NewPost extends Component {
              <Picker.Item label='>2h' value='>2 hour' />
              <Picker.Item label='One-in-one-out' value='One-in-one-out' />
             </Picker>
-            </Form>
+          </Form>
   );
 }
 }
 
 const mapStateToProps = (state) => {
-  const { queueLength } = state.newpost;
-    return { queueLength };
+  const { queueLength, chosenNationId } = state.newpost;
+    return { queueLength, chosenNationId };
 };
 
 export default connect(mapStateToProps, { updatePost })(NewPost);

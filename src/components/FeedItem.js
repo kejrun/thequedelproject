@@ -13,7 +13,7 @@ class FeedItem extends Component {
     }
 
   render() {
-    const { queueLength, agreements, disagreements, uid } = this.props.feedpost;
+    const { queueLength, chosenNationId, agreements, disagreements, uid } = this.props.feedpost;
 
     return (
       <Card>
@@ -27,6 +27,9 @@ class FeedItem extends Component {
             agreements={agreements}
             disagreements={disagreements}
           />
+          <Text>
+            {chosenNationId}
+          </Text>
         </CardItem>
       </Card>
     );
@@ -34,8 +37,8 @@ class FeedItem extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { queueLength, agreements, disagreements, pid } = state.newpost;
-  return { queueLength, agreements, disagreements, pid };
+  const { queueLength, chosenNationId, agreements, disagreements, pid } = state.newpost;
+  return { queueLength, chosenNationId, agreements, disagreements, pid };
 };
 
 export default connect(mapStateToProps, {
