@@ -6,8 +6,12 @@ import {
   FEED_FETCH_SUCCESS,
   AGREE,
   DISAGREE,
-  UPDATE_POST_STATUS,
-  GET_POST_ID
+  SAVE_POST,
+  GET_POST_ID,
+  GET_ID,
+  UPDATE_AGREEMENTS,
+  UP_VOTE,
+  DOWN_VOTE
 } from './types';
 
 export const updatePost = ({ prop, value }) => {
@@ -22,6 +26,7 @@ export const makeNewPost = ({ queueLength, agreements, disagreements }) => {
   //console.log({ queueLength, agreements, disagreements });
 
   return (dispatch) => {
+    console.log({ queueLength, agreements, disagreements });
     firebase.database().ref(`/users/${currentUser.uid}/user_posts`)
     .push({ queueLength, agreements, disagreements })
     .then(() => {
@@ -42,6 +47,30 @@ export const feedFetch = () => {
   };
 };
 
+export const postSave = ({ queueLength, agreements, disagreements, postId }) => {
+  const { currentUser } = firebase.auth();
+    return (dispatch) => {
+      firebase.database().ref(`/users/${currentUser.uid}/user_posts/${postId}`)
+      .set({ queueLength, agreements, disagreements })
+      .then(() => {
+        dispatch({ type: SAVE_POST });
+      });
+    };
+};
+
+export const updateAgreements = ({ postId }) => {
+  const { currentUser } = firebase.auth();
+    return (dispatch) => {
+      const agreementCount =
+      firebase.database().ref(`/users/${currentUser.uid}/user_posts/${postId}/agreements`);
+      agreementCount.on('value', snapshot => {
+        console.log('updateAgreements snapshotvalue');
+        console.log(snapshot.val);
+        dispatch({ type: UPDATE_AGREEMENTS, payload: snapshot.val() });
+      });
+    };
+};
+
 export const agree = () => {
   return { type: AGREE };
 };
@@ -50,21 +79,16 @@ export const disagree = () => {
   return { type: DISAGREE };
 };
 
+export const getId = (feedpostId) => {
+  return {
+  type: GET_ID,
+  payload: feedpostId
+  };
+};
+
 export const getPostId = (pid) => {
   return {
     type: GET_POST_ID,
     pid
-  };
-};
-
-export const updatePostStatus = ({ queueLength, agreements, disagreements, uid }) => {
-  const { currentUser } = firebase.auth();
-
-  return (dispatch) => {
-    firebase.database().ref(`/users/${currentUser.uid}/user_posts/${uid}`)
-    .set({ queueLength, agreements, disagreements })
-    .then(() => {
-      dispatch({ type: UPDATE_POST_STATUS });
-    });
   };
 };

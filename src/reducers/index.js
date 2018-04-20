@@ -5,6 +5,7 @@ import AuthReducer from './AuthReducer';
 import NewPostReducer from './NewPostReducer';
 import FeedFetchReducer from './FeedFetchReducer';
 import test from './test';
+import IdReducer from './IdReducer';
 
 export default combineReducers({
   libraries: NationLibraryReducer,
@@ -12,5 +13,6 @@ export default combineReducers({
   auth: AuthReducer,
   newpost: NewPostReducer,
   feedpost: FeedFetchReducer,
-  testing: test
+  testing: test,
+  selectedId: IdReducer
 });
