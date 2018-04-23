@@ -7,17 +7,6 @@ import * as actions from '../actions';
 
 class HostListItem extends Component {
 
-  ifChosenNation() {
-    const { library, chosen } = this.props;
-
-    if (chosen) {
-      const chosenNationId = library.id;
-      return (
-        console.log(chosenNationId)
-      );
-    }
-  }
-
   render() {
     const { id, title } = this.props.library;
 
@@ -34,7 +23,6 @@ class HostListItem extends Component {
               <Right>
                 <Icon name="arrow-forward" />
               </Right>
-              {this.ifChosenNation()}
           </ListItem>
         </TouchableWithoutFeedback>
       </View>

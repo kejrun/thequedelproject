@@ -12,8 +12,8 @@ class PostVotes extends Component {
     const credit = 1;
     const { thisPost, postId } = this.props;
     this.props.getId(postId);
-    console.log('agreepress: thisprops');
-    console.log(this.props);
+    //console.log('agreepress: thisprops');
+    //console.log(this.props);
     if (thisPost) {
         console.log(thisPost);
         this.props.agree();
