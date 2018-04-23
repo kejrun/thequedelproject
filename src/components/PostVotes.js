@@ -21,8 +21,8 @@ class PostVotes extends Component {
     this.setState({ agreements: this.state.agreements + 1 });
     this.props.getId(postId);
     if (thisPost) {
-        this.props.agree();
-        this.props.updateAgreements({ postId });
+        //this.props.agree();
+        //this.props.updateAgreements({ postId });
     }
   }
 
@@ -32,7 +32,7 @@ class PostVotes extends Component {
     this.setState({ disagreements: this.state.disagreements + 1 });
     this.props.getId(postId);
     if (thisPost) {
-      this.props.disagree();
+      //this.props.disagree();
       //this.props.postSave({ queueLength, chosenNationId, agreements, disagreements, postId });
     }
   }

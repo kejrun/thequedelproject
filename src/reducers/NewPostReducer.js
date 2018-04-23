@@ -4,6 +4,7 @@ import {
   DISAGREE,
   SAVE_POST,
   UPDATE_AGREEMENTS,
+  UPDATE_DISAGREEMENTS,
   GET_POST_ID,
   NEW_POST_SAME_NATION
 
@@ -32,6 +33,8 @@ export default (state = INITIAL_STATE, action) => {
     case UPDATE_AGREEMENTS:
     //console.log(state);
       return { ...state, agreements: action.payload };
+    case UPDATE_DISAGREEMENTS:
+      return { ...state, disagreements: action.payload }
     case DISAGREE:
       return { ...state, disagreements: state.disagreements + 1 };
     case SAVE_POST:

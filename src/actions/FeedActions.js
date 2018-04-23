@@ -8,6 +8,7 @@ import {
   GET_POST_ID,
   GET_ID,
   UPDATE_AGREEMENTS,
+  UPDATE_DISAGREEMENTS,
   UP_VOTE,
   DOWN_VOTE,
   NEW_POST_SAME_NATION,
@@ -51,14 +52,21 @@ export const postSave = ({ queueLength, chosenNationId, agreements, disagreement
 };
 
 export const updateAgreements = ({ postId }) => {
-  const { currentUser } = firebase.auth();
     return (dispatch) => {
-      const agreementCount =
-      firebase.database().ref(`/users/${currentUser.uid}/user_posts/${postId}/agreements`);
-      agreementCount.on('value', snapshot => {
-        console.log('updateAgreements snapshotvalue');
-        console.log(snapshot.val);
-        dispatch({ type: UPDATE_AGREEMENTS, payload: snapshot.val() });
+      const updates =
+      firebase.database().ref(`/feed_posts/${postId}/agreements`);
+      updates.transaction(currentRank => {
+        dispatch({ type: UPDATE_AGREEMENTS, payload: currentRank + 1 });
+      });
+    };
+};
+
+export const updateDisagreements = (postId) => {
+    return (dispatch) => {
+      const updates =
+      firebase.database().ref(`/feed_posts/${postId}/disagreements`);
+      updates.transaction(currentRank => {
+        dispatch({ type: UPDATE_DISAGREEMENTS, payload: currentRank + 1 });
       });
     };
 };
