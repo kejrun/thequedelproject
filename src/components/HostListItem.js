@@ -13,7 +13,7 @@ class HostListItem extends Component {
     return (
       <View>
         <TouchableWithoutFeedback
-          onPress={() => { this.props.selectLibrary(id); Actions.feedpage(); }}
+          onPress={() => { this.props.selectLibrary(id, title); Actions.feedpage(); }}
         >
           <ListItem>
             <Thumbnail square size={80} source={require('../NationLogos/logo-gh.png')} />
