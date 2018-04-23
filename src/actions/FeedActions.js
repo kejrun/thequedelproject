@@ -2,7 +2,6 @@ import firebase from 'firebase';
 import { Actions } from 'react-native-router-flux';
 import {
   POST_UPDATE,
-  FEED_FETCH_SUCCESS,
   AGREE,
   DISAGREE,
   SAVE_POST,
@@ -26,7 +25,7 @@ export const makeNewPost = ({ queueLength, chosenNationId, agreements, disagreem
   const { currentUser } = firebase.auth();
 
   return (dispatch) => {
-    console.log({ queueLength, agreements, disagreements });
+    //console.log({ queueLength, agreements, disagreements });
     firebase.database().ref(`/users/${currentUser.uid}/user_posts`)
     .push({ queueLength, chosenNationId, agreements, disagreements });
     firebase.database().ref('/feed_posts')
@@ -37,24 +36,6 @@ export const makeNewPost = ({ queueLength, chosenNationId, agreements, disagreem
     });
   };
 };
-
-export const feedFetch = () => {
-  return (dispatch) => {
-  firebase.database().ref('/feed_posts')
-  .ref.orderByChild('chosenNationId').equalTo(5).on('value', snapshot => {
-    dispatch({ type: FEED_FETCH_SUCCESS, payload: snapshot.val() });
-    });
-  };
-};
-
-
-/* export const feedFetch = () => {
-  return (dispatch) => {
-    firebase.database().ref('/feed_posts')
-    .on('value', snapshot => {
-      dispatch({ type: FEED_FETCH_SUCCESS, payload: snapshot.val() });
-    });
-  }; */
 
 export const postSave = ({ queueLength, chosenNationId, agreements, disagreements, postId }) => {
   const { currentUser } = firebase.auth();

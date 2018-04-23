@@ -27,10 +27,10 @@ export default (state = INITIAL_STATE, action) => {
     case GET_POST_ID:
       return { ...state, pid: action.payload };
     case AGREE:
-      console.log(state);
+      //console.log(state);
       return { ...state, agreements: state.agreements + 1 };
     case UPDATE_AGREEMENTS:
-    console.log(state);
+    //console.log(state);
       return { ...state, agreements: action.payload };
     case DISAGREE:
       return { ...state, disagreements: state.disagreements + 1 };
