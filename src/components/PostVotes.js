@@ -5,26 +5,31 @@ import { connect } from 'react-redux';
 import { agree, disagree, getId, updatePost, postSave, updateAgreements } from '../actions';
 
 class PostVotes extends Component {
+  state = {
+    agree: false,
+    disagree: false,
+    agreements: this.props.agreements,
+    disagreements: this.props.disagreements
+  }
+
   componentWillMount() {
   }
 
   onAgreePress() {
-    const credit = 1;
     const { thisPost, postId } = this.props;
+    this.setState({ agree: true });
+    this.setState({ agreements: this.state.agreements + 1 });
     this.props.getId(postId);
-    //console.log('agreepress: thisprops');
-    //console.log(this.props);
     if (thisPost) {
-        console.log(thisPost);
         this.props.agree();
         this.props.updateAgreements({ postId });
-        console.log('postSave sent');
     }
   }
 
   onDisagreePress() {
-    const credit = 1;
-    const { thisPost, postId, queueLength, chosenNationId, agreements, disagreements } = this.props;
+    const { thisPost, postId } = this.props;
+    this.setState({ disagree: true });
+    this.setState({ disagreements: this.state.disagreements + 1 });
     this.props.getId(postId);
     if (thisPost) {
       this.props.disagree();
@@ -33,20 +38,20 @@ class PostVotes extends Component {
   }
 
   render() {
-    const { agreements, disagreements } = this.props;
+    const { agreements, disagreements } = this.state;
     return (
     <CardItem >
       <Button
         onPress={this.onAgreePress.bind(this)}
         value={agreements}
       >
-        <Text> Agree: {agreements} </Text>
+        <Text> A: {agreements} </Text>
       </Button>
       <Button
         onPress={this.onDisagreePress.bind(this)}
         value={disagreements}
       >
-        <Text> Disagree: {disagreements} </Text>
+        <Text> D: {disagreements} </Text>
       </Button>
     </CardItem>
   );

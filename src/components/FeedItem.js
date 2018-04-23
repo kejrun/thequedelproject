@@ -1,19 +1,29 @@
 //import _ from 'lodash';
 import React, { Component } from 'react';
-import { Text, Card, CardItem } from 'native-base';
+import { Text, Card, CardItem, CheckBox } from 'native-base';
 import { connect } from 'react-redux';
 import { updatePostStatus, getId } from '../actions';
 import PostVotes from './PostVotes';
 
 class FeedItem extends Component {
+  state = {
+    thanked: false,
+    thanks: 0
+  }
 
   componentWillMount() {
     const pid = this.props.feedpost.uid;
     this.props.getId(pid);
     }
 
+    onThanksPressed() {
+    const { thanks } = this.state;
+      this.setState({ thanked: true });
+      this.setState({ thanks: thanks + 1 });
+    }
+
   render() {
-    const { queueLength, chosenNationId, agreements, disagreements, uid } = this.props.feedpost;
+    const { queueLength, agreements, disagreements, uid } = this.props.feedpost;
 
     return (
       <Card>
@@ -27,8 +37,9 @@ class FeedItem extends Component {
             agreements={agreements}
             disagreements={disagreements}
           />
+          <CheckBox onPress={this.onThanksPressed.bind(this)} checked={this.state.thanked} />
           <Text>
-            {chosenNationId}
+          {this.state.thanks}
           </Text>
         </CardItem>
       </Card>
