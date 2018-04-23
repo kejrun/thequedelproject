@@ -1,4 +1,8 @@
+import firebase from 'firebase';
+import {
+  UPDATE_FOLLOWERS
+} from './types';
+
 export const notifyMe = (nationID) => {
-  console.log('notify me');
-  console.log(nationID);
+    console.log(nationID);
 };

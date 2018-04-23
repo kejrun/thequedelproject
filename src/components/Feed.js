@@ -87,7 +87,7 @@ renderRow(feedpost) {
           </Button>
         </Left>
         <Body>
-          <Title>Title of Nation</Title>
+          <Title>{this.props.title}</Title>
         </Body>
         <Right>
         <Button
@@ -122,11 +122,11 @@ renderRow(feedpost) {
 
 const mapStateToProps = state => {
   const feedpost = _.map(state.feedpost, (val, uid) => {
-    //console.log(uid);
     return { ...val, uid };
   });
-  const nationID = state.selectedLibraryId;
-  return { feedpost, nationID };
+  const { nationID, title } = state.selectedLibraryId;
+
+  return { feedpost, nationID, title };
 };
 
 export default connect(mapStateToProps, {
