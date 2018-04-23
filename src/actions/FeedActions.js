@@ -26,7 +26,7 @@ export const makeNewPost = ({ queueLength, chosenNationId, agreements, disagreem
   const { currentUser } = firebase.auth();
 
   return (dispatch) => {
-    //console.log({ queueLength, agreements, disagreements });
+    console.log({ queueLength, agreements, disagreements });
     firebase.database().ref(`/users/${currentUser.uid}/user_posts`)
     .push({ queueLength, chosenNationId, agreements, disagreements });
     firebase.database().ref('/feed_posts')
