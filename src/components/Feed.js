@@ -3,14 +3,15 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { ListView } from 'react-native';
 import { Container, Content, Button, Text, Header, Left, Icon,
-        Body, Title, Right } from 'native-base';
+        Body, Title, Right, Toast } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import { feedFetch1, feedFetch2, feedFetch3, feedFetch4, feedFetch5,
         feedFetch6, feedFetch7, feedFetch8, feedFetch9, feedFetch10,
-        feedFetch11, feedFetch12, feedFetch13 } from '../actions';
+        feedFetch11, feedFetch12, feedFetch13, notifyMe } from '../actions';
 import FeedItem from './FeedItem';
 
 class Feed extends Component {
+
   componentWillMount() {
   const nationID = this.props.nationID;
 
@@ -73,7 +74,6 @@ createDataSource({ feedpost }) {
 }
 
 renderRow(feedpost) {
-  //console.log(feedpost);
   return <FeedItem feedpost={feedpost} />;
 }
 
@@ -89,7 +89,20 @@ renderRow(feedpost) {
         <Body>
           <Title>Title of Nation</Title>
         </Body>
-        <Right />
+        <Right>
+        <Button
+          transparent
+          onPress={() => {
+            Toast.show({
+              text: '   Following',
+            });
+            notifyMe(this.props.nationID);
+          }
+          }
+        >
+          <Icon name="alarm" />
+        </Button>
+        </Right>
       </Header>
       <Content>
         <Button block onPress={() => { this.onButtonPress(); }}>

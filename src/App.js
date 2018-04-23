@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
+import { Root } from 'native-base';
 import { createStore, applyMiddleware } from 'redux';
 import firebase from 'firebase';
 import thunk from 'redux-thunk';
@@ -27,7 +28,9 @@ class App extends Component {
 
       return (
         <Provider store={store}>
+        <Root>
           <Router />
+        </Root>
         </Provider>
       );
     }
