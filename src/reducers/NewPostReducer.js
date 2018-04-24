@@ -1,8 +1,5 @@
 import {
   POST_UPDATE,
-  AGREE,
-  DISAGREE,
-  SAVE_POST,
   UPDATE_AGREEMENTS,
   UPDATE_DISAGREEMENTS,
   GET_POST_ID,
@@ -16,7 +13,8 @@ const INITIAL_STATE = {
   agreements: 0,
   disagreements: 0,
   pid: '',
-  followers: 0
+  followers: 0,
+  thanks: 0
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -28,18 +26,12 @@ export default (state = INITIAL_STATE, action) => {
       return state;
     case GET_POST_ID:
       return { ...state, pid: action.payload };
-    case AGREE:
-      return { ...state, agreements: state.agreements + 1 };
     case UPDATE_AGREEMENTS:
-      return { ...state, agreements: action.payload };
+      return { ...state, agreements: 0 };
     case UPDATE_DISAGREEMENTS:
-      return { ...state, disagreements: action.payload };
-    case DISAGREE:
-      return { ...state, disagreements: state.disagreements + 1 };
+      return { ...state, disagreements: 0 };
     case UPDATE_FOLLOWERS:
       return { ...state, followers: action.payload };
-    case SAVE_POST:
-      return { ...state };
     case 'select_library':
       return { ...state, chosenNation: action.payload };
     default:
