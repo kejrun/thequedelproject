@@ -16,7 +16,6 @@ export const updatePost = ({ prop, value }) => {
   };
 };
 
-
 export const makeNewPost = ({ queueLength, chosenNation, agreements, disagreements, thanks }) => {
   const userId = firebase.auth().currentUser.uid;
 
