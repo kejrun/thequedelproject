@@ -2,15 +2,10 @@ import firebase from 'firebase';
 import { Actions } from 'react-native-router-flux';
 import {
   POST_UPDATE,
-  AGREE,
-  DISAGREE,
-  SAVE_POST,
-  GET_POST_ID,
   GET_ID,
   UPDATE_AGREEMENTS,
   UPDATE_DISAGREEMENTS,
-  UP_VOTE,
-  DOWN_VOTE,
+  UPDATE_THANKS,
   NEW_POST_SAME_NATION,
 } from './types';
 
@@ -22,12 +17,19 @@ export const updatePost = ({ prop, value }) => {
 };
 
 
-export const makeNewPost = ({ queueLength, chosenNation, agreements, disagreements }) => {
+export const makeNewPost = ({ queueLength, chosenNation, agreements, disagreements, thanks }) => {
   const userId = firebase.auth().currentUser.uid;
 
   return (dispatch) => {
     firebase.database().ref('/feed_posts')
-    .push({ time: Date.now(), userId, queueLength, chosenNation, agreements, disagreements })
+    .push({
+      time: Date.now(),
+      userId,
+      queueLength,
+      chosenNation,
+      agreements,
+      disagreements,
+      thanks })
     .then(() => {
       dispatch({ type: NEW_POST_SAME_NATION });
       Actions.pop();
@@ -55,6 +57,17 @@ export const updateDisagreements = ({ postId }) => {
   });
     return (dispatch) => {
       dispatch({ type: UPDATE_DISAGREEMENTS });
+    };
+};
+
+export const updateThanks = (postId) => {
+  const updates =
+  firebase.database().ref(`/feed_posts/${postId}/thanks`);
+  updates.transaction((currentRank) => {
+    return currentRank + 1;
+  });
+    return (dispatch) => {
+      dispatch({ type: UPDATE_THANKS });
     };
 };
 
