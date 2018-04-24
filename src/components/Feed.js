@@ -7,7 +7,7 @@ import { Container, Content, Button, Text, Header, Left, Icon,
 import { Actions } from 'react-native-router-flux';
 import { feedFetch1, feedFetch2, feedFetch3, feedFetch4, feedFetch5,
         feedFetch6, feedFetch7, feedFetch8, feedFetch9, feedFetch10,
-        feedFetch11, feedFetch12, feedFetch13, notifyMe } from '../actions';
+        feedFetch11, feedFetch12, feedFetch13, following } from '../actions';
 import FeedItem from './FeedItem';
 
 class Feed extends Component {
@@ -67,7 +67,7 @@ onButtonPress() {
 
 notifyPress() {
   const { libraryId } = this.props;
-  notifyMe({ prop: 'libraryId', libraryId });
+  following({ prop: 'libraryId', libraryId });
 
   Toast.show({
     text: '   Following',

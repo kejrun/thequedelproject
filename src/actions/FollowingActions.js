@@ -1,10 +1,9 @@
 import firebase from 'firebase';
 import {
-  UPDATE_FOLLOWERS,
-  NOTIFICATION_FEED_FETCH_SUCCESS
+  UPDATE_FOLLOWERS
 } from './types';
 
-export const notifyMe = ({ libraryId }) => {
+export const following = ({ libraryId }) => {
   const userId = firebase.auth().currentUser.uid;
   firebase.database().ref(`/users/${userId}/`).child('following').push()
   .set({ libraryId });
@@ -15,16 +14,5 @@ export const notifyMe = ({ libraryId }) => {
   });
   return (dispatch) => {
     dispatch({ type: UPDATE_FOLLOWERS });
-  };
-};
-
-export const feedFetchNotification = () => {
-  const userId = firebase.auth().currentUser.uid;
-
-  return (dispatch) => {
-    firebase.database().ref(`/users/${userId}/`)
-    .ref.orderByChild('following').on('value', snapshot => {
-      dispatch({ type: NOTIFICATION_FEED_FETCH_SUCCESS, payload: snapshot.val() });
-    });
   };
 };

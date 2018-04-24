@@ -4,7 +4,7 @@ import { Text } from 'react-native';
 import StartPage from './components/StartPage';
 import HostList from './components/HostList';
 import Feed from './components/Feed';
-import NotificationList from './components/NotificationList';
+import FollowingList from './components/FollowingList';
 import UserPage from './components/UserPage';
 import NewPostCreate from './components/NewPostCreate';
 //import testComponent from './components/testComponent';
@@ -42,11 +42,11 @@ const RouterComponent = () => {
           </Scene>
 
           {/* Tab and it's scenes */}
-          <Scene key="notifyMe" title="Notify Me" icon={TabIcon}>
+          <Scene key="following" title="Following" icon={TabIcon}>
             <Scene
-              key="nofifyMePage"
-              component={NotificationList}
-              title="Notify Me"
+              key="followingPage"
+              component={FollowingList}
+              title="Following"
             />
           </Scene>
 
