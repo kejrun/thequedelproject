@@ -9,6 +9,7 @@ export const AGREE = 'agree';
 export const DISAGREE = 'disagree';
 export const SAVE_POST = 'save_post';
 export const UPDATE_AGREEMENTS = 'update_agreements';
+export const UPDATE_DISAGREEMENTS = 'update_disagreements';
 export const GET_POST_ID = 'get_post_id';
 export const GET_ID = 'get_id';
 export const UPDATE_FOLLOWERS = 'update_followers';

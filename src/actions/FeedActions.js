@@ -36,31 +36,24 @@ export const makeNewPost = ({ queueLength, chosenNation, agreements, disagreemen
 };
 
 
-// not used at this moment
-export const postSave = ({ queueLength, chosenNation, agreements, disagreements }) => {
-    return (dispatch) => {
-      firebase.database().ref('/feed_posts')
-      .set({ queueLength, chosenNation, agreements, disagreements })
-      .then(() => {
-        dispatch({ type: SAVE_POST });
-      });
-    };
-};
-
 export const updateAgreements = ({ postId }) => {
+  const updates =
+  firebase.database().ref(`/feed_posts/${postId}/agreements`);
+  updates.transaction((currentRank) => {
+    return currentRank + 1;
+  });
     return (dispatch) => {
-      const updates =
-      firebase.database().ref(`/feed_posts/${postId}/agreements`);
-      updates.transaction(currentRank => { return currentRank + 1; });
       dispatch({ type: UPDATE_AGREEMENTS });
     };
 };
 
-export const updateDisagreements = (postId) => {
+export const updateDisagreements = ({ postId }) => {
+  const updates =
+  firebase.database().ref(`/feed_posts/${postId}/disagreements`);
+  updates.transaction((currentRank) => {
+    return currentRank + 1;
+  });
     return (dispatch) => {
-      const updates =
-      firebase.database().ref(`/feed_posts/${postId}/disagreements`);
-      updates.transaction(currentRank => { return currentRank + 1; });
       dispatch({ type: UPDATE_DISAGREEMENTS });
     };
 };

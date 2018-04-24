@@ -2,7 +2,14 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import { CardItem, Button, Text } from 'native-base';
 import { connect } from 'react-redux';
-import { agree, disagree, getId, updatePost, postSave, updateAgreements } from '../actions';
+import { agree,
+  disagree,
+  getId,
+  updatePost,
+  postSave,
+  updateAgreements,
+  updateDisagreements
+} from '../actions';
 
 class PostVotes extends Component {
   state = {
@@ -16,25 +23,19 @@ class PostVotes extends Component {
   }
 
   onAgreePress() {
-    const { thisPost, postId } = this.props;
+    const { postId } = this.props;
     this.setState({ agree: true });
     this.setState({ agreements: this.state.agreements + 1 });
     this.props.getId(postId);
-    if (thisPost) {
-        //this.props.agree();
-        //this.props.updateAgreements({ postId });
-    }
+    this.props.updateAgreements({ postId });
   }
 
   onDisagreePress() {
-    const { thisPost, postId } = this.props;
+    const { postId } = this.props;
     this.setState({ disagree: true });
     this.setState({ disagreements: this.state.disagreements + 1 });
     this.props.getId(postId);
-    if (thisPost) {
-      //this.props.disagree();
-      //this.props.postSave({ queueLength, chosenNationId, agreements, disagreements, postId });
-    }
+    this.props.updateDisagreements({ postId });
   }
 
   render() {
@@ -70,5 +71,6 @@ export default connect(mapStateToProps, {
   getId,
   updatePost,
   postSave,
-  updateAgreements
+  updateAgreements,
+  updateDisagreements
 })(PostVotes);
