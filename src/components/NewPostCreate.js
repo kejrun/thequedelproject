@@ -8,8 +8,8 @@ import NewPost from './NewPost';
 
 class NewPostCreate extends Component {
   onButtonPress() {
-  const { queueLength, chosenNationId, agreements, disagreements } = this.props;
-  this.props.makeNewPost({ queueLength, chosenNationId, agreements, disagreements });
+  const { queueLength, chosenNation, agreements, disagreements } = this.props;
+  this.props.makeNewPost({ queueLength, chosenNation, agreements, disagreements });
 }
 
 render() {
@@ -39,8 +39,8 @@ render() {
 }
 
 const mapStateToProps = (state) => {
-  const { queueLength, chosenNationId, agreements, disagreements } = state.newpost;
-  return { queueLength, chosenNationId, agreements, disagreements };
+  const { queueLength, chosenNation, agreements, disagreements } = state.newpost;
+  return { queueLength, chosenNation, agreements, disagreements };
 };
 
 export default connect(mapStateToProps, { makeNewPost })(NewPostCreate);

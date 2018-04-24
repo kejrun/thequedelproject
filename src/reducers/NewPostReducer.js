@@ -12,7 +12,7 @@ import {
 
 const INITIAL_STATE = {
   queueLength: '',
-  chosenNationId: '',
+  chosenNation: '',
   agreements: 0,
   disagreements: 0,
   pid: '',
@@ -41,7 +41,7 @@ export default (state = INITIAL_STATE, action) => {
     case SAVE_POST:
       return { ...state };
     case 'select_library':
-      return { ...state, chosenNationId: action.payload };
+      return { ...state, chosenNation: action.payload };
     default:
       return state;
   }

@@ -48,8 +48,8 @@ class FeedItem extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { queueLength, chosenNationId, agreements, disagreements, pid } = state.newpost;
-  return { queueLength, chosenNationId, agreements, disagreements, pid };
+  const { queueLength, chosenNation, agreements, disagreements, pid } = state.newpost;
+  return { queueLength, chosenNation, agreements, disagreements, pid };
 };
 
 export default connect(mapStateToProps, {

@@ -35,8 +35,8 @@ class NewPost extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { queueLength, chosenNationId } = state.newpost;
-    return { queueLength, chosenNationId };
+  const { queueLength, chosenNation } = state.newpost;
+    return { queueLength, chosenNation };
 };
 
 export default connect(mapStateToProps, { updatePost })(NewPost);

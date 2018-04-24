@@ -22,15 +22,11 @@ export const updatePost = ({ prop, value }) => {
 };
 
 
-export const makeNewPost = ({ queueLength, chosenNationId, agreements, disagreements }) => {
-  const { currentUser } = firebase.auth();
-
+export const makeNewPost = ({ queueLength, chosenNation, agreements, disagreements }) => {
   return (dispatch) => {
     console.log({ queueLength, agreements, disagreements });
-    firebase.database().ref(`/users/${currentUser.uid}/user_posts`)
-    .push({ queueLength, chosenNationId, agreements, disagreements });
     firebase.database().ref('/feed_posts')
-    .push({ queueLength, chosenNationId, agreements, disagreements })
+    .push({ queueLength, chosenNation, agreements, disagreements })
     .then(() => {
       dispatch({ type: NEW_POST_SAME_NATION });
       Actions.pop();
@@ -38,13 +34,11 @@ export const makeNewPost = ({ queueLength, chosenNationId, agreements, disagreem
   };
 };
 
-export const postSave = ({ queueLength, chosenNationId, agreements, disagreements, postId }) => {
-  const { currentUser } = firebase.auth();
+export const postSave = ({ queueLength, chosenNation, agreements, disagreements }) => {
+  console.log('hej');
     return (dispatch) => {
-      firebase.database().ref(`/users/${currentUser.uid}/user_posts/${postId}`)
-      .set({ queueLength, chosenNationId, agreements, disagreements });
       firebase.database().ref('/feed_posts')
-      .set({ queueLength, chosenNationId, agreements, disagreements })
+      .set({ queueLength, chosenNation, agreements, disagreements })
       .then(() => {
         dispatch({ type: SAVE_POST });
       });
