@@ -58,24 +58,9 @@ export const updateDisagreements = ({ postId }) => {
     };
 };
 
-export const agree = () => {
-  return { type: AGREE };
-};
-
-export const disagree = () => {
-  return { type: DISAGREE };
-};
-
 export const getId = (feedpostId) => {
   return {
   type: GET_ID,
   payload: feedpostId
-  };
-};
-
-export const getPostId = (pid) => {
-  return {
-    type: GET_POST_ID,
-    pid
   };
 };
