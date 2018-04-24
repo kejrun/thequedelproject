@@ -23,10 +23,11 @@ export const updatePost = ({ prop, value }) => {
 
 
 export const makeNewPost = ({ queueLength, chosenNation, agreements, disagreements }) => {
+  const userId = firebase.auth().currentUser.uid;
+
   return (dispatch) => {
-    console.log({ queueLength, agreements, disagreements });
     firebase.database().ref('/feed_posts')
-    .push({ queueLength, chosenNation, agreements, disagreements })
+    .push({ time: Date.now(), userId, queueLength, chosenNation, agreements, disagreements })
     .then(() => {
       dispatch({ type: NEW_POST_SAME_NATION });
       Actions.pop();
@@ -34,8 +35,9 @@ export const makeNewPost = ({ queueLength, chosenNation, agreements, disagreemen
   };
 };
 
+
+// not used at this moment
 export const postSave = ({ queueLength, chosenNation, agreements, disagreements }) => {
-  console.log('hej');
     return (dispatch) => {
       firebase.database().ref('/feed_posts')
       .set({ queueLength, chosenNation, agreements, disagreements })
