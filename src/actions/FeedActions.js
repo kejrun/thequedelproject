@@ -49,9 +49,8 @@ export const updateAgreements = ({ postId }) => {
     return (dispatch) => {
       const updates =
       firebase.database().ref(`/feed_posts/${postId}/agreements`);
-      updates.transaction(currentRank => {
-        dispatch({ type: UPDATE_AGREEMENTS, payload: currentRank + 1 });
-      });
+      updates.transaction(currentRank => { return currentRank + 1; });
+      dispatch({ type: UPDATE_AGREEMENTS });
     };
 };
 
@@ -59,9 +58,8 @@ export const updateDisagreements = (postId) => {
     return (dispatch) => {
       const updates =
       firebase.database().ref(`/feed_posts/${postId}/disagreements`);
-      updates.transaction(currentRank => {
-        dispatch({ type: UPDATE_DISAGREEMENTS, payload: currentRank + 1 });
-      });
+      updates.transaction(currentRank => { return currentRank + 1; });
+      dispatch({ type: UPDATE_DISAGREEMENTS });
     };
 };
 
