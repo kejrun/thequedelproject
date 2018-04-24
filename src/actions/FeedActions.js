@@ -37,7 +37,7 @@ export const makeNewPost = ({ queueLength, chosenNation, agreements, disagreemen
 };
 
 
-export const updateAgreements = ({ postId }) => {
+export const updateAgreements = (postId) => {
   const updates =
   firebase.database().ref(`/feed_posts/${postId}/agreements`);
   updates.transaction((currentRank) => {
@@ -48,7 +48,7 @@ export const updateAgreements = ({ postId }) => {
     };
 };
 
-export const updateDisagreements = ({ postId }) => {
+export const updateDisagreements = (postId) => {
   const updates =
   firebase.database().ref(`/feed_posts/${postId}/disagreements`);
   updates.transaction((currentRank) => {
