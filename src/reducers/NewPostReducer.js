@@ -33,7 +33,7 @@ export default (state = INITIAL_STATE, action) => {
     case UPDATE_AGREEMENTS:
       return { ...state, agreements: action.payload };
     case UPDATE_DISAGREEMENTS:
-      return { ...state, disagreements: action.payload }
+      return { ...state, disagreements: action.payload };
     case DISAGREE:
       return { ...state, disagreements: state.disagreements + 1 };
     case UPDATE_FOLLOWERS:

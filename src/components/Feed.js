@@ -13,45 +13,45 @@ import FeedItem from './FeedItem';
 class Feed extends Component {
 
   componentWillMount() {
-  const nationID = this.props.nationID;
+  const libraryId = this.props.libraryId;
 
-  if (nationID === 1) {
+  if (libraryId === 1) {
     this.props.feedFetch1();
   }
-  if (nationID === 2) {
+  if (libraryId === 2) {
     this.props.feedFetch2();
   }
-  if (nationID === 3) {
+  if (libraryId === 3) {
     this.props.feedFetch3();
   }
-  if (nationID === 4) {
+  if (libraryId === 4) {
     this.props.feedFetch4();
   }
-  if (nationID === 5) {
+  if (libraryId === 5) {
     this.props.feedFetch5();
   }
-  if (nationID === 6) {
+  if (libraryId === 6) {
     this.props.feedFetch6();
   }
-  if (nationID === 7) {
+  if (libraryId === 7) {
     this.props.feedFetch7();
   }
-  if (nationID === 8) {
+  if (libraryId === 8) {
     this.props.feedFetch8();
   }
-  if (nationID === 9) {
+  if (libraryId === 9) {
     this.props.feedFetch9();
   }
-  if (nationID === 10) {
+  if (libraryId === 10) {
     this.props.feedFetch10();
   }
-  if (nationID === 11) {
+  if (libraryId === 11) {
     this.props.feedFetch11();
   }
-  if (nationID === 12) {
+  if (libraryId === 12) {
     this.props.feedFetch12();
   }
-  if (nationID === 13) {
+  if (libraryId === 13) {
     this.props.feedFetch13();
   }
   this.createDataSource(this.props);
@@ -63,6 +63,15 @@ componentWillReceiveProps(nextProps) {
 
 onButtonPress() {
   Actions.makenewpost();
+}
+
+notifyPress() {
+  const { libraryId } = this.props;
+  notifyMe({ prop: 'libraryId', libraryId });
+
+  Toast.show({
+    text: '   Following',
+  });
 }
 
 createDataSource({ feedpost }) {
@@ -92,13 +101,7 @@ renderRow(feedpost) {
         <Right>
         <Button
           transparent
-          onPress={() => {
-            Toast.show({
-              text: '   Following',
-            });
-            notifyMe(this.props.nationID);
-          }
-          }
+          onPress={this.notifyPress.bind(this)}
         >
           <Icon name="alarm" />
         </Button>
@@ -124,9 +127,9 @@ const mapStateToProps = state => {
   const feedpost = _.map(state.feedpost, (val, uid) => {
     return { ...val, uid };
   });
-  const { nationID, title } = state.selectedLibraryId;
+  const { libraryId, title } = state.selectedLibraryId;
 
-  return { feedpost, nationID, title };
+  return { feedpost, libraryId, title };
 };
 
 export default connect(mapStateToProps, {
