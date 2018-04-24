@@ -13,8 +13,6 @@ class FeedItem extends Component {
 
   componentWillMount() {
     const pid = this.props.feedpost.uid;
-    console.log('this.props.feedpost.uid');
-    console.log(pid);
     this.props.getId(pid);
     }
 
