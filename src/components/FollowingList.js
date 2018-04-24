@@ -11,7 +11,7 @@ class FollowingList extends Component {
       rowHasChanged: (r1, r2) => r1 !== r2
     });
 
-    this.dataSource = ds.cloneWithRows(this.props.librariesFollowed);
+    this.dataSource = ds.cloneWithRows(this.props.libraries);
   }
 
   renderRow(library) {
@@ -34,6 +34,6 @@ class FollowingList extends Component {
   }
 }
 
-const mapStateToProps = state => ({ librariesFollowed: state.librariesFollowed });
+const mapStateToProps = state => ({ libraries: state.libraries });
 
 export default connect(mapStateToProps)(FollowingList);
