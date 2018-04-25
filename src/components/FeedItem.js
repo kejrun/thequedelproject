@@ -1,6 +1,5 @@
 //import _ from 'lodash';
 import React, { Component } from 'react';
-import { Text, Card, CardItem, CheckBox, Body, Left } from 'native-base';
 import { Text, Card, CardItem, CheckBox, Button } from 'native-base';
 import { connect } from 'react-redux';
 import { getId, updateThanks, updateAgreements, updateDisagreements } from '../actions';
@@ -58,9 +57,6 @@ class FeedItem extends Component {
           <Text>{date}</Text>
         </CardItem>
         <CardItem>
-            <Text>
-              {queueLength}
-            </Text>
           <Text>
             {queueLength}
           </Text>
