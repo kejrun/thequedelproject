@@ -8,7 +8,8 @@ import * as actions from '../actions';
 class HostListItem extends Component {
 
   render() {
-    const { id, title } = this.props.library;
+    const { id, title, img } = this.props.library;
+    console.log(img);
 
     return (
       <View>
