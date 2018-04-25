@@ -1,6 +1,6 @@
 //import _ from 'lodash';
 import React, { Component } from 'react';
-import { Text, Card, CardItem, CheckBox } from 'native-base';
+import { Text, Card, CardItem, CheckBox, Body, Left } from 'native-base';
 import { connect } from 'react-redux';
 import { getId, updateThanks } from '../actions';
 import PostVotes from './PostVotes';
@@ -26,26 +26,21 @@ class FeedItem extends Component {
       }
     }
 
-// Trying to convert the timestamp...
-    getTime() {
-      const utcSeconds = this.props.feedpost.time;
-      const date = new Date(0);
-      date.setUTCSeconds(utcSeconds);
-      console.log({ date });
-    }
-
   render() {
-    const { queueLength, agreements, disagreements, uid, thanks, time } = this.props.feedpost;
+    const { queueLength, agreements, disagreements, uid, thanks } = this.props.feedpost;
+
+    const utcSeconds = this.props.feedpost.time;
+    const date = new Date(utcSeconds).toLocaleString();
 
     return (
       <Card>
+        <CardItem header>
+          <Text>{date}</Text>
+        </CardItem>
         <CardItem>
-          <Text>
-            {time}
+            <Text>
+              {queueLength}
             </Text>
-          <Text>
-            {queueLength}
-          </Text>
           <PostVotes
             postId={uid}
             queueLength={queueLength}
