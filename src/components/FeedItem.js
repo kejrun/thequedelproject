@@ -1,5 +1,6 @@
 //import _ from 'lodash';
 import React, { Component } from 'react';
+import { Text, Card, CardItem, CheckBox, Body, Left } from 'native-base';
 import { Text, Card, CardItem, CheckBox, Button } from 'native-base';
 import { connect } from 'react-redux';
 import { getId, updateThanks, updateAgreements, updateDisagreements } from '../actions';
@@ -16,8 +17,6 @@ class FeedItem extends Component {
 
   componentWillMount() {
     const pid = this.props.feedpost.uid;
-    console.log('this.props.feedpost.uid');
-    console.log(pid);
     this.props.getId(pid);
     }
 
@@ -50,9 +49,18 @@ class FeedItem extends Component {
   render() {
     const { queueLength, agreements, disagreements, thanks } = this.props.feedpost;
 
+    const utcSeconds = this.props.feedpost.time;
+    const date = new Date(utcSeconds).toLocaleString();
+
     return (
       <Card>
+        <CardItem header>
+          <Text>{date}</Text>
+        </CardItem>
         <CardItem>
+            <Text>
+              {queueLength}
+            </Text>
           <Text>
             {queueLength}
           </Text>
@@ -81,8 +89,8 @@ class FeedItem extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { queueLength, chosenNation, agreements, disagreements, pid } = state.newpost;
-  return { queueLength, chosenNation, agreements, disagreements, pid };
+  const { queueLength, chosenNation, agreements, disagreements, pid, time } = state.newpost;
+  return { queueLength, chosenNation, agreements, disagreements, pid, time };
 };
 
 export default connect(mapStateToProps, {
