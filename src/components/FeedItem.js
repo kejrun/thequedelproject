@@ -2,7 +2,8 @@
 import React, { Component } from 'react';
 import { Text, Card, CardItem, CheckBox, Button } from 'native-base';
 import { connect } from 'react-redux';
-import { getId, updateThanks, updateAgreements, updateDisagreements } from '../actions';
+import { getId, updateThanks, updateAgreements, updateDisagreements, thankPost,
+agreePost, disagreePost } from '../actions';
 
 class FeedItem extends Component {
   state = {
@@ -22,8 +23,9 @@ class FeedItem extends Component {
     onThanksPressed() {
       const { thanked, thanks } = this.state;
       const postId = this.props.feedpost.uid;
-      this.setState({ thanked: true });
       if (!thanked) {
+        this.setState({ thanked: true });
+        this.props.thankPost({ postId, thanked });
         this.setState({ thanks: thanks + 1 });
         this.props.updateThanks(postId);
       }
@@ -31,18 +33,24 @@ class FeedItem extends Component {
 
     onAgreePress() {
       const postId = this.props.feedpost.uid;
-      const { agreements } = this.state;
-      this.setState({ agree: true });
-      this.setState({ agreements: agreements + 1 });
-      this.props.updateAgreements(postId);
+      const { agree, agreements } = this.state;
+      if (!agree) {
+        this.setState({ agree: true });
+        this.props.agreePost({ postId, agree });
+        this.setState({ agreements: agreements + 1 });
+        this.props.updateAgreements(postId);
+      }
     }
 
     onDisagreePress() {
       const postId = this.props.feedpost.uid;
-      const { disagreements } = this.state;
-      this.setState({ disagree: true });
-      this.setState({ disagreements: disagreements + 1 });
-      this.props.updateDisagreements(postId);
+      const { disagree, disagreements } = this.state;
+      if (!disagree) {
+        this.setState({ disagree: true });
+        this.props.disagreePost({ postId, disagree });
+        this.setState({ disagreements: disagreements + 1 });
+        this.props.updateDisagreements(postId);
+      }
     }
 
   render() {
@@ -93,5 +101,8 @@ export default connect(mapStateToProps, {
   getId,
   updateThanks,
   updateAgreements,
-  updateDisagreements
+  updateDisagreements,
+  thankPost,
+  agreePost,
+  disagreePost
 })(FeedItem);
