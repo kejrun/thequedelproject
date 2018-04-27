@@ -1,11 +1,15 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { Text, Container, Content } from 'native-base';
+import Footer from './Footer';
 
 const UserPage = () => {
   return (
-    <View>
-      <Text> Userpage </Text>
-    </View>
+    <Container>
+      <Content>
+        <Text> USERPAGE </Text>
+      </Content>
+    <Footer />
+    </Container>
   );
 };
 
