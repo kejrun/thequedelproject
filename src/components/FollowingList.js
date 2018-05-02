@@ -24,7 +24,7 @@ class FollowingList extends Component {
       <Container>
       <Header span />
       <TitleCardFollowing>
-        <Title>Following</Title>
+        <Title style={{ color: '#2B3035' }}>Following</Title>
         </TitleCardFollowing>
         <Content>
           <List>

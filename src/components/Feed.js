@@ -94,7 +94,7 @@ renderRow(feedpost) {
       <Header span>
         <Left>
           <Button transparent onPress={() => Actions.hostOverview()}>
-            <Icon type="Ionicons" name="ios-arrow-back" style={{ color: 'white', fontSize: 30 }} />
+            <Icon type="Ionicons" name="ios-arrow-back" style={{ color: '#D6D3D1', fontSize: 30 }} />
           </Button>
         </Left>
         <Right>
@@ -102,12 +102,12 @@ renderRow(feedpost) {
           transparent
           onPress={this.notifyPress.bind(this)}
         >
-          <Icon type="Entypo" name="bookmark" style={{ color: 'white', fontSize: 30 }} />
+          <Icon type="Entypo" name="bookmark" style={{ color: '#AA4839', fontSize: 30 }} />
         </Button>
         </Right>
       </Header>
       <TitleCardFeed>
-      <Title>{this.props.title}</Title>
+      <Title style={{ color: '#2B3035' }}>{this.props.title}</Title>
       </TitleCardFeed>
       <Content>
         <ListView
@@ -117,7 +117,7 @@ renderRow(feedpost) {
         />
       </Content>
       <Button full iconLeft onPress={() => { this.onButtonPress(); }}>
-        <Icon type='MaterialIcons' name='playlist-add' />
+        <Icon type='MaterialIcons' name='playlist-add' style={{ color: '#D6D3D1' }} />
         <Text>Make a post</Text>
       </Button>
       <Footer />

@@ -1,7 +1,6 @@
-//import _ from 'lodash';
 import React, { Component } from 'react';
 import { CheckBox } from 'react-native-elements';
-import { Text, Card, CardItem, Button, Icon } from 'native-base';
+import { Text, Card, CardItem, Icon, Right, Left } from 'native-base';
 import { connect } from 'react-redux';
 import { getId, updateThanks, updateAgreements, updateDisagreements } from '../actions';
 
@@ -55,27 +54,17 @@ class FeedItem extends Component {
     return (
       <Card>
         <CardItem header>
-        <Icon type="Ionicons" name="ios-clock-outline" style={{ fontSize: 20 }} />
+        <Icon type="Ionicons" name="ios-clock-outline" style={{ fontSize: 25 }} />
           <Text>{date}</Text>
         </CardItem>
-        <CardItem>
-          <Text style={{ fontSize: 20 }} >
+        <CardItem bordered>
+          <Left>
+          <Text style={{ fontSize: 25 }} >
             {queueLength}
           </Text>
-          <CardItem >
-            <Button
-              onPress={this.onAgreePress.bind(this)}
-              value={agreements}
-            >
-              <Text> A: {agreements} </Text>
-            </Button>
-            <Button
-              onPress={this.onDisagreePress.bind(this)}
-              value={disagreements}
-            >
-              <Text> D: {disagreements} </Text>
-            </Button>
-          </CardItem>
+          </Left>
+          <Right>
+          <Text>{thanks} thanks</Text>
           <CheckBox
             onPress={this.onThanksPressed.bind(this)}
             checked={this.state.thanked}
@@ -85,10 +74,31 @@ class FeedItem extends Component {
             checkedColor='#fc3768'
             uncheckedColor='#fc3768'
           />
-          <Text>
-          {thanks} thanks
-          </Text>
-        </CardItem>
+          </Right>
+          </CardItem>
+          <CardItem footer>
+          <CheckBox
+            onPress={this.onAgreePress.bind(this)}
+            checked={this.state.agree}
+            iconType='ionicon'
+            checkedIcon='ios-thumbs-up'
+            uncheckedIcon='ios-thumbs-up-outline'
+            checkedColor='#2B3035'
+            uncheckedColor='#2B3035'
+          />
+          <Text>{agreements} agree</Text>
+          <Text>                               </Text>
+          <CheckBox
+            onPress={this.onDisagreePress.bind(this)}
+            checked={this.state.disagree}
+            iconType='ionicon'
+            checkedIcon='ios-thumbs-down'
+            uncheckedIcon='ios-thumbs-down-outline'
+            checkedColor='#2B3035'
+            uncheckedColor='#2B3035'
+          />
+          <Text> {disagreements} disagree</Text>
+          </CardItem>
       </Card>
     );
   }

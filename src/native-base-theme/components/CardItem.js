@@ -107,7 +107,7 @@ export default (variables = variable) => {
         color: variables.cardBorderColor
       },
       "NativeBase.Text": {
-        fontSize: variables.DefaultFontSize - 2,
+        fontSize: 14,
         alignSelf: null
       },
       "NativeBase.Thumbnail": {
@@ -144,7 +144,7 @@ export default (variables = variable) => {
     },
     ".footer": {
       "NativeBase.Text": {
-        fontSize: 16,
+        fontSize: 14,
         fontWeight: platform === "ios" ? "600" : "500"
       },
       ".bordered": {
@@ -179,8 +179,8 @@ export default (variables = variable) => {
     flexDirection: "row",
     alignItems: "center",
     borderRadius: 2,
-    padding: variables.listItemPadding + 5,
-    paddingVertical: variables.listItemPadding,
+    padding: variables.listItemPadding +5,
+    paddingVertical: variables.listItemPadding -20,
     backgroundColor: variables.cardDefaultBg
   };
 

@@ -317,14 +317,14 @@ export default (variables = variable) => {
       flexDirection: "row",
       justifyContent: "flex-end"
     },
-    backgroundColor: "#1AB7E8",
+    backgroundColor: "#2B3035",
     flexDirection: "row",
     paddingHorizontal: 10,
     justifyContent: "center",
     paddingTop: platform === "ios" ? (variables.isIphoneX ? 39 : 15) : 0,
     borderBottomWidth:
       platform === "ios" ? 1 / PixelRatio.getPixelSizeForLayoutSize(1) : 0,
-    borderBottomColor: "#1AB7E8",
+    borderBottomColor: "#2B3035",
     height:
       variables.platform === "ios" && variables.platformStyle === "material"
         ? variables.toolbarHeight + StatusBar.height

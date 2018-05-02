@@ -22,7 +22,7 @@ export default (variables = variable) => {
         backgroundColor: variables.tabActiveBgColor
       },
       flexDirection: null,
-      backgroundColor: "#1AB7E8",
+      backgroundColor: "#2B3035",
       borderColor: null,
       elevation: 0,
       shadowColor: null,
