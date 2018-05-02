@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Picker, Form, Icon } from 'native-base';
+import { Picker, Form, Icon, Header, Left, Button, Right, Body } from 'native-base';
 import { connect } from 'react-redux';
 import { updatePost } from '../actions';
 
@@ -9,14 +9,25 @@ class NewPost extends Component {
   return (
         <Form>
             <Picker
+              renderHeader={backAction =>
+              <Header span>
+                <Left>
+                  <Button transparent onPress={backAction}>
+                    <Icon type="Ionicons" name="ios-arrow-back" style={{ color: 'white', fontSize: 30 }} />
+                  </Button>
+                </Left>
+                <Body />
+                <Right />
+              </Header>}
               mode="dropdown"
-              iosHeader="Select"
               style={{ width: undefined }}
               iosIcon={<Icon name="ios-arrow-down-outline" />}
-              placeholder="Select length of queue"
+              placeholder="Select..."
               itemStyle={{
                 marginLeft: 0,
-                paddingLeft: 10
+                paddingLeft: 25,
+                paddingTop: 25,
+                paddingBottom: 25
               }}
               selectedValue={this.props.queueLength}
               onValueChange={value => this.props.updatePost({ prop: 'queueLength', value })}

@@ -25,7 +25,7 @@ export default {
   badgePadding: 0,
 
   // Button
-  btnFontFamily: "Roboto",
+  btnFontFamily: "Ionicons",
   btnDisabledBg: "#b5b5b5",
   buttonPadding: 6,
   get btnPrimaryBg() {
@@ -104,7 +104,7 @@ export default {
   brandLight: "#f4f4f4",
 
   // Font
-  fontFamily: "Roboto",
+  fontFamily: "Ionicons",
   fontSizeBase: 15,
   get fontSizeH1() {
     return this.fontSizeBase * 1.8;
@@ -177,7 +177,7 @@ export default {
   lineHeight: 24,
 
   // List
-  listBg: "transparent",
+  listBg: "white",
   listBorderColor: "#c9c9c9",
   listDividerBg: "#f4f4f4",
   listBtnUnderlayColor: "#DDD",
@@ -229,7 +229,7 @@ export default {
   },
 
   // Title
-  titleFontfamily: "Roboto",
+  titleFontfamily: "Ionicons",
   titleFontSize: 19,
   subTitleFontSize: 14,
   subtitleColor: "#FFF",

@@ -1,7 +1,7 @@
 //import _ from 'lodash';
 import React, { Component } from 'react';
 import { CheckBox } from 'react-native-elements';
-import { Text, Card, CardItem, Button } from 'native-base';
+import { Text, Card, CardItem, Button, Icon } from 'native-base';
 import { connect } from 'react-redux';
 import { getId, updateThanks, updateAgreements, updateDisagreements } from '../actions';
 
@@ -55,10 +55,11 @@ class FeedItem extends Component {
     return (
       <Card>
         <CardItem header>
+        <Icon type="Ionicons" name="ios-clock-outline" style={{ fontSize: 20 }} />
           <Text>{date}</Text>
         </CardItem>
         <CardItem>
-          <Text>
+          <Text style={{ fontSize: 20 }} >
             {queueLength}
           </Text>
           <CardItem >

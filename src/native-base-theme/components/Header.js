@@ -8,7 +8,7 @@ export default (variables = variable) => {
 
   const headerTheme = {
     ".span": {
-      height: 128,
+      height: 70,
       "NativeBase.Left": {
         alignSelf: "flex-start"
       },
@@ -303,10 +303,10 @@ export default (variables = variable) => {
           shadowOpacity: null
         },
         "NativeBase.Icon": {
-          color: variables.toolbarBtnColor
+          color: "white",
         },
         "NativeBase.IconNB": {
-          color: variables.toolbarBtnColor
+          color: "white"
         },
         alignSelf: null,
         paddingHorizontal: variables.buttonPadding
@@ -317,14 +317,14 @@ export default (variables = variable) => {
       flexDirection: "row",
       justifyContent: "flex-end"
     },
-    backgroundColor: variables.toolbarDefaultBg,
+    backgroundColor: "#1AB7E8",
     flexDirection: "row",
     paddingHorizontal: 10,
     justifyContent: "center",
     paddingTop: platform === "ios" ? (variables.isIphoneX ? 39 : 15) : 0,
     borderBottomWidth:
       platform === "ios" ? 1 / PixelRatio.getPixelSizeForLayoutSize(1) : 0,
-    borderBottomColor: variables.toolbarDefaultBorder,
+    borderBottomColor: "#1AB7E8",
     height:
       variables.platform === "ios" && variables.platformStyle === "material"
         ? variables.toolbarHeight + StatusBar.height
