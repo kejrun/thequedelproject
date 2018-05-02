@@ -10,7 +10,7 @@ const TitleCardFollowing = (props) => (
 const styles = {
   containerStyle: {
     padding: 20,
-    backgroundColor: 'orange',
+    backgroundColor: 'gray',
     borderWidth: 1,
     borderRadius: 2,
     borderColor: '#ddd',
