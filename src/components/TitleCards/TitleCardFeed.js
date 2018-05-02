@@ -1,9 +1,11 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, ImageBackground } from 'react-native';
 
 const TitleCardFeed = (props) => (
     <View style={styles.containerStyle}>
+    <ImageBackground source={require('../images/516112683.jpg')}>
     {props.children}
+    </ImageBackground>
     </View>
   );
 
