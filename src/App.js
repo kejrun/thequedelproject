@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import { Root } from 'native-base';
+import { Root, StyleProvider } from 'native-base';
 import { createStore, applyMiddleware } from 'redux';
 import firebase from 'firebase';
 import thunk from 'redux-thunk';
+import getTheme from './native-base-theme/components';
+import material from './native-base-theme/variables/material';
 import reducers from './reducers';
 import Router from './Router';
 
@@ -27,11 +29,13 @@ class App extends Component {
       const store = createStore(reducers, {}, applyMiddleware(thunk));
 
       return (
-        <Provider store={store}>
-        <Root>
-          <Router />
-        </Root>
-        </Provider>
+        <StyleProvider style={getTheme(material)}>
+          <Provider store={store}>
+          <Root>
+            <Router />
+          </Root>
+          </Provider>
+        </StyleProvider>
       );
     }
   }
