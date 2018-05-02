@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { Text, Card, CardItem, CheckBox, Button } from 'native-base';
 import { connect } from 'react-redux';
 import { getId, updateThanks, updateAgreements, updateDisagreements, thankPost,
-agreePost, disagreePost } from '../actions';
+agreePost, disagreePost, fetchThanks } from '../actions';
 
 class FeedItem extends Component {
   state = {
@@ -18,39 +18,49 @@ class FeedItem extends Component {
   componentWillMount() {
     const pid = this.props.feedpost.uid;
     this.props.getId(pid);
+  //  this.props.fetchThanks(pid);
+  //  this.createDataSource(this.props);
+    if (this.props.userCredits & !this.state.thanks) {
+      this.setState({ thanked: true });
+    }
     }
 
+/*    componentWillReceiveProps(nextProps) {
+      this.createDataSource(nextProps);
+    }
+
+    createDataSource({ userCredits }) {
+      const ds = new ListView.
+    }*/
+
     onThanksPressed() {
-      const { thanked, thanks } = this.state;
+      const { thanks } = this.state;
       const postId = this.props.feedpost.uid;
-      if (!thanked) {
         this.setState({ thanked: true });
-        this.props.thankPost({ postId, thanked });
+        console.log('thanks pressed');
+        console.log(thanked);
+        const thanked = true;
         this.setState({ thanks: thanks + 1 });
         this.props.updateThanks(postId);
-      }
+        this.props.thankPost({ postId, thanked });
     }
 
     onAgreePress() {
       const postId = this.props.feedpost.uid;
       const { agree, agreements } = this.state;
-      if (!agree) {
         this.setState({ agree: true });
-        this.props.agreePost({ postId, agree });
         this.setState({ agreements: agreements + 1 });
         this.props.updateAgreements(postId);
-      }
+        this.props.agreePost({ postId, agree });
     }
 
     onDisagreePress() {
       const postId = this.props.feedpost.uid;
       const { disagree, disagreements } = this.state;
-      if (!disagree) {
         this.setState({ disagree: true });
-        this.props.disagreePost({ postId, disagree });
         this.setState({ disagreements: disagreements + 1 });
         this.props.updateDisagreements(postId);
-      }
+        this.props.disagreePost({ postId, disagree });
     }
 
   render() {
@@ -104,5 +114,6 @@ export default connect(mapStateToProps, {
   updateDisagreements,
   thankPost,
   agreePost,
-  disagreePost
+  disagreePost,
+  fetchThanks
 })(FeedItem);

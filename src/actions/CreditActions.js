@@ -1,5 +1,5 @@
 import firebase from 'firebase';
-import { THANK_POST, AGREE_POST, DISAGREE_POST } from './types';
+import { THANK_POST, AGREE_POST, DISAGREE_POST, FETCH_THANKS_SUCCESS } from './types';
 
 export const thankPost = ({ postId, thanked }) => {
   const userId = firebase.auth().currentUser.uid;
@@ -26,4 +26,14 @@ export const disagreePost = ({ postId, disagree }) => {
   .update({ disagree: `${disagree}` })
   .then(() => dispatch({ type: DISAGREE_POST }));
 };
+};
+
+export const fetchThanks = (postId) => {
+  const userId = firebase.auth().currentUser.uid;
+  return (dispatch) => {
+  firebase.database().ref(`/users/${userId}/interacted_posts/${postId}`)
+  .ref.orderByChild('thanks').equalTo(true).on('value', snapshot => {
+    dispatch({ type: FETCH_THANKS_SUCCESS, payload: snapshot.val() });
+    });
+  };
 };
