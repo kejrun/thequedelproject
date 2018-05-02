@@ -16,7 +16,7 @@ const RouterComponent = () => {
         <Scene key='startpage' component={StartPage} hideNavBar />
       </Scene>
 
-      <Scene key='hostOverview'>
+      <Scene key='hostOverview' hideNavBar>
         <Scene key='HostList' component={HostList} title='' />
       </Scene>
 
@@ -28,19 +28,19 @@ const RouterComponent = () => {
             />
           </Scene>
 
-          <Scene key="following">
+          <Scene key="following" hideNavBar>
             <Scene
               key="followingPage"
               component={FollowingList}
-              title=""
+              title=" "
             />
           </Scene>
 
-          <Scene key="user">
+          <Scene key="user" hideNavBar>
             <Scene
               key="userPage"
               component={UserPage}
-              title="User"
+              title=""
             />
           </Scene>
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 
-const TitleCardFeed = (props) => (
+const MakeaPostCard = (props) => (
     <View style={styles.containerStyle}>
     {props.children}
     </View>
@@ -9,19 +9,19 @@ const TitleCardFeed = (props) => (
 
 const styles = {
   containerStyle: {
-    padding: 20,
-    backgroundColor: '#434343',
-    borderWidth: 1,
-    borderRadius: 2,
-    borderColor: '#434343',
-    borderBottomWidth: 0,
+    padding: 30,
+    height: 300,
+    backgroundColor: 'white',
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 2,
     elevation: 1,
-    marginBottom: 5,
+    marginBottom: 8,
+    marginLeft: 20,
+    marginRight: 20,
+    marginTop: 20
   }
 };
 
-export default TitleCardFeed;
+export default MakeaPostCard;

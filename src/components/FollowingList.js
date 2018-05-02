@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { ListView } from 'react-native';
-import { Container, Content, List, Title } from 'native-base';
+import { Container, Content, List, Title, Header } from 'native-base';
 import { connect } from 'react-redux';
 import HostListItem from './HostListItem';
 import Footer from './Footer';
@@ -22,10 +22,11 @@ class FollowingList extends Component {
   render() {
     return (
       <Container>
+      <Header span />
+      <TitleCardFollowing>
+        <Title>Following</Title>
+        </TitleCardFollowing>
         <Content>
-          <TitleCardFollowing>
-            <Title>Following</Title>
-            </TitleCardFollowing>
           <List>
             <ListView
               dataSource={this.dataSource}

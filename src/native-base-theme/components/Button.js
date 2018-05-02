@@ -336,7 +336,7 @@ export default (variables = variable) => {
 
     paddingVertical: variables.buttonPadding,
     // paddingHorizontal: variables.buttonPadding + 10,
-    backgroundColor: variables.btnPrimaryBg,
+    backgroundColor: '#4B2A35',
     borderRadius: variables.borderRadiusBase,
     borderColor: variables.btnPrimaryBg,
     borderWidth: null,

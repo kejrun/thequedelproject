@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Container, Header, Title, Content, Button,
-        Icon, Right, Body, Left, Text } from 'native-base';
+import { Container, Header, Content, Button, Icon, Right, Left, Text } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import { makeNewPost } from '../actions';
 import NewPost from './NewPost';
+import MakeaPostCard from './TitleCards/MakeaPostCard';
 
 class NewPostCreate extends Component {
   onButtonPress() {
@@ -15,23 +15,27 @@ class NewPostCreate extends Component {
 render() {
     return (
       <Container>
-         <Header>
+         <Header span>
            <Left>
              <Button transparent onPress={() => Actions.pop()}>
-               <Icon name="arrow-back" />
+              <Icon type="Ionicons" name="ios-arrow-back" style={{ color: 'white', fontSize: 30 }} />
              </Button>
            </Left>
-           <Body>
-             <Title>Make a post</Title>
-           </Body>
            <Right />
          </Header>
          <Content>
-         <Text> How long is the queue at arrival?</Text>
-        <NewPost {...this.props} />
-        <Button block onPress={this.onButtonPress.bind(this)}>
-          <Text>Create post</Text>
-        </Button>
+         <MakeaPostCard>
+            <Text />
+            <Text />
+           <Text> How long is the queue at arrival?</Text>
+           <Text />
+          <NewPost {...this.props} />
+            <Text />
+
+          <Button block onPress={this.onButtonPress.bind(this)}>
+            <Text>Create post</Text>
+          </Button>
+        </MakeaPostCard>
     </Content>
   </Container>
     );

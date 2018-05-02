@@ -91,10 +91,10 @@ renderRow(feedpost) {
   render() {
   return (
     <Container>
-      <Header>
+      <Header span>
         <Left>
           <Button transparent onPress={() => Actions.hostOverview()}>
-            <Icon type="Ionicons" name="ios-arrow-back" style={{ color: 'grey' }} />
+            <Icon type="Ionicons" name="ios-arrow-back" style={{ color: 'white', fontSize: 30 }} />
           </Button>
         </Left>
         <Right>
@@ -102,25 +102,24 @@ renderRow(feedpost) {
           transparent
           onPress={this.notifyPress.bind(this)}
         >
-          <Icon type="Entypo" name="bookmark" style={{ color: 'forestgreen' }} />
+          <Icon type="Entypo" name="bookmark" style={{ color: 'white', fontSize: 30 }} />
         </Button>
         </Right>
       </Header>
-      <Content>
       <TitleCardFeed>
       <Title>{this.props.title}</Title>
       </TitleCardFeed>
-        <Button full iconLeft onPress={() => { this.onButtonPress(); }}>
-          <Icon type='MaterialIcons' name='playlist-add' />
-          <Text>Make a post</Text>
-        </Button>
-
+      <Content>
         <ListView
           enableEmptySections
           dataSource={this.dataSource}
           renderRow={this.renderRow}
         />
       </Content>
+      <Button full iconLeft onPress={() => { this.onButtonPress(); }}>
+        <Icon type='MaterialIcons' name='playlist-add' />
+        <Text>Make a post</Text>
+      </Button>
       <Footer />
     </Container>
   );
