@@ -4,7 +4,7 @@ import { Container, Content, List, Title } from 'native-base';
 import { connect } from 'react-redux';
 import HostListItem from './HostListItem';
 import Footer from './Footer';
-import TitleCardUser from './TitleCards/TitleCardUser';
+import TitleCardFollowing from './TitleCards/TitleCardFollowing';
 
 class FollowingList extends Component {
   componentWillMount() {
@@ -23,9 +23,9 @@ class FollowingList extends Component {
     return (
       <Container>
         <Content>
-          <TitleCardUser>
+          <TitleCardFollowing>
             <Title>Following</Title>
-            </TitleCardUser>
+            </TitleCardFollowing>
           <List>
             <ListView
               dataSource={this.dataSource}

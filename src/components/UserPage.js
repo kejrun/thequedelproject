@@ -1,12 +1,15 @@
 import React from 'react';
-import { Text, Container, Content } from 'native-base';
+import { Title, Container, Content } from 'native-base';
 import Footer from './Footer';
+import TitleCardUser from './TitleCards/TitleCardUser';
 
 const UserPage = () => {
   return (
     <Container>
       <Content>
-        <Text> USERPAGE </Text>
+      <TitleCardUser>
+        <Title>Following</Title>
+        </TitleCardUser>
       </Content>
     <Footer />
     </Container>
