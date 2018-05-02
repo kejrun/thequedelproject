@@ -3,12 +3,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { ListView } from 'react-native';
 import { Container, Content, Button, Text, Header, Left, Icon,
-        Body, Title, Right, Toast } from 'native-base';
+         Right, Toast, Title } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import { feedFetch1, feedFetch2, feedFetch3, feedFetch4, feedFetch5,
         feedFetch6, feedFetch7, feedFetch8, feedFetch9, feedFetch10,
         feedFetch11, feedFetch12, feedFetch13, following } from '../actions';
 import FeedItem from './FeedItem';
+import Footer from './Footer';
+import TitleCardFeed from './TitleCards/TitleCardFeed';
 
 class Feed extends Component {
 
@@ -92,24 +94,25 @@ renderRow(feedpost) {
       <Header>
         <Left>
           <Button transparent onPress={() => Actions.hostOverview()}>
-            <Icon name="arrow-back" />
+            <Icon type="Ionicons" name="ios-arrow-back" style={{ color: 'grey' }} />
           </Button>
         </Left>
-        <Body>
-          <Title>{this.props.title}</Title>
-        </Body>
         <Right>
         <Button
           transparent
           onPress={this.notifyPress.bind(this)}
         >
-          <Icon name="alarm" />
+          <Icon type="Entypo" name="bookmark" style={{ color: 'forestgreen' }} />
         </Button>
         </Right>
       </Header>
       <Content>
-        <Button block onPress={() => { this.onButtonPress(); }}>
-          <Text>Press to make a new post</Text>
+      <TitleCardFeed>
+      <Title>{this.props.title}</Title>
+      </TitleCardFeed>
+        <Button full iconLeft onPress={() => { this.onButtonPress(); }}>
+          <Icon type='MaterialIcons' name='playlist-add' />
+          <Text>Make a post</Text>
         </Button>
 
         <ListView
@@ -118,6 +121,7 @@ renderRow(feedpost) {
           renderRow={this.renderRow}
         />
       </Content>
+      <Footer />
     </Container>
   );
 }

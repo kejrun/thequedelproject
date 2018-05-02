@@ -1,6 +1,7 @@
 //import _ from 'lodash';
 import React, { Component } from 'react';
-import { Text, Card, CardItem, CheckBox, Button } from 'native-base';
+import { CheckBox } from 'react-native-elements';
+import { Text, Card, CardItem, Button } from 'native-base';
 import { connect } from 'react-redux';
 import { getId, updateThanks, updateAgreements, updateDisagreements } from '../actions';
 
@@ -74,9 +75,17 @@ class FeedItem extends Component {
               <Text> D: {disagreements} </Text>
             </Button>
           </CardItem>
-          <CheckBox onPress={this.onThanksPressed.bind(this)} checked={this.state.thanked} />
+          <CheckBox
+            onPress={this.onThanksPressed.bind(this)}
+            checked={this.state.thanked}
+            iconType='ionicon'
+            checkedIcon='md-heart'
+            uncheckedIcon='md-heart-outline'
+            checkedColor='#fc3768'
+            uncheckedColor='#fc3768'
+          />
           <Text>
-          {thanks}
+          {thanks} thanks
           </Text>
         </CardItem>
       </Card>

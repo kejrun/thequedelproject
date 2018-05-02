@@ -1,17 +1,11 @@
 import React from 'react';
 import { Router, Scene } from 'react-native-router-flux';
-import { Text } from 'react-native';
 import StartPage from './components/StartPage';
 import HostList from './components/HostList';
 import Feed from './components/Feed';
 import FollowingList from './components/FollowingList';
 import UserPage from './components/UserPage';
 import NewPostCreate from './components/NewPostCreate';
-//import testComponent from './components/testComponent';
-
-//<Scene key='test'>
-//  <Scene key='testpage' component={testComponent} hideNavBar />
-//</Scene>
 
 const RouterComponent = () => {
   return (
@@ -23,17 +17,10 @@ const RouterComponent = () => {
       </Scene>
 
       <Scene key='hostOverview'>
-        <Scene key='HostList' component={HostList} title='Choose nation' />
+        <Scene key='HostList' component={HostList} title='' />
       </Scene>
 
-        {/* Tab Container */}
-        <Scene
-          key="tabbar"
-          tabs
-          tabBarStyle={{ backgroundColor: '#FFFFFF' }}
-        >
-          {/* Tab and it's scenes */}
-          <Scene key="feed" hideNavBar title="Feed" icon={TabIcon}>
+          <Scene key="feed" hideNavBar>
             <Scene
               key="feedpage"
               component={Feed}
@@ -41,23 +28,20 @@ const RouterComponent = () => {
             />
           </Scene>
 
-          {/* Tab and it's scenes */}
-          <Scene key="following" title="Following" icon={TabIcon}>
+          <Scene key="following">
             <Scene
               key="followingPage"
               component={FollowingList}
-              title="Following"
+              title=""
             />
           </Scene>
 
-          {/* Tab and it's scenes */}
-          <Scene key="user" title="User" icon={TabIcon}>
+          <Scene key="user">
             <Scene
               key="userPage"
               component={UserPage}
               title="User"
             />
-          </Scene>
           </Scene>
 
           <Scene key='makenewpost' hideNavBar>
@@ -66,12 +50,6 @@ const RouterComponent = () => {
 
         </Scene>
     </Router>
-  );
-};
-
-const TabIcon = ({ title }) => {
-  return (
-    <Text>{title}</Text>
   );
 };
 

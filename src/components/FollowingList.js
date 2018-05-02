@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { ListView } from 'react-native';
-import { Container, Content, List } from 'native-base';
+import { Container, Content, List, Title } from 'native-base';
 import { connect } from 'react-redux';
 import HostListItem from './HostListItem';
-
+import Footer from './Footer';
+import TitleCardUser from './TitleCards/TitleCardUser';
 
 class FollowingList extends Component {
   componentWillMount() {
@@ -22,6 +23,9 @@ class FollowingList extends Component {
     return (
       <Container>
         <Content>
+          <TitleCardUser>
+            <Title>Following</Title>
+            </TitleCardUser>
           <List>
             <ListView
               dataSource={this.dataSource}
@@ -29,6 +33,7 @@ class FollowingList extends Component {
             />
           </List>
        </Content>
+       <Footer />
       </Container>
     );
   }
