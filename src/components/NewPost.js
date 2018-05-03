@@ -13,7 +13,7 @@ class NewPost extends Component {
               <Header span>
                 <Left>
                   <Button transparent onPress={backAction}>
-                    <Icon type="Ionicons" name="ios-arrow-back" style={{ color: 'white', fontSize: 30 }} />
+                    <Icon type="Ionicons" name="ios-arrow-back" style={{ color: 'gray', fontSize: 30 }} />
                   </Button>
                 </Left>
                 <Body />

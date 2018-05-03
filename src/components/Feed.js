@@ -10,7 +10,7 @@ import { feedFetch1, feedFetch2, feedFetch3, feedFetch4, feedFetch5,
         feedFetch11, feedFetch12, feedFetch13, following } from '../actions';
 import FeedItem from './FeedItem';
 import Footer from './Footer';
-import TitleCardFeed from './TitleCards/TitleCardFollowing';
+import TitleCardFeed from './TitleCards/TitleCardFeed';
 
 class Feed extends Component {
 
@@ -94,7 +94,7 @@ renderRow(feedpost) {
       <Header span>
         <Left>
           <Button transparent onPress={() => Actions.hostOverview()}>
-            <Icon type="Ionicons" name="ios-arrow-back" style={{ color: '#D6D3D1', fontSize: 30 }} />
+            <Icon type="Ionicons" name="ios-arrow-back" style={{ color: 'gray', fontSize: 30 }} />
           </Button>
         </Left>
         <Right>
@@ -102,7 +102,7 @@ renderRow(feedpost) {
           transparent
           onPress={this.notifyPress.bind(this)}
         >
-          <Icon type="Entypo" name="bookmark" style={{ color: '#D6D3D1', fontSize: 30 }} />
+          <Icon type="Entypo" name="bookmark" style={{ color: 'gray', fontSize: 30 }} />
         </Button>
         </Right>
       </Header>
@@ -117,8 +117,8 @@ renderRow(feedpost) {
         />
       </Content>
       <Button full iconLeft onPress={() => { this.onButtonPress(); }}>
-        <Icon type='MaterialIcons' name='playlist-add' style={{ color: '#D6D3D1' }} />
-        <Text style={{ fontFamily: 'Avenir Book' }}>Make a post</Text>
+        <Icon type='MaterialIcons' name='playlist-add' style={{ color: '#2B3035' }} />
+        <Text style={{ fontFamily: 'Avenir Book', color: '#2B3035' }}>Make a post</Text>
       </Button>
       <Footer />
     </Container>

@@ -10,10 +10,10 @@ const TitleCardFeed = (props) => (
 const styles = {
   containerStyle: {
     padding: 20,
-    backgroundColor: 'transparent',
+    backgroundColor: '#F8DC97',
     borderWidth: 1,
     borderRadius: 2,
-    borderColor: 'transparent',
+    borderColor: '#F8DC97',
     borderBottomWidth: 0,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
