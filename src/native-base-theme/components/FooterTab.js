@@ -14,12 +14,11 @@ export default (variables = variable) => {
           lineHeight: 16
         },
         "NativeBase.Icon": {
-          color: variables.tabBarActiveTextColor
+          color: 'white'
         },
         "NativeBase.IconNB": {
-          color: variables.tabBarActiveTextColor
+          color: 'white'
         },
-        backgroundColor: variables.tabActiveBgColor
       },
       flexDirection: null,
       backgroundColor: "#2B3035",
@@ -53,10 +52,10 @@ export default (variables = variable) => {
         }
       },
       "NativeBase.Icon": {
-        color: "white"
+        color: 'gray'
       },
       "NativeBase.IconNB": {
-        color: "white"
+        color: 'gray'
       },
       "NativeBase.Text": {
         color: variables.tabBarTextColor,

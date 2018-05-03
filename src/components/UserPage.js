@@ -9,7 +9,7 @@ const UserPage = () => {
     <Container>
       <Header span />
       <TitleCardUser>
-        <Title style={{ color: '#2B3035' }}>You</Title>
+        <Title style={{ color: '#2B3035', fontFamily: 'Avenir Book' }}>You</Title>
       </TitleCardUser>
       <Content>
         <MakeaPostCard />

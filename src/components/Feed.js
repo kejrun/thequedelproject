@@ -3,14 +3,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { ListView } from 'react-native';
 import { Container, Content, Button, Text, Header, Left, Icon,
-         Right, Toast, Title } from 'native-base';
+         Right, Toast } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import { feedFetch1, feedFetch2, feedFetch3, feedFetch4, feedFetch5,
         feedFetch6, feedFetch7, feedFetch8, feedFetch9, feedFetch10,
         feedFetch11, feedFetch12, feedFetch13, following } from '../actions';
 import FeedItem from './FeedItem';
 import Footer from './Footer';
-import TitleCardFeed from './TitleCards/TitleCardFeed';
+import TitleCardFeed from './TitleCards/TitleCardFollowing';
 
 class Feed extends Component {
 
@@ -102,12 +102,12 @@ renderRow(feedpost) {
           transparent
           onPress={this.notifyPress.bind(this)}
         >
-          <Icon type="Entypo" name="bookmark" style={{ color: '#AA4839', fontSize: 30 }} />
+          <Icon type="Entypo" name="bookmark" style={{ color: '#D6D3D1', fontSize: 30 }} />
         </Button>
         </Right>
       </Header>
       <TitleCardFeed>
-      <Title style={{ color: '#2B3035' }}>{this.props.title}</Title>
+      <Text style={{ color: '#2B3035', fontFamily: 'Avenir Book', fontSize: 20 }}>{this.props.title}</Text>
       </TitleCardFeed>
       <Content>
         <ListView
@@ -118,7 +118,7 @@ renderRow(feedpost) {
       </Content>
       <Button full iconLeft onPress={() => { this.onButtonPress(); }}>
         <Icon type='MaterialIcons' name='playlist-add' style={{ color: '#D6D3D1' }} />
-        <Text>Make a post</Text>
+        <Text style={{ fontFamily: 'Avenir Book' }}>Make a post</Text>
       </Button>
       <Footer />
     </Container>

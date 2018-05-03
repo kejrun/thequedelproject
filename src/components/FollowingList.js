@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { ListView } from 'react-native';
-import { Container, Content, List, Title, Header } from 'native-base';
+import { Container, Content, List, Text, Header } from 'native-base';
 import { connect } from 'react-redux';
 import HostListItem from './HostListItem';
 import Footer from './Footer';
@@ -24,7 +24,7 @@ class FollowingList extends Component {
       <Container>
       <Header span />
       <TitleCardFollowing>
-        <Title style={{ color: '#2B3035' }}>Following</Title>
+        <Text style={{ color: '#2B3035', fontFamily: 'Avenir Book', fontSize: 20 }}>Following</Text>
         </TitleCardFollowing>
         <Content>
           <List>

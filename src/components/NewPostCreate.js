@@ -27,13 +27,13 @@ render() {
          <MakeaPostCard>
             <Text />
             <Text />
-           <Text> How long is the queue at arrival?</Text>
+           <Text style={{ fontFamily: 'Avenir Book' }}> How long is the queue at arrival?</Text>
            <Text />
           <NewPost {...this.props} />
             <Text />
 
           <Button block onPress={this.onButtonPress.bind(this)}>
-            <Text>Create post</Text>
+            <Text style={{ fontFamily: 'Avenir Book' }}>Create post</Text>
           </Button>
         </MakeaPostCard>
     </Content>

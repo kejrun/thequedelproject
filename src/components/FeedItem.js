@@ -47,24 +47,25 @@ class FeedItem extends Component {
 
   render() {
     const { queueLength, agreements, disagreements, thanks } = this.props.feedpost;
-
     const utcSeconds = this.props.feedpost.time;
-    const date = new Date(utcSeconds).toLocaleString();
+    const options = { weekday: 'short', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+    const date = new Date(utcSeconds).toLocaleDateString('en-SE', options);
+
 
     return (
       <Card>
         <CardItem header>
         <Icon type="Ionicons" name="ios-clock-outline" style={{ fontSize: 25 }} />
-          <Text>{date}</Text>
+          <Text style={{ fontFamily: 'Avenir Book' }}>{date}</Text>
         </CardItem>
-        <CardItem bordered>
+        <CardItem>
           <Left>
-          <Text style={{ fontSize: 25 }} >
+          <Text style={{ fontSize: 20, fontFamily: 'Avenir-Heavy' }} >
             {queueLength}
           </Text>
           </Left>
           <Right>
-          <Text>{thanks} thanks</Text>
+          <Text style={{ fontFamily: 'Avenir Book' }}>{thanks} thanks</Text>
           <CheckBox
             onPress={this.onThanksPressed.bind(this)}
             checked={this.state.thanked}
@@ -76,7 +77,7 @@ class FeedItem extends Component {
           />
           </Right>
           </CardItem>
-          <CardItem footer>
+          <CardItem footer bordered>
           <CheckBox
             onPress={this.onAgreePress.bind(this)}
             checked={this.state.agree}
@@ -86,8 +87,8 @@ class FeedItem extends Component {
             checkedColor='#2B3035'
             uncheckedColor='#2B3035'
           />
-          <Text>{agreements} agree</Text>
-          <Text>                               </Text>
+          <Text style={{ fontFamily: 'Avenir Book' }}>{agreements} agree</Text>
+          <Text>                             </Text>
           <CheckBox
             onPress={this.onDisagreePress.bind(this)}
             checked={this.state.disagree}
@@ -97,7 +98,7 @@ class FeedItem extends Component {
             checkedColor='#2B3035'
             uncheckedColor='#2B3035'
           />
-          <Text> {disagreements} disagree</Text>
+          <Text style={{ fontFamily: 'Avenir Book' }}> {disagreements} disagree</Text>
           </CardItem>
       </Card>
     );

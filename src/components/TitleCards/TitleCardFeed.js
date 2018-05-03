@@ -1,21 +1,19 @@
 import React from 'react';
-import { View, ImageBackground } from 'react-native';
+import { View } from 'react-native';
 
 const TitleCardFeed = (props) => (
     <View style={styles.containerStyle}>
-    <ImageBackground source={require('../images/516112683.jpg')}>
     {props.children}
-    </ImageBackground>
     </View>
   );
 
 const styles = {
   containerStyle: {
     padding: 20,
-    backgroundColor: '#1AB7E8',
+    backgroundColor: 'transparent',
     borderWidth: 1,
     borderRadius: 2,
-    borderColor: '#1AB7E8',
+    borderColor: 'transparent',
     borderBottomWidth: 0,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
