@@ -31,6 +31,27 @@ export const disagreePost = ({ postId, disagree }) => {
 export const fetchThanks = (postId) => {
   const userId = firebase.auth().currentUser.uid;
   return (dispatch) => {
+    firebase.database().ref(`/users/${userId}/interacted_posts/${postId}/thanked`)
+    .ref.on('value', (snapshot) => {
+      const thanked = snapshot.val();
+      dispatch({ type: FETCH_THANKS_SUCCESS, payload: thanked });
+    });
+  };
+};
+
+export const fetchAgreements = (postId) => {
+  const userId = firebase.auth().currentUser.uid;
+  return (dispatch) => {
+  firebase.database().ref(`/users/${userId}/interacted_posts/${postId}`)
+  .ref.orderByChild('thanks').equalTo(true).on('value', snapshot => {
+    dispatch({ type: FETCH_THANKS_SUCCESS, payload: snapshot.val() });
+    });
+  };
+};
+
+export const fetchDisagreements = (postId) => {
+  const userId = firebase.auth().currentUser.uid;
+  return (dispatch) => {
   firebase.database().ref(`/users/${userId}/interacted_posts/${postId}`)
   .ref.orderByChild('thanks').equalTo(true).on('value', snapshot => {
     dispatch({ type: FETCH_THANKS_SUCCESS, payload: snapshot.val() });

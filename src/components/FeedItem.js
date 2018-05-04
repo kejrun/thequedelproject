@@ -18,49 +18,45 @@ class FeedItem extends Component {
   componentWillMount() {
     const pid = this.props.feedpost.uid;
     this.props.getId(pid);
-  //  this.props.fetchThanks(pid);
-  //  this.createDataSource(this.props);
-    if (this.props.userCredits & !this.state.thanks) {
-      this.setState({ thanked: true });
+    this.props.fetchThanks(pid);
+    if (this.props.userCredits && !this.state.thanked) {
+      console.log('hej');
+      const thanked = true;
+      this.setState({ thanked });
     }
     }
-
-/*    componentWillReceiveProps(nextProps) {
-      this.createDataSource(nextProps);
-    }
-
-    createDataSource({ userCredits }) {
-      const ds = new ListView.
-    }*/
 
     onThanksPressed() {
-      const { thanks } = this.state;
       const postId = this.props.feedpost.uid;
+      const { thanked, thanks } = this.state;
+      if (!thanked) {
         this.setState({ thanked: true });
-        console.log('thanks pressed');
-        console.log(thanked);
-        const thanked = true;
         this.setState({ thanks: thanks + 1 });
         this.props.updateThanks(postId);
-        this.props.thankPost({ postId, thanked });
+        this.props.thankPost({ postId, thanked: true });
+      }
     }
 
     onAgreePress() {
       const postId = this.props.feedpost.uid;
       const { agree, agreements } = this.state;
+      if (!agree) {
         this.setState({ agree: true });
         this.setState({ agreements: agreements + 1 });
         this.props.updateAgreements(postId);
-        this.props.agreePost({ postId, agree });
+        this.props.agreePost({ postId, agree: true });
+      }
     }
 
     onDisagreePress() {
       const postId = this.props.feedpost.uid;
       const { disagree, disagreements } = this.state;
+      if (!disagree) {
         this.setState({ disagree: true });
         this.setState({ disagreements: disagreements + 1 });
         this.props.updateDisagreements(postId);
-        this.props.disagreePost({ postId, disagree });
+        this.props.disagreePost({ postId, disagree: true });
+      }
     }
 
   render() {
@@ -104,7 +100,8 @@ class FeedItem extends Component {
 
 const mapStateToProps = (state) => {
   const { queueLength, chosenNation, agreements, disagreements, pid, time } = state.newpost;
-  return { queueLength, chosenNation, agreements, disagreements, pid, time };
+  const userCredits = state.userCredits;
+  return { queueLength, chosenNation, agreements, disagreements, pid, time, userCredits };
 };
 
 export default connect(mapStateToProps, {
