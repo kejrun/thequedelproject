@@ -83,16 +83,16 @@ export default {
 
   // CheckBox
   CheckboxRadius: platform === "ios" ? 13 : 0,
-  CheckboxBorderWidth: platform === "ios" ? 1 : 2,
+  CheckboxBorderWidth: platform === "ios" ? 0 : 0,
   CheckboxPaddingLeft: platform === "ios" ? 4 : 2,
   CheckboxPaddingBottom: platform === "ios" ? 0 : 5,
   CheckboxIconSize: platform === "ios" ? 21 : 16,
   CheckboxIconMarginTop: platform === "ios" ? undefined : 1,
   CheckboxFontSize: platform === "ios" ? 23 / 0.9 : 17,
   DefaultFontSize: 17,
-  checkboxBgColor: "#039BE5",
+  checkboxBgColor: "transparent",
   checkboxSize: 20,
-  checkboxTickColor: "#fff",
+  checkboxTickColor: "transparent",
 
   // Color
   brandPrimary: platform === "ios" ? "#007aff" : "#3F51B5",
