@@ -34,6 +34,7 @@ export default (variables = variable) => {
 		width: 56,
 		height: 56,
 		borderRadius: 28,
+		marginRight: 15
 	};
 
 	return thumbnailTheme;

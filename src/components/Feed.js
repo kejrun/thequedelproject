@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { ListView } from 'react-native';
 import { Container, Content, Button, Text, Header, Left, Icon,
-         Right, Toast, Title } from 'native-base';
+         Right, Toast } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import { feedFetch1, feedFetch2, feedFetch3, feedFetch4, feedFetch5,
         feedFetch6, feedFetch7, feedFetch8, feedFetch9, feedFetch10,
@@ -77,6 +77,7 @@ notifyPress() {
 }
 
 createDataSource({ feedpost }) {
+  feedpost.reverse();
   const ds = new ListView.DataSource({
     rowHasChanged: (r1, r2) => r1 !== r2
   });
@@ -94,7 +95,7 @@ renderRow(feedpost) {
       <Header span>
         <Left>
           <Button transparent onPress={() => Actions.hostOverview()}>
-            <Icon type="Ionicons" name="ios-arrow-back" style={{ color: 'white', fontSize: 30 }} />
+            <Icon type="Ionicons" name="ios-arrow-back" style={{ color: 'gray', fontSize: 30 }} />
           </Button>
         </Left>
         <Right>
@@ -102,12 +103,12 @@ renderRow(feedpost) {
           transparent
           onPress={this.notifyPress.bind(this)}
         >
-          <Icon type="Entypo" name="bookmark" style={{ color: 'white', fontSize: 30 }} />
+          <Icon type="Entypo" name="bookmark" style={{ color: 'gray', fontSize: 30 }} />
         </Button>
         </Right>
       </Header>
       <TitleCardFeed>
-      <Title>{this.props.title}</Title>
+      <Text style={{ color: '#2B3035', fontFamily: 'Avenir Book', fontSize: 20 }}>{this.props.title}</Text>
       </TitleCardFeed>
       <Content>
         <ListView
@@ -117,8 +118,8 @@ renderRow(feedpost) {
         />
       </Content>
       <Button full iconLeft onPress={() => { this.onButtonPress(); }}>
-        <Icon type='MaterialIcons' name='playlist-add' />
-        <Text>Make a post</Text>
+        <Icon type='MaterialIcons' name='playlist-add' style={{ color: '#2B3035' }} />
+        <Text style={{ fontFamily: 'Avenir Book', color: '#2B3035' }}>Make a post</Text>
       </Button>
       <Footer />
     </Container>

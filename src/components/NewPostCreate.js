@@ -18,7 +18,7 @@ render() {
          <Header span>
            <Left>
              <Button transparent onPress={() => Actions.pop()}>
-              <Icon type="Ionicons" name="ios-arrow-back" style={{ color: 'white', fontSize: 30 }} />
+              <Icon type="Ionicons" name="ios-arrow-back" style={{ color: 'gray', fontSize: 30 }} />
              </Button>
            </Left>
            <Right />
@@ -27,13 +27,13 @@ render() {
          <MakeaPostCard>
             <Text />
             <Text />
-           <Text> How long is the queue at arrival?</Text>
+           <Text style={{ fontFamily: 'Avenir Book' }}> How long is the queue at arrival?</Text>
            <Text />
           <NewPost {...this.props} />
             <Text />
 
           <Button block onPress={this.onButtonPress.bind(this)}>
-            <Text>Create post</Text>
+            <Text style={{ fontFamily: 'Avenir Book', color: '#2B3035' }}>Create post</Text>
           </Button>
         </MakeaPostCard>
     </Content>

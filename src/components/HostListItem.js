@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { TouchableWithoutFeedback, View } from 'react-native';
-import { Thumbnail, Body, Text, ListItem, Icon, Right } from 'native-base';
+import { TouchableWithoutFeedback, View, Text } from 'react-native';
+import { Thumbnail, Body, ListItem, Icon, Right } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
@@ -19,37 +19,37 @@ class HostListItem extends Component {
           {(() => {
             switch (id) {
             case 1:
-              return <Thumbnail square size={80} source={require('../NationLogos/logo-gotlands.png')} />;
+              return <Thumbnail square size={60} source={require('../NationLogos/logo-gotlands.png')} />;
             case 2:
-              return <Thumbnail square size={80} source={require('../NationLogos/logo-gh.png')} />;
+              return <Thumbnail square size={60} source={require('../NationLogos/logo-gh.png')} />;
             case 3:
-              return <Thumbnail square size={80} source={require('../NationLogos/logo-goteborgs.png')} />;
+              return <Thumbnail square size={60} source={require('../NationLogos/logo-goteborgs.png')} />;
             case 4:
-              return <Thumbnail square size={80} source={require('../NationLogos/logo-kalmar.png')} />;
+              return <Thumbnail square size={60} source={require('../NationLogos/logo-kalmar.png')} />;
             case 5:
-              return <Thumbnail square size={80} source={require('../NationLogos/logo-norrlands.png')} />;
+              return <Thumbnail square size={60} source={require('../NationLogos/logo-norrlands.png')} />;
             case 6:
-              return <Thumbnail square size={80} source={require('../NationLogos/logo-smalands.png')} />;
+              return <Thumbnail square size={60} source={require('../NationLogos/logo-smalands.png')} />;
             case 7:
-              return <Thumbnail square size={80} source={require('../NationLogos/logo-stockholms.png')} />;
+              return <Thumbnail square size={60} source={require('../NationLogos/logo-stockholms.png')} />;
             case 8:
-              return <Thumbnail square size={80} source={require('../NationLogos/logo-snerikes.png')} />;
+              return <Thumbnail square size={60} source={require('../NationLogos/logo-snerikes.png')} />;
             case 9:
-              return <Thumbnail square size={80} source={require('../NationLogos/logo-uplands.png')} />;
+              return <Thumbnail square size={60} source={require('../NationLogos/logo-uplands.png')} />;
             case 10:
-              return <Thumbnail square size={80} source={require('../NationLogos/logo-varmlands.png')} />;
+              return <Thumbnail square size={60} source={require('../NationLogos/logo-varmlands.png')} />;
             case 11:
-              return <Thumbnail square size={80} source={require('../NationLogos/logo-vg.png')} />;
+              return <Thumbnail square size={60} source={require('../NationLogos/logo-vg.png')} />;
             case 12:
-              return <Thumbnail square size={80} source={require('../NationLogos/logo-vdala.png')} />;
+              return <Thumbnail square size={60} source={require('../NationLogos/logo-vdala.png')} />;
             case 13:
-              return <Thumbnail square size={80} source={require('../NationLogos/logo-og.png')} />;
+              return <Thumbnail square size={60} source={require('../NationLogos/logo-og.png')} />;
             default :
-              return <Thumbnail square size={80} source={require('../NationLogos/logo-og.png')} />;
+              return <Thumbnail square size={60} source={require('../NationLogos/logo-og.png')} />;
             }
             })()}
               <Body>
-                <Text>{title}</Text>
+                <Text style={{ fontFamily: 'Avenir Book', fontSize: 16 }}>{title}</Text>
               </Body>
               <Right>
                 <Icon name="arrow-forward" />

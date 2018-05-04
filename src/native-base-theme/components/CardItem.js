@@ -107,7 +107,7 @@ export default (variables = variable) => {
         color: variables.cardBorderColor
       },
       "NativeBase.Text": {
-        fontSize: variables.DefaultFontSize - 2,
+        fontSize: 14,
         alignSelf: null
       },
       "NativeBase.Thumbnail": {
@@ -120,7 +120,7 @@ export default (variables = variable) => {
         alignSelf: null
       },
       "NativeBase.Checkbox": {
-        alignSelf: null
+        alignSelf: null,
       },
       "NativeBase.Switch": {
         alignSelf: null
@@ -129,32 +129,33 @@ export default (variables = variable) => {
     },
     ".header": {
       "NativeBase.Text": {
-        fontSize: 16,
+        fontSize: 14,
         fontWeight: platform === "ios" ? "600" : "500"
       },
       ".bordered": {
         "NativeBase.Text": {
-          color: variables.brandPrimary,
+          color: 'black',
           fontWeight: platform === "ios" ? "600" : "500"
         },
         borderBottomWidth: platform === "ios" ? variables.borderWidth : null
       },
       borderBottomWidth: null,
-      paddingVertical: variables.listItemPadding + 5
+      paddingVertical: variables.listItemPadding - 5
     },
     ".footer": {
       "NativeBase.Text": {
-        fontSize: 16,
+        fontSize: 14,
         fontWeight: platform === "ios" ? "600" : "500"
       },
       ".bordered": {
         "NativeBase.Text": {
-          color: variables.brandPrimary,
+          color: 'black',
           fontWeight: platform === "ios" ? "600" : "500"
         },
         borderTopWidth: platform === "ios" ? variables.borderWidth : null
       },
-      borderBottomWidth: null
+      borderBottomWidth: null,
+      paddingVertical: -10
     },
     "NativeBase.Text": {
       ".note": {
@@ -179,8 +180,8 @@ export default (variables = variable) => {
     flexDirection: "row",
     alignItems: "center",
     borderRadius: 2,
-    padding: variables.listItemPadding + 5,
-    paddingVertical: variables.listItemPadding,
+    padding: variables.listItemPadding +5,
+    paddingVertical: variables.listItemPadding -20,
     backgroundColor: variables.cardDefaultBg
   };
 

@@ -95,14 +95,14 @@ export default (variables = variable) => {
       alignSelf: "center",
       alignItems: "flex-end"
     },
-    backgroundColor: "#1AB7E8",
+    backgroundColor: "#2B3035",
     flexDirection: "row",
     justifyContent: "center",
     borderTopWidth:
       platform === "ios" && platformStyle !== "material"
         ? variables.borderWidth
         : undefined,
-    borderColor: "#1AB7E8",
+    borderColor: "#2B3035",
     height: variables.footerHeight,
     paddingBottom: variables.footerPaddingBottom,
     elevation: 3,
