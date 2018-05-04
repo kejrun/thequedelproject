@@ -3,7 +3,7 @@ import { ImageBackground } from 'react-native';
 
 const TitleCardFollowing = (props) => (
     <ImageBackground
-    source={require('../../images/MV97Xtc.jpg')}
+    source={require('../../images/Gradient-background-and-pattern-background-creates-an-artistic-design-effect-1024x576.png')}
     style={styles.containerStyle}
     >
     {props.children}
