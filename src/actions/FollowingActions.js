@@ -5,8 +5,8 @@ import {
 
 export const following = ({ libraryId }) => {
   const userId = firebase.auth().currentUser.uid;
-  firebase.database().ref(`/users/${userId}/`).child('following').push()
-  .set({ libraryId });
+  firebase.database().ref(`/users/${userId}/following`)
+  .push({ libraryId });
 
   const currentFollowers = firebase.database().ref(`/feed_following/${libraryId}/followers`);
   currentFollowers.transaction((currentRank) => {

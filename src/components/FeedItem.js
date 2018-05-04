@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { CheckBox } from 'react-native-elements';
 import { Text, Card, CardItem, Icon, Right, Left } from 'native-base';
 import { connect } from 'react-redux';
-import { getId, updateThanks, updateAgreements, updateDisagreements } from '../actions';
+import { getId, updateThanks, updateAgreements, updateDisagreements, thankPost,
+agreePost, disagreePost, fetchThanks } from '../actions';
 
 class FeedItem extends Component {
   state = {
@@ -17,32 +18,45 @@ class FeedItem extends Component {
   componentWillMount() {
     const pid = this.props.feedpost.uid;
     this.props.getId(pid);
+    this.props.fetchThanks(pid);
+    if (this.props.userCredits && !this.state.thanked) {
+      console.log('hej');
+      const thanked = true;
+      this.setState({ thanked });
+    }
     }
 
     onThanksPressed() {
-      const { thanked, thanks } = this.state;
       const postId = this.props.feedpost.uid;
-      this.setState({ thanked: true });
+      const { thanked, thanks } = this.state;
       if (!thanked) {
+        this.setState({ thanked: true });
         this.setState({ thanks: thanks + 1 });
         this.props.updateThanks(postId);
+        this.props.thankPost({ postId, thanked: true });
       }
     }
 
     onAgreePress() {
       const postId = this.props.feedpost.uid;
-      const { agreements } = this.state;
-      this.setState({ agree: true });
-      this.setState({ agreements: agreements + 1 });
-      this.props.updateAgreements(postId);
+      const { agree, agreements } = this.state;
+      if (!agree) {
+        this.setState({ agree: true });
+        this.setState({ agreements: agreements + 1 });
+        this.props.updateAgreements(postId);
+        this.props.agreePost({ postId, agree: true });
+      }
     }
 
     onDisagreePress() {
       const postId = this.props.feedpost.uid;
-      const { disagreements } = this.state;
-      this.setState({ disagree: true });
-      this.setState({ disagreements: disagreements + 1 });
-      this.props.updateDisagreements(postId);
+      const { disagree, disagreements } = this.state;
+      if (!disagree) {
+        this.setState({ disagree: true });
+        this.setState({ disagreements: disagreements + 1 });
+        this.props.updateDisagreements(postId);
+        this.props.disagreePost({ postId, disagree: true });
+      }
     }
 
   render() {
@@ -107,12 +121,17 @@ class FeedItem extends Component {
 
 const mapStateToProps = (state) => {
   const { queueLength, chosenNation, agreements, disagreements, pid, time } = state.newpost;
-  return { queueLength, chosenNation, agreements, disagreements, pid, time };
+  const userCredits = state.userCredits;
+  return { queueLength, chosenNation, agreements, disagreements, pid, time, userCredits };
 };
 
 export default connect(mapStateToProps, {
   getId,
   updateThanks,
   updateAgreements,
-  updateDisagreements
+  updateDisagreements,
+  thankPost,
+  agreePost,
+  disagreePost,
+  fetchThanks
 })(FeedItem);
