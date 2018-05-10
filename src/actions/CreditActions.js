@@ -3,13 +3,11 @@ import { USER_CREDITS, TRUSTED_USER, THANK_CREDIT, AGREE_CREDIT, DISAGREE_CREDIT
           TRUST_USER } from './types';
 
 export const userCredits = () => {
-  console.log('hej');
   const credits = 0;
   const userId = firebase.auth().currentUser.uid;
   return (dispatch) => {
     firebase.database().ref(`/users/${userId}/credits/`)
     .on('value', snapshot => {
-      console.log(userId, snapshot.val());
       if (snapshot.val() === null) {
         firebase.database().ref(`/users/${userId}/credits/`)
         .set(credits)
@@ -39,10 +37,11 @@ export const trustedUser = () => {
 };
 
 export const trustUser = () => {
+  const trusted = true;
   const userId = firebase.auth().currentUser.uid;
   return (dispatch) => {
-    firebase.database().ref(`/users/${userId}/trusted`)
-    .update(true);
+    firebase.database().ref(`/users/${userId}/trusted/`)
+    .set(trusted);
     dispatch({ type: TRUST_USER, payload: true });
     };
   };

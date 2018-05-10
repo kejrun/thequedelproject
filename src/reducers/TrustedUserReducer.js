@@ -10,7 +10,6 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case TRUSTED_USER:
-      console.log(action.payload);
       return { trusted: action.payload };
     case TRUST_USER:
       return { trusted: action.payload };

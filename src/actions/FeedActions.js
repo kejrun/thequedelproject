@@ -31,7 +31,7 @@ export const makeNewPost = ({ queueLength, chosenNation, agreements, disagreemen
       thanks })
     .then(() => {
       dispatch({ type: NEW_POST_SAME_NATION });
-      Actions.pop();
+      Actions.feed();
     });
   };
 };
