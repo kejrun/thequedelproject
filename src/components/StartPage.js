@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Image, Dimensions, Text } from 'react-native';
+import { Image, Dimensions } from 'react-native';
 import { connect } from 'react-redux';
 import { Container } from 'native-base';
-import { loginUser, welcomeUser, welcomeTimeout } from '../actions';
+import { loginUser, welcomeUser, welcomeTimeout, userCredits } from '../actions';
 
 class StartPage extends Component {
 
@@ -60,4 +60,4 @@ const mapStateToProps = ({ auth }) => {
 };
 
 export default connect(
-  mapStateToProps, { loginUser, welcomeUser, welcomeTimeout })(StartPage);
+  mapStateToProps, { loginUser, welcomeUser, welcomeTimeout, userCredits })(StartPage);

@@ -7,7 +7,10 @@ import NewPostReducer from './NewPostReducer';
 import FeedFetchReducer from './FeedFetchReducer';
 import test from './test';
 import IdReducer from './IdReducer';
-import UserCreditReducer from './UserCreditReducer';
+import UserVotesReducer from './UserVotesReducer';
+import UserCreditsReducer from './UserCreditsReducer';
+import FetchFollowersReducer from './FetchFollowersReducer';
+import TrustedUserReducer from './TrustedUserReducer';
 
 export default combineReducers({
   libraries: NationLibraryReducer,
@@ -18,5 +21,8 @@ export default combineReducers({
   feedpost: FeedFetchReducer,
   testing: test,
   selectedId: IdReducer,
-  userCredits: UserCreditReducer
+  userVotes: UserVotesReducer,
+  credits: UserCreditsReducer,
+  fetchFollowers: FetchFollowersReducer,
+  trusted: TrustedUserReducer
 });

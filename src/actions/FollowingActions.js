@@ -1,6 +1,7 @@
 import firebase from 'firebase';
 import {
-  UPDATE_FOLLOWERS
+  UPDATE_FOLLOWERS,
+  FETCH_FOLLOWERS
 } from './types';
 
 export const following = ({ libraryId }) => {
@@ -14,5 +15,13 @@ export const following = ({ libraryId }) => {
   });
   return (dispatch) => {
     dispatch({ type: UPDATE_FOLLOWERS });
+  };
+};
+
+export const fetchingFollowers = ({ libraryId }) => {
+  return (dispatch) => {
+    firebase.database().ref(`/feed_following/${libraryId}/followers`).on('value', snapshot => {
+      dispatch({ type: FETCH_FOLLOWERS, payload: snapshot.val() });
+    });
   };
 };
