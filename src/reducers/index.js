@@ -7,6 +7,7 @@ import FeedFetchReducer from './FeedFetchReducer';
 import IdReducer from './IdReducer';
 import UserVotesReducer from './UserVotesReducer';
 import UserCreditsReducer from './UserCreditsReducer';
+import UserThanksReducer from './UserThanksReducer';
 import FetchFollowersReducer from './FetchFollowersReducer';
 import FollowedNationIdsReducer from './FollowedNationIdsReducer';
 import TrustedUserReducer from './TrustedUserReducer';
@@ -22,5 +23,6 @@ export default combineReducers({
   credits: UserCreditsReducer,
   fetchFollowers: FetchFollowersReducer,
   trusted: TrustedUserReducer,
+  userthanks: UserThanksReducer,
   followedNations: FollowedNationIdsReducer
 });
