@@ -1,7 +1,5 @@
 //AuthActions
 export const LOGIN_USER = 'login_user';
-export const USER_CREDITS = 'user_credits';
-export const TRUSTED_USER = 'trusted_user';
 export const WELCOME_USER = 'welcome_user';
 export const WELCOME_TIMEOUT = 'welcome_timeout';
 export const PROCEED_TO_OVERVIEW = 'proceed_to_overview';
@@ -27,3 +25,6 @@ export const THANK_CREDIT = 'thank_credit';
 export const AGREE_CREDIT = 'agree_credit';
 export const DISAGREE_CREDIT = 'disagree_credit';
 export const TRUST_USER = 'trust_user';
+export const USER_CREDITS = 'user_credits';
+export const TRUSTED_USER = 'trusted_user';
+export const USER_THANKS = 'user_thanks';

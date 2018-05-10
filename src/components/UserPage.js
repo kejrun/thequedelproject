@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { TouchableWithoutFeedback } from 'react-native';
 import { connect } from 'react-redux';
 import { Title, Container, Content, Header, List, ListItem, Right, Left, Text, Icon, Body } from 'native-base';
+import { Col, Grid } from 'react-native-easy-grid';
+import { userThanks } from '../actions';
 import Footer from './Footer';
 import TitleCardUser from './TitleCards/TitleCardUser';
 import UserCard from './TitleCards/UserCard';
@@ -15,14 +17,19 @@ class UserPage extends Component {
     showModalAboutQuedel: false,
     showModalInviteFriends: false };
 
-onDecline() {
-  this.setState({ showModalCreditSystem: false });
-  this.setState({ showModalAboutQuedel: false });
-  this.setState({ showModalInviteFriends: false });
-}
+  componentWillMount() {
+    this.props.userThanks();
+  }
+
+  onDecline() {
+    this.setState({ showModalCreditSystem: false });
+    this.setState({ showModalAboutQuedel: false });
+    this.setState({ showModalInviteFriends: false });
+  }
 
   render() {
     const credits = this.props.credits;
+    const userthanks = this.props.userthanks;
     const creditsLeft = 50 - credits;
     const yesMessage = (<Text style={{ fontFamily: 'Avenir Book', fontSize: 14 }}>
                         Nice, you are a trusted user. Keep up the good work!</Text>);
@@ -44,11 +51,24 @@ onDecline() {
         </TitleCardUser>
         <Content>
           <UserCard>
-              <Icon type='SimpleLineIcons' name='diamond' style={{ fontSize: 24 }} />
-              <Text style={{ fontFamily: 'Avenir Book', fontSize: 18 }}>Credits: {credits} </Text>
-              <Text />
-              <Icon type='Ionicons' name='md-heart' style={{ fontSize: 26, color: '#fc3768' }} />
-              <Text style={{ fontFamily: 'Avenir Book', fontSize: 18 }}>Thanks: </Text>
+            <Grid>
+              <Col>
+                <Left>
+                  <Icon type='SimpleLineIcons' name='diamond' style={{ fontSize: 26 }} />
+                </Left>
+                <Left>
+                  <Text style={{ fontFamily: 'Avenir Book', fontSize: 18 }}>Credits: {credits} </Text>
+                </Left>
+              </Col>
+              <Col>
+                <Left>
+                  <Icon type='Ionicons' name='md-heart' style={{ fontSize: 26, color: '#fc3768' }} />
+                </Left>
+                <Left>
+                  <Text style={{ fontFamily: 'Avenir Book', fontSize: 18 }}>Thanks: {userthanks} </Text>
+                </Left>
+              </Col>
+            </Grid>
             <Text>{message}</Text>
           </UserCard>
           <List>
@@ -152,7 +172,8 @@ onDecline() {
 const mapStateToProps = (state) => {
   const { credits } = state.credits;
   const { trusted } = state.trusted;
-  return { credits, trusted };
+  const { userthanks } = state.userthanks;
+  return { credits, trusted, userthanks };
 };
 
-export default connect(mapStateToProps)(UserPage);
+export default connect(mapStateToProps, { userThanks })(UserPage);
