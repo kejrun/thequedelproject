@@ -10,7 +10,7 @@ class FeedItem extends Component {
 
   componentWillMount() {
     const { uid, queueLength, thanked, thanks, agree, disagree, agreements, disagreements,
-    chosenNation } = this.props.feedpost;
+    chosenNation, trusted } = this.props.feedpost;
     const { libraryId } = chosenNation;
     this.props.fetchingFollowers({ libraryId });
     this.props.getId(uid);
@@ -22,7 +22,8 @@ class FeedItem extends Component {
         agree,
         disagree,
         agreements,
-        disagreements
+        disagreements,
+        trusted
       });
     }
 
@@ -60,7 +61,7 @@ class FeedItem extends Component {
     onDisagreePress() {
       const postId = this.props.feedpost.uid;
       const { disagree, disagreements } = this.state;
-      const { credits } = this.props;
+      //const { credits } = this.props;
       if (!disagree) {
         this.setState({
           disagree: true,
@@ -72,6 +73,14 @@ class FeedItem extends Component {
       }
     }
 
+    ifTrusted() {
+      return (
+        <Right>
+        <Icon type="Ionicons" name="md-ribbon" style={{ fontSize: 25, marginRight: -36, color: '#87C190' }} />
+        </Right>
+      );
+    }
+
   render() {
     const {
       queueLength,
@@ -80,18 +89,29 @@ class FeedItem extends Component {
       thanks,
       thanked,
       agree,
-      disagree
+      disagree,
+      trusted
     } = this.state;
     const utcSeconds = this.props.feedpost.time;
     const options = { weekday: 'short', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
     const date = new Date(utcSeconds).toLocaleDateString('en-SE', options);
 
+    let isTrusted;
+  
+    if (trusted) {
+      isTrusted = (
+      <Right>
+      <Icon type="Ionicons" name="md-ribbon" style={{ fontSize: 25, marginRight: -36, color: '#87C190' }} />
+      </Right>
+    );
+    }
 
     return (
       <Card>
         <CardItem header>
         <Icon type="Ionicons" name="ios-clock-outline" style={{ fontSize: 25 }} />
           <Text style={{ fontFamily: 'Avenir Book' }}>{date}</Text>
+          { isTrusted }
         </CardItem>
         <CardItem>
           <Left>
@@ -143,7 +163,6 @@ class FeedItem extends Component {
 const mapStateToProps = (state) => {
   const followers = state.fetchFollowers;
   const credits = state.credits;
-  const trusted = state.trusted;
   return { followers, credits };
 };
 
