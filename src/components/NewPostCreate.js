@@ -8,8 +8,8 @@ import MakeaPostCard from './TitleCards/MakeaPostCard';
 
 class NewPostCreate extends Component {
   onButtonPress() {
-  const { queueLength, chosenNation, agreements, disagreements, thanks } = this.props;
-  this.props.makeNewPost({ queueLength, chosenNation, agreements, disagreements, thanks });
+  const { queueLength, chosenNation, agreements, disagreements, thanks, trusted } = this.props;
+  this.props.makeNewPost({ queueLength, chosenNation, agreements, disagreements, thanks, trusted });
 }
 
 render() {
@@ -44,7 +44,8 @@ render() {
 
 const mapStateToProps = (state) => {
   const { queueLength, chosenNation, agreements, disagreements, thanks } = state.newpost;
-  return { queueLength, chosenNation, agreements, disagreements, thanks };
+  const { trusted } = state.trusted;
+  return { queueLength, chosenNation, agreements, disagreements, thanks, trusted };
 };
 
 export default connect(mapStateToProps, { makeNewPost })(NewPostCreate);

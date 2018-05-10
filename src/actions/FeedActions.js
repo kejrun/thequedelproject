@@ -16,7 +16,7 @@ export const updatePost = ({ prop, value }) => {
   };
 };
 
-export const makeNewPost = ({ queueLength, chosenNation, agreements, disagreements, thanks }) => {
+export const makeNewPost = ({ queueLength, chosenNation, agreements, disagreements, thanks, trusted }) => {
   const userId = firebase.auth().currentUser.uid;
 
   return (dispatch) => {
@@ -28,7 +28,8 @@ export const makeNewPost = ({ queueLength, chosenNation, agreements, disagreemen
       chosenNation,
       agreements,
       disagreements,
-      thanks })
+      thanks,
+      trusted })
     .then(() => {
       dispatch({ type: NEW_POST_SAME_NATION });
       Actions.feed();
