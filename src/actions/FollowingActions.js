@@ -1,13 +1,47 @@
 import firebase from 'firebase';
 import {
+  SET_FOLLOWED,
   UPDATE_FOLLOWERS,
   FETCH_FOLLOWERS
 } from './types';
 
-export const following = ({ libraryId }) => {
+export const setFollowed = () => {
+  const libraryIds =
+  { libraryIds: {
+    1: false,
+    2: false,
+    3: false,
+    4: false,
+    5: false,
+    6: false,
+    7: false,
+    8: false,
+    9: false,
+    10: false,
+    11: false,
+    12: false,
+    13: false
+    }
+  };
   const userId = firebase.auth().currentUser.uid;
-  firebase.database().ref(`/users/${userId}/following`)
-  .push({ libraryId });
+  return (dispatch) => {
+  firebase.database().ref(`/users/${userId}/following/libraryIds`).on('value', snapshot => {
+    if (snapshot.val() === null) {
+      firebase.database().ref(`/users/${userId}/following/`)
+      .set(libraryIds).then(
+        dispatch({ type: SET_FOLLOWED, payload: libraryIds }));
+      } else {
+        dispatch({ type: SET_FOLLOWED, payload: snapshot.val() });
+      }
+    });
+  };
+};
+
+export const following = ({ libraryId }) => {
+  const isFollowing = true;
+  const userId = firebase.auth().currentUser.uid;
+  firebase.database().ref(`/users/${userId}/following/libraryIds/${libraryId}`)
+  .set(isFollowing);
 
   const currentFollowers = firebase.database().ref(`/feed_following/${libraryId}/followers`);
   currentFollowers.transaction((currentRank) => {

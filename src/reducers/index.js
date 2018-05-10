@@ -10,6 +10,7 @@ import IdReducer from './IdReducer';
 import UserVotesReducer from './UserVotesReducer';
 import UserCreditsReducer from './UserCreditsReducer';
 import FetchFollowersReducer from './FetchFollowersReducer';
+import FollowedNationIdsReducer from './FollowedNationIdsReducer';
 import TrustedUserReducer from './TrustedUserReducer';
 
 export default combineReducers({
@@ -24,5 +25,6 @@ export default combineReducers({
   userVotes: UserVotesReducer,
   credits: UserCreditsReducer,
   fetchFollowers: FetchFollowersReducer,
-  trusted: TrustedUserReducer
+  trusted: TrustedUserReducer,
+  followedNations: FollowedNationIdsReducer
 });

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import _ from 'lodash';
 import { ListView } from 'react-native';
 import { Container, Content, List, Text, Header } from 'native-base';
 import { connect } from 'react-redux';
@@ -12,7 +13,22 @@ class FollowingList extends Component {
       rowHasChanged: (r1, r2) => r1 !== r2
     });
 
-    this.dataSource = ds.cloneWithRows(this.props.libraries);
+    const followedLibraries = this.isFollowed();
+
+    this.dataSource = ds.cloneWithRows(followedLibraries);
+  }
+
+  isFollowed() {
+    const { libraries, followed } = this.props;
+    const followedNations = [];
+    const theFollowed = _.map(libraries, (val) => {
+      if (followed[val.id]) {
+        followedNations.push(val);
+        console.log(followedNations);
+      }
+      return theFollowed;
+    });
+    return followedNations;
   }
 
   renderRow(library) {
@@ -29,6 +45,7 @@ class FollowingList extends Component {
         <Content>
           <List>
             <ListView
+              enableEmptySections
               dataSource={this.dataSource}
               renderRow={this.renderRow}
             />
@@ -40,6 +57,10 @@ class FollowingList extends Component {
   }
 }
 
-const mapStateToProps = state => ({ libraries: state.libraries });
+const mapStateToProps = state => {
+  const libraries = state.libraries;
+  const followed = state.followedNations;
+  return { libraries, followed };
+  };
 
 export default connect(mapStateToProps)(FollowingList);
