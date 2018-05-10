@@ -4,7 +4,6 @@ import NationSelectionReducer from './NationSelectionReducer';
 import AuthReducer from './AuthReducer';
 import NewPostReducer from './NewPostReducer';
 import FeedFetchReducer from './FeedFetchReducer';
-import test from './test';
 import IdReducer from './IdReducer';
 import UserVotesReducer from './UserVotesReducer';
 import UserCreditsReducer from './UserCreditsReducer';
@@ -18,7 +17,6 @@ export default combineReducers({
   auth: AuthReducer,
   newpost: NewPostReducer,
   feedpost: FeedFetchReducer,
-  testing: test,
   selectedId: IdReducer,
   userVotes: UserVotesReducer,
   credits: UserCreditsReducer,
