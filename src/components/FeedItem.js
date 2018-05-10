@@ -26,14 +26,6 @@ class FeedItem extends Component {
       });
     }
 
-    /*static getDerivedStateFromProps(nextProps, prevState) {
-      if (prevState.uid !== nextProps.uid) {
-        const { uid, thanked, thanks, agree, disagree, agreements, disagreements } = nextProps;
-        console.log(nextProps, prevState);
-        return { id: uid, thanked, thanks, agree, disagree, agreements, disagreements };
-      }
-    }*/
-
     onThanksPressed() {
       const postId = this.props.feedpost.uid;
       const { thanked, thanks } = this.state;
@@ -61,7 +53,6 @@ class FeedItem extends Component {
           credits: credits + 1 });
         this.props.updateAgreements(postId);
         this.props.agreeCredit(this.props.feedpost.userId);
-        console.log(credits);
         this.props.agreePost({ postId, agree: true });
       }
     }
@@ -70,7 +61,6 @@ class FeedItem extends Component {
       const postId = this.props.feedpost.uid;
       const { disagree, disagreements } = this.state;
       const { credits } = this.props;
-      console.log(credits);
       if (!disagree) {
         this.setState({
           disagree: true,
@@ -93,7 +83,6 @@ class FeedItem extends Component {
       disagree
     } = this.state;
     const utcSeconds = this.props.feedpost.time;
-    //console.log(this.props.feedpost);
     const options = { weekday: 'short', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
     const date = new Date(utcSeconds).toLocaleDateString('en-SE', options);
 

@@ -4,5 +4,4 @@ export * from './FeedActions';
 export * from './FeedFetchActions';
 export * from './FollowingActions';
 export * from './VoteActions';
-export * from './ClickedPostActions';
 export * from './CreditActions';

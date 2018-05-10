@@ -21,10 +21,7 @@ export const FETCH_FOLLOWERS = 'fetch_followers';
 export const THANK_POST = 'thank_post';
 export const AGREE_POST = 'agree_post';
 export const DISAGREE_POST = 'disagree_post';
-export const INTERACT_WITH_POST = 'interact_with_post';
 export const FETCH_VOTED = 'fetch_voted';
-export const INITIAL_VOTES = 'initial_votes';
-export const STATE_FEEDPOST = 'state_feedpost';
 //CreditActions
 export const THANK_CREDIT = 'thank_credit';
 export const AGREE_CREDIT = 'agree_credit';
