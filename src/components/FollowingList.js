@@ -24,7 +24,6 @@ class FollowingList extends Component {
     const theFollowed = _.map(libraries, (val) => {
       if (followed[val.id]) {
         followedNations.push(val);
-        console.log(followedNations);
       }
       return theFollowed;
     });
