@@ -8,7 +8,7 @@ import { Actions } from 'react-native-router-flux';
 import { feedFetch1, feedFetch2, feedFetch3, feedFetch4, feedFetch5,
         feedFetch6, feedFetch7, feedFetch8, feedFetch9, feedFetch10,
         feedFetch11, feedFetch12, feedFetch13, following, fetchVoted,
-        userCredits, trustedUser, trustUser } from '../actions';
+        userCredits, trustedUser, trustUser, setFollowed } from '../actions';
 import FeedItem from './FeedItem';
 import Footer from './Footer';
 import TitleCardFeed from './TitleCards/TitleCardFeed';
@@ -18,6 +18,7 @@ class Feed extends Component {
   componentWillMount() {
   this.props.userCredits();
   this.props.trustedUser();
+  this.props.setFollowed();
   const libraryId = this.props.libraryId;
     this.props.fetchVoted();
 
@@ -79,8 +80,9 @@ onButtonPress() {
 }
 
 notifyPress() {
+  this.props.setFollowed();
   const { libraryId } = this.props;
-  following({ prop: 'libraryId', libraryId });
+  following({ libraryId });
 
   Toast.show({
     text: '   Following',
@@ -188,4 +190,5 @@ export default connect(mapStateToProps, {
   fetchVoted,
   userCredits,
   trustedUser,
-  trustUser })(Feed);
+  trustUser,
+  setFollowed })(Feed);

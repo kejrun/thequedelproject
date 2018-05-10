@@ -13,6 +13,7 @@ export const NEW_POST_SAME_NATION = 'new_post_same_nation';
 //FeedFetchActions
 export const FEED_FETCH_SUCCESS = 'feed_fetch_success';
 //FollowingActions
+export const SET_FOLLOWED = 'set_followed';
 export const UPDATE_FOLLOWERS = 'update_followers';
 export const FETCH_FOLLOWERS = 'fetch_followers';
 //VoteActions
