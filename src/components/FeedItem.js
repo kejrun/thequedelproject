@@ -3,36 +3,49 @@ import { CheckBox } from 'react-native-elements';
 import { Text, Card, CardItem, Icon, Right, Left } from 'native-base';
 import { connect } from 'react-redux';
 import { getId, updateThanks, updateAgreements, updateDisagreements, thankPost,
-agreePost, disagreePost, fetchThanks } from '../actions';
+agreePost, disagreePost, fetchThanks, thankCredit, agreeCredit, disagreeCredit,
+fetchingFollowers } from '../actions';
 
 class FeedItem extends Component {
-  state = {
-    thanked: false,
-    thanks: this.props.feedpost.thanks,
-    agree: false,
-    disagree: false,
-    agreements: this.props.feedpost.agreements,
-    disagreements: this.props.feedpost.disagreements
-  }
 
   componentWillMount() {
-    const pid = this.props.feedpost.uid;
-    this.props.getId(pid);
-    this.props.fetchThanks(pid);
-    if (this.props.userCredits && !this.state.thanked) {
-      console.log('hej');
-      const thanked = true;
-      this.setState({ thanked });
+    const { uid, queueLength, thanked, thanks, agree, disagree, agreements, disagreements,
+    chosenNation } = this.props.feedpost;
+    const { libraryId } = chosenNation;
+    this.props.fetchingFollowers({ libraryId });
+    this.props.getId(uid);
+    this.setState({
+        id: uid,
+        queueLength,
+        thanked,
+        thanks,
+        agree,
+        disagree,
+        agreements,
+        disagreements
+      });
     }
-    }
+
+    /*static getDerivedStateFromProps(nextProps, prevState) {
+      if (prevState.uid !== nextProps.uid) {
+        const { uid, thanked, thanks, agree, disagree, agreements, disagreements } = nextProps;
+        console.log(nextProps, prevState);
+        return { id: uid, thanked, thanks, agree, disagree, agreements, disagreements };
+      }
+    }*/
 
     onThanksPressed() {
       const postId = this.props.feedpost.uid;
       const { thanked, thanks } = this.state;
+      const { credits } = this.props;
       if (!thanked) {
-        this.setState({ thanked: true });
-        this.setState({ thanks: thanks + 1 });
+        this.setState({
+          thanked: true,
+          thanks: thanks + 1,
+          credits: credits + 1
+        });
         this.props.updateThanks(postId);
+        this.props.thankCredit(this.props.feedpost.userId, this.props.followers);
         this.props.thankPost({ postId, thanked: true });
       }
     }
@@ -40,10 +53,15 @@ class FeedItem extends Component {
     onAgreePress() {
       const postId = this.props.feedpost.uid;
       const { agree, agreements } = this.state;
+      const { credits } = this.props;
       if (!agree) {
-        this.setState({ agree: true });
-        this.setState({ agreements: agreements + 1 });
+        this.setState({
+          agree: true,
+          agreements: agreements + 1,
+          credits: credits + 1 });
         this.props.updateAgreements(postId);
+        this.props.agreeCredit(this.props.feedpost.userId);
+        console.log(credits);
         this.props.agreePost({ postId, agree: true });
       }
     }
@@ -51,17 +69,31 @@ class FeedItem extends Component {
     onDisagreePress() {
       const postId = this.props.feedpost.uid;
       const { disagree, disagreements } = this.state;
+      const { credits } = this.props;
+      console.log(credits);
       if (!disagree) {
-        this.setState({ disagree: true });
-        this.setState({ disagreements: disagreements + 1 });
+        this.setState({
+          disagree: true,
+          disagreements: disagreements + 1
+        });
         this.props.updateDisagreements(postId);
+        this.props.disagreeCredit(this.props.feedpost.userId);
         this.props.disagreePost({ postId, disagree: true });
       }
     }
 
   render() {
-    const { queueLength, agreements, disagreements, thanks } = this.props.feedpost;
+    const {
+      queueLength,
+      agreements,
+      disagreements,
+      thanks,
+      thanked,
+      agree,
+      disagree
+    } = this.state;
     const utcSeconds = this.props.feedpost.time;
+    //console.log(this.props.feedpost);
     const options = { weekday: 'short', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
     const date = new Date(utcSeconds).toLocaleDateString('en-SE', options);
 
@@ -82,7 +114,7 @@ class FeedItem extends Component {
           <Text style={{ fontFamily: 'Avenir Book' }}>{thanks} thanks</Text>
           <CheckBox
             onPress={this.onThanksPressed.bind(this)}
-            checked={this.state.thanked}
+            checked={thanked}
             iconType='ionicon'
             checkedIcon='md-heart'
             uncheckedIcon='md-heart-outline'
@@ -94,7 +126,7 @@ class FeedItem extends Component {
           <CardItem footer bordered>
           <CheckBox
             onPress={this.onAgreePress.bind(this)}
-            checked={this.state.agree}
+            checked={agree}
             iconType='ionicon'
             checkedIcon='ios-thumbs-up'
             uncheckedIcon='ios-thumbs-up-outline'
@@ -105,7 +137,7 @@ class FeedItem extends Component {
           <Text>                             </Text>
           <CheckBox
             onPress={this.onDisagreePress.bind(this)}
-            checked={this.state.disagree}
+            checked={disagree}
             iconType='ionicon'
             checkedIcon='ios-thumbs-down'
             uncheckedIcon='ios-thumbs-down-outline'
@@ -120,9 +152,10 @@ class FeedItem extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { queueLength, chosenNation, agreements, disagreements, pid, time } = state.newpost;
-  const userCredits = state.userCredits;
-  return { queueLength, chosenNation, agreements, disagreements, pid, time, userCredits };
+  const followers = state.fetchFollowers;
+  const credits = state.credits;
+  const trusted = state.trusted;
+  return { followers, credits };
 };
 
 export default connect(mapStateToProps, {
@@ -133,5 +166,9 @@ export default connect(mapStateToProps, {
   thankPost,
   agreePost,
   disagreePost,
-  fetchThanks
+  fetchThanks,
+  thankCredit,
+  agreeCredit,
+  disagreeCredit,
+  fetchingFollowers
 })(FeedItem);

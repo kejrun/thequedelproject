@@ -5,6 +5,7 @@ import {
   WELCOME_USER,
   WELCOME_TIMEOUT,
   PROCEED_TO_OVERVIEW
+
  } from './types';
 
 export const loginUser = () => {
@@ -12,7 +13,8 @@ export const loginUser = () => {
     dispatch({ type: LOGIN_USER });
 
     firebase.auth().signInAnonymously()
-    .then(console.log('user logged in'))
+    .then(
+      console.log('user logged in'))
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;

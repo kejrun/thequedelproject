@@ -7,7 +7,8 @@ import { Container, Content, Button, Text, Header, Left, Icon,
 import { Actions } from 'react-native-router-flux';
 import { feedFetch1, feedFetch2, feedFetch3, feedFetch4, feedFetch5,
         feedFetch6, feedFetch7, feedFetch8, feedFetch9, feedFetch10,
-        feedFetch11, feedFetch12, feedFetch13, following } from '../actions';
+        feedFetch11, feedFetch12, feedFetch13, following, fetchVoted,
+        userCredits, trustedUser, trustUser } from '../actions';
 import FeedItem from './FeedItem';
 import Footer from './Footer';
 import TitleCardFeed from './TitleCards/TitleCardFeed';
@@ -15,7 +16,10 @@ import TitleCardFeed from './TitleCards/TitleCardFeed';
 class Feed extends Component {
 
   componentWillMount() {
+  this.props.userCredits();
+  this.props.trustedUser();
   const libraryId = this.props.libraryId;
+    this.props.fetchVoted();
 
   if (libraryId === 1) {
     this.props.feedFetch1();
@@ -56,11 +60,20 @@ class Feed extends Component {
   if (libraryId === 13) {
     this.props.feedFetch13();
   }
+
   this.createDataSource(this.props);
 }
 
 componentWillReceiveProps(nextProps) {
   this.createDataSource(nextProps);
+}
+
+componentWillUpdate() {
+  console.log(this.props.credits, this.props.trusted);
+  if (this.props.credits >= 50 && !this.props.trusted) {
+    console.log('trustUser');
+    //this.whenTrusting();
+  }
 }
 
 onButtonPress() {
@@ -76,7 +89,33 @@ notifyPress() {
   });
 }
 
+ifInteracted(feedVotes, post) {
+  const thePost = _.map(feedVotes, (val) => {
+  if (val.uid === post.uid) {
+  //  console.log(Object.assign(post, val));
+    return Object.assign(post, val);
+  }
+  return thePost;
+});
+}
+
+mappingfunction(feedpost) {
+  const { feedVotes } = this.props;
+  //console.log('inside mapping');
+const feedposts = _.map(feedpost, (val) => {
+  const post = val;
+  return this.ifInteracted(feedVotes, post);
+});
+return feedposts;
+}
+
+whenTrusting() {
+  this.props.trustUser();
+}
+
 createDataSource({ feedpost }) {
+  //console.log('create ds');
+  const feedposts = this.mappingfunction(feedpost);
   feedpost.reverse();
   const ds = new ListView.DataSource({
     rowHasChanged: (r1, r2) => r1 !== r2
@@ -131,9 +170,17 @@ const mapStateToProps = state => {
   const feedpost = _.map(state.feedpost, (val, uid) => {
     return { ...val, uid };
   });
-  const { libraryId, title } = state.selectedLibraryId;
+  const feedVotes = _.map(state.userVotes, (val, uid) => {
+    return { ...val, uid };
+  });
+//  console.log('in mapstatetoprops');
+//  console.log(feedValues);
+//  console.log(feedpost);
 
-  return { feedpost, libraryId, title };
+  const { libraryId, title } = state.selectedLibraryId;
+  const { credits } = state.credits;
+  const { trusted } = state.trusted;
+  return { feedpost, libraryId, title, feedVotes, credits, trusted };
 };
 
 export default connect(mapStateToProps, {
@@ -149,4 +196,8 @@ export default connect(mapStateToProps, {
   feedFetch10,
   feedFetch11,
   feedFetch12,
-  feedFetch13 })(Feed);
+  feedFetch13,
+  fetchVoted,
+  userCredits,
+  trustedUser,
+  trustUser })(Feed);

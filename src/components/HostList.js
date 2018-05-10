@@ -4,6 +4,7 @@ import { ListView } from 'react-native';
 import { Container, Content, List, Header } from 'native-base';
 import { connect } from 'react-redux';
 import HostListItem from './HostListItem';
+import { userCredits } from '../actions';
 
 
 class HostList extends Component {
@@ -38,4 +39,4 @@ class HostList extends Component {
 
 const mapStateToProps = state => ({ libraries: state.libraries });
 
-export default connect(mapStateToProps)(HostList);
+export default connect(mapStateToProps, { userCredits })(HostList);
