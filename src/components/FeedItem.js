@@ -97,7 +97,7 @@ class FeedItem extends Component {
     const date = new Date(utcSeconds).toLocaleDateString('en-SE', options);
 
     let isTrusted;
-  
+
     if (trusted) {
       isTrusted = (
       <Right>
@@ -161,7 +161,7 @@ class FeedItem extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const followers = state.fetchFollowers;
+  const followers = state.fetchFollowers.followers;
   const credits = state.credits;
   return { followers, credits };
 };

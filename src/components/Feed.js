@@ -2,13 +2,12 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { ListView } from 'react-native';
-import { Container, Content, Button, Text, Header, Left, Icon,
-         Right, Toast } from 'native-base';
+import { Container, Content, Button, Text, Header, Left, Icon, Right, Toast } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import { feedFetch1, feedFetch2, feedFetch3, feedFetch4, feedFetch5,
         feedFetch6, feedFetch7, feedFetch8, feedFetch9, feedFetch10,
         feedFetch11, feedFetch12, feedFetch13, following, fetchVoted,
-        userCredits, trustedUser, trustUser, setFollowed } from '../actions';
+        userCredits, trustedUser, trustUser, setFollowed, fetchingFollowers } from '../actions';
 import FeedItem from './FeedItem';
 import Footer from './Footer';
 import TitleCardFeed from './TitleCards/TitleCardFeed';
@@ -19,8 +18,11 @@ class Feed extends Component {
   this.props.userCredits();
   this.props.trustedUser();
   this.props.setFollowed();
-  const libraryId = this.props.libraryId;
-    this.props.fetchVoted();
+
+  const { libraryId } = this.props;
+  this.props.fetchingFollowers({ libraryId });
+
+  this.props.fetchVoted();
 
   if (libraryId === 1) {
     this.props.feedFetch1();
@@ -70,7 +72,7 @@ componentWillReceiveProps(nextProps) {
 }
 
 componentWillUpdate() {
-  if (this.props.credits >= 50 && !this.props.trusted) {
+  if (this.props.credits >= 100 && !this.props.trusted) {
     this.props.trustUser();
   }
 }
@@ -131,16 +133,27 @@ renderRow(feedpost) {
           </Button>
         </Left>
         <Right>
-        <Button
-          transparent
-          onPress={this.notifyPress.bind(this)}
+        <Icon type='SimpleLineIcons' name='diamond' style={{ fontSize: 18, color: 'white', marginTop: 10 }} />
+        <Text
+          style={{ color: 'white', fontFamily: 'Avenir Book', fontSize: 18, marginTop: 10, marginLeft: 5, marginRight: 10 }}
         >
-          <Icon type="Entypo" name="bookmark" style={{ color: 'gray', fontSize: 30 }} />
-        </Button>
+        {this.props.credits}
+        </Text>
         </Right>
       </Header>
       <TitleCardFeed>
       <Text style={{ color: '#2B3035', fontFamily: 'Avenir Book', fontSize: 20 }}>{this.props.title}</Text>
+      <Text
+      style={{ color: '#2B3035', fontFamily: 'Avenir Book', fontSize: 20 }}
+      >
+      {this.props.followers}
+      </Text>
+      <Button
+        transparent
+        onPress={this.notifyPress.bind(this)}
+      >
+        <Icon type="Entypo" name="bookmark" style={{ color: 'gray', fontSize: 30, marginTop: -14, marginLeft: -5 }} />
+      </Button>
       </TitleCardFeed>
       <Content>
         <ListView
@@ -170,7 +183,8 @@ const mapStateToProps = state => {
   const { libraryId, title } = state.selectedLibraryId;
   const { credits } = state.credits;
   const { trusted } = state.trusted;
-  return { feedpost, libraryId, title, feedVotes, credits, trusted };
+  const { followers } = state.fetchFollowers;
+  return { feedpost, libraryId, title, feedVotes, credits, trusted, followers };
 };
 
 export default connect(mapStateToProps, {
@@ -191,4 +205,5 @@ export default connect(mapStateToProps, {
   userCredits,
   trustedUser,
   trustUser,
-  setFollowed })(Feed);
+  setFollowed,
+  fetchingFollowers })(Feed);

@@ -68,7 +68,7 @@ export const thankCredit = (postUserId, followers) => {
   const userId = firebase.auth().currentUser.uid;
   const updateOwnCredits = firebase.database().ref(`/users/${userId}/credits`);
   updateOwnCredits.transaction((currentRank) => {
-    return currentRank + 1;
+    return currentRank + 3;
   });
   const updateUserCredits = firebase.database().ref(`/users/${postUserId}/credits`);
   updateUserCredits.transaction((currentRank) => {
@@ -80,7 +80,7 @@ export const thankCredit = (postUserId, followers) => {
   });
 
   return (dispatch) => {
-   dispatch({ type: THANK_CREDIT, payload: 1 + followers });
+   dispatch({ type: THANK_CREDIT, payload: 3 });
    dispatch({ type: USER_THANKS, payload: 1 });
   };
 };
@@ -89,14 +89,14 @@ export const agreeCredit = (postUserId) => {
   const userId = firebase.auth().currentUser.uid;
   const updateOwnCredits = firebase.database().ref(`/users/${userId}/credits`);
   updateOwnCredits.transaction((currentRank) => {
-    return currentRank + 1;
+    return currentRank + 5;
   });
   const updateUserCredits = firebase.database().ref(`/users/${postUserId}/credits`);
   updateUserCredits.transaction((currentRank) => {
-    return currentRank + 1;
+    return currentRank + 5;
   });
   return (dispatch) => {
-   dispatch({ type: AGREE_CREDIT, payload: 2 });
+   dispatch({ type: AGREE_CREDIT, payload: 5 });
 };
 };
 
@@ -104,13 +104,13 @@ export const disagreeCredit = (postUserId) => {
   const userId = firebase.auth().currentUser.uid;
   const updateOwnCredits = firebase.database().ref(`/users/${userId}/credits`);
   updateOwnCredits.transaction((currentRank) => {
-    return currentRank + 1;
+    return currentRank + 5;
   });
   const updateUserCredits = firebase.database().ref(`/users/${postUserId}/credits`);
   updateUserCredits.transaction((currentRank) => {
-    return currentRank - 1;
+    return currentRank - 3;
   });
   return (dispatch) => {
-   dispatch({ type: DISAGREE_CREDIT });
+   dispatch({ type: DISAGREE_CREDIT, payload: 5 });
 };
 };

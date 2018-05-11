@@ -30,7 +30,7 @@ class UserPage extends Component {
   render() {
     const credits = this.props.credits;
     const userthanks = this.props.userthanks;
-    const creditsLeft = 50 - credits;
+    const creditsLeft = 100 - credits;
     const yesMessage = (<Text style={{ fontFamily: 'Avenir Book', fontSize: 14 }}>
                         Nice, you are a trusted user. Keep up the good work!</Text>);
     const noMessage = (<Text style={{ fontFamily: 'Avenir Book', fontSize: 14 }}>
