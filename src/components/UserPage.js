@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { Title, Container, Content, Header, List, ListItem, Right, Left, Text, Icon, Body } from 'native-base';
 import { Col, Grid } from 'react-native-easy-grid';
 import { userThanks } from '../actions';
-import Footer from './Footer';
 import TitleCardUser from './TitleCards/TitleCardUser';
 import UserCard from './TitleCards/UserCard';
 import AboutCreditSystem from './UserModals/AboutCreditSystem';
@@ -12,6 +11,7 @@ import AboutQuedel from './UserModals/AboutQuedel';
 import InviteFriends from './UserModals/InviteFriends';
 import DeleteAccount from './UserModals/DeleteAccount';
 import Contact from './UserModals/Contact';
+import Footer from './Footer';
 
 class UserPage extends Component {
   state = {
@@ -19,7 +19,8 @@ class UserPage extends Component {
     showModalAboutQuedel: false,
     showModalInviteFriends: false,
     showModalContact: false,
-    showModalDeleteAccount: false };
+    showModalDeleteAccount: false,
+    selectedTab: 'user' };
 
   componentWillMount() {
     this.props.userThanks();
@@ -34,6 +35,7 @@ class UserPage extends Component {
   }
 
   render() {
+    const { selectedTab } = this.state;
     const credits = this.props.credits;
     const userthanks = this.props.userthanks;
     const creditsLeft = 100 - credits;
@@ -189,7 +191,7 @@ class UserPage extends Component {
             />
           </List>
         </Content>
-        <Footer />
+        <Footer selectedTab={selectedTab} />
       </Container>
     );
   }

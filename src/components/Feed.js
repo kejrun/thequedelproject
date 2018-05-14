@@ -9,10 +9,11 @@ import { feedFetch1, feedFetch2, feedFetch3, feedFetch4, feedFetch5,
         feedFetch11, feedFetch12, feedFetch13, following, fetchVoted,
         userCredits, trustedUser, trustUser, setFollowed, fetchingFollowers } from '../actions';
 import FeedItem from './FeedItem';
-import Footer from './Footer';
 import TitleCardFeed from './TitleCards/TitleCardFeed';
+import Footer from './Footer';
 
 class Feed extends Component {
+  state = { selectedTab: 'feed' }
 
   componentWillMount() {
   this.props.userCredits();
@@ -124,6 +125,8 @@ renderRow(feedpost) {
 }
 
   render() {
+  const { selectedTab } = this.state;
+
   return (
     <Container>
       <Header span>
@@ -166,7 +169,7 @@ renderRow(feedpost) {
         <Icon type='MaterialIcons' name='playlist-add' style={{ color: 'white' }} />
         <Text style={{ fontFamily: 'Avenir Book', color: 'white' }}>Make a post</Text>
       </Button>
-      <Footer />
+      <Footer selectedTab={selectedTab} />
     </Container>
   );
 }
