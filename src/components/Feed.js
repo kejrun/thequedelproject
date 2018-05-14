@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { ListView } from 'react-native';
+import { ListView, RefreshControl } from 'react-native';
 import { Container, Content, Button, Text, Header, Left, Icon, Right, Toast } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import { feedFetch1, feedFetch2, feedFetch3, feedFetch4, feedFetch5,
@@ -13,6 +13,10 @@ import Footer from './Footer';
 import TitleCardFeed from './TitleCards/TitleCardFeed';
 
 class Feed extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { refreshing: false };
+  }
 
   componentWillMount() {
   this.props.userCredits();
@@ -72,7 +76,6 @@ componentWillReceiveProps(nextProps) {
 }
 
 componentWillUpdate(nextProps) {
-  console.log(nextProps);
   if (this.props.credits !== nextProps.credits) {
     this.props.trustUser(nextProps.credits);
   }
@@ -108,6 +111,14 @@ const feedposts = _.map(feedpost, (val) => {
   return this.ifInteracted(feedVotes, post);
 });
 return feedposts;
+}
+
+_onRefresh() {
+  console.log('refreshing');
+  this.setState({ refreshing: true });
+  this.componentWillMount().then(() => {
+    this.setState({ refreshing: false });
+  });
 }
 
 createDataSource({ feedpost }) {
@@ -159,6 +170,12 @@ renderRow(feedpost) {
       <Content>
         <ListView
           enableEmptySections
+          refreshControl={
+            <RefreshControl
+              refreshing={this.state.refreshing}
+              onRefresh={this._onRefresh.bind(this)}
+            />
+          }
           dataSource={this.dataSource}
           renderRow={this.renderRow}
         />
