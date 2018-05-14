@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Footer, FooterTab, Button, Icon } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 
-export default class FooterTabsIconExample extends Component {
+export default class TheFooter extends Component {
+  /*
   render() {
     return (
         <Footer>
@@ -27,11 +28,11 @@ export default class FooterTabsIconExample extends Component {
     );
   }
 }
+*/
 
-/*  constructor(props) {
-    super(props);
-    this.state = { selectedTab: 'feed' };
-  }
+componentWillMount() {
+  this.setState({ selectedTab: 'feed' });
+}
 
   render() {
     return (
@@ -60,4 +61,3 @@ export default class FooterTabsIconExample extends Component {
     );
   }
 }
-*/

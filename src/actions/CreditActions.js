@@ -42,7 +42,7 @@ export const trustedUser = () => {
   return (dispatch) => {
     firebase.database().ref(`/users/${userId}/trusted`)
     .on('value', snapshot => {
-      if (snapshot.val() === null || snapshot.val() < 100) {
+      if (snapshot.val() === null) {
         firebase.database().ref(`/users/${userId}/trusted/`)
         .set(trusted)
         .then(() => dispatch({ type: TRUSTED_USER, payload: false }));

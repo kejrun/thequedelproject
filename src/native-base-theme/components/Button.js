@@ -201,12 +201,12 @@ export default (variables = variable) => {
     '.block': {
       justifyContent: 'center',
       alignSelf: 'stretch',
+      margin: 2
     },
 
     '.full': {
       justifyContent: 'center',
       alignSelf: 'stretch',
-      borderRadius: 0,
     },
 
     '.rounded': {
@@ -336,7 +336,7 @@ export default (variables = variable) => {
 
     paddingVertical: variables.buttonPadding,
     // paddingHorizontal: variables.buttonPadding + 10,
-    backgroundColor: '#1AB7E8',
+    backgroundColor: '#790000',
     borderRadius: variables.borderRadiusBase,
     borderColor: variables.btnPrimaryBg,
     borderWidth: null,

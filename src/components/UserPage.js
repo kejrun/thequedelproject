@@ -10,12 +10,16 @@ import UserCard from './TitleCards/UserCard';
 import AboutCreditSystem from './UserModals/AboutCreditSystem';
 import AboutQuedel from './UserModals/AboutQuedel';
 import InviteFriends from './UserModals/InviteFriends';
+import DeleteAccount from './UserModals/DeleteAccount';
+import Contact from './UserModals/Contact';
 
 class UserPage extends Component {
   state = {
     showModalCreditSystem: false,
     showModalAboutQuedel: false,
-    showModalInviteFriends: false };
+    showModalInviteFriends: false,
+    showModalContact: false,
+    showModalDeleteAccount: false };
 
   componentWillMount() {
     this.props.userThanks();
@@ -25,6 +29,8 @@ class UserPage extends Component {
     this.setState({ showModalCreditSystem: false });
     this.setState({ showModalAboutQuedel: false });
     this.setState({ showModalInviteFriends: false });
+    this.setState({ showModalDeleteAccount: false });
+    this.setState({ showModalContact: false });
   }
 
   render() {
@@ -138,6 +144,11 @@ class UserPage extends Component {
               onDecline={this.onDecline.bind(this)}
             />
 
+            <TouchableWithoutFeedback
+            onPress={() => {
+              this.setState({ showModalContact: !this.state.showModalContact });
+            }}
+            >
             <ListItem icon>
               <Left>
                 <Icon type='Ionicons' name='md-create' style={{ fontSize: 22 }} />
@@ -149,6 +160,17 @@ class UserPage extends Component {
                 <Icon name="arrow-forward" />
               </Right>
             </ListItem>
+            </TouchableWithoutFeedback>
+            <Contact
+              visible={this.state.showModalContact}
+              onDecline={this.onDecline.bind(this)}
+            />
+
+            <TouchableWithoutFeedback
+            onPress={() => {
+              this.setState({ showModalDeleteAccount: !this.state.showModalDeleteAccount });
+            }}
+            >
             <ListItem icon>
               <Left>
                 <Icon type='Ionicons' name='md-construct' style={{ fontSize: 22 }} />
@@ -160,7 +182,11 @@ class UserPage extends Component {
                 <Icon name="arrow-forward" />
               </Right>
             </ListItem>
-
+            </TouchableWithoutFeedback>
+            <DeleteAccount
+              visible={this.state.showModalDeleteAccount}
+              onDecline={this.onDecline.bind(this)}
+            />
           </List>
         </Content>
         <Footer />
