@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { ListView, View } from 'react-native';
+import { ListView } from 'react-native';
 import { Container, Content, Button, Text, Header, Left, Icon, Right, Toast } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import { feedFetch1, feedFetch2, feedFetch3, feedFetch4, feedFetch5,
@@ -9,10 +9,11 @@ import { feedFetch1, feedFetch2, feedFetch3, feedFetch4, feedFetch5,
         feedFetch11, feedFetch12, feedFetch13, following, fetchVoted,
         userCredits, trustedUser, trustUser, setFollowed, fetchingFollowers } from '../actions';
 import FeedItem from './FeedItem';
-import Footer from './Footer';
 import TitleCardFeed from './TitleCards/TitleCardFeed';
+import Footer from './Footer';
 
 class Feed extends Component {
+  state = { selectedTab: 'feed' }
 
   componentWillMount() {
   this.props.userCredits();
@@ -124,12 +125,14 @@ renderRow(feedpost) {
 }
 
   render() {
+  const { selectedTab } = this.state;
+
   return (
     <Container>
       <Header span>
         <Left>
           <Button transparent onPress={() => Actions.hostOverview()}>
-            <Icon type="Ionicons" name="ios-arrow-back" style={{ color: 'gray', fontSize: 30 }} />
+            <Icon type="Ionicons" name="ios-arrow-back" style={{ color: 'white', fontSize: 30 }} />
           </Button>
         </Left>
         <Right>
@@ -147,7 +150,7 @@ renderRow(feedpost) {
         transparent
         onPress={this.notifyPress.bind(this)}
       >
-        <Icon type="Entypo" name="bookmark" style={{ color: 'gray', fontSize: 30, marginTop: -14, marginRight: 0 }} />
+        <Icon type="Entypo" name="bookmark" style={{ color: '#2B3035', fontSize: 30, marginTop: -14, marginRight: 0 }} />
         <Text
         style={{ color: '#2B3035', fontFamily: 'Avenir Book', fontSize: 16, marginLeft: 0, paddingLeft: 0, marginTop: -10 }}
         >
@@ -162,11 +165,11 @@ renderRow(feedpost) {
           renderRow={this.renderRow}
         />
       </Content>
-      <Button full iconLeft onPress={() => { this.onButtonPress(); }}>
-        <Icon type='MaterialIcons' name='playlist-add' style={{ color: '#2B3035' }} />
-        <Text style={{ fontFamily: 'Avenir Book', color: '#2B3035' }}>Make a post</Text>
+      <Button block iconLeft onPress={() => { this.onButtonPress(); }}>
+        <Icon type='MaterialIcons' name='playlist-add' style={{ color: 'white' }} />
+        <Text style={{ fontFamily: 'Avenir Book', color: 'white' }}>Make a post</Text>
       </Button>
-      <Footer />
+      <Footer selectedTab={selectedTab} />
     </Container>
   );
 }

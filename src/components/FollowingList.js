@@ -4,17 +4,19 @@ import { ListView } from 'react-native';
 import { Container, Content, List, Text, Header } from 'native-base';
 import { connect } from 'react-redux';
 import HostListItem from './HostListItem';
-import Footer from './Footer';
 import TitleCardFollowing from './TitleCards/TitleCardFollowing';
+import Footer from './Footer';
 
 class FollowingList extends Component {
+  state = { selectedTab: 'feed' }
+
   componentWillMount() {
     const ds = new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 !== r2
     });
 
+    this.setState({ selectedTab: 'following' });
     const followedLibraries = this.isFollowed();
-
     this.dataSource = ds.cloneWithRows(followedLibraries);
   }
 
@@ -35,6 +37,8 @@ class FollowingList extends Component {
   }
 
   render() {
+    const { selectedTab } = this.state;
+
     return (
       <Container>
       <Header span />
@@ -50,7 +54,7 @@ class FollowingList extends Component {
             />
           </List>
        </Content>
-       <Footer />
+       <Footer selectedTab={selectedTab} />
       </Container>
     );
   }

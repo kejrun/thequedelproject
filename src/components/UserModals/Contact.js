@@ -2,7 +2,7 @@ import React from 'react';
 import { Modal, View } from 'react-native';
 import { CardItem, Button, Card, Body, Text, Left, Icon } from 'native-base';
 
-const InviteFriends = ({ visible, onDecline }) => {
+const Contact = ({ visible, onDecline }) => {
   const { containerStyle } = styles;
 
   return (
@@ -24,7 +24,7 @@ const InviteFriends = ({ visible, onDecline }) => {
           <CardItem>
             <Body>
               <Text style={{ fontFamily: 'Avenir Book', fontSize: 16 }}>
-                Invite friends</Text>
+                Contact</Text>
               </Body>
           </CardItem>
         </Card>
@@ -45,4 +45,4 @@ const styles = {
   }
 };
 
-export default InviteFriends;
+export default Contact;

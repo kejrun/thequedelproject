@@ -18,7 +18,7 @@ render() {
          <Header span>
            <Left>
              <Button transparent onPress={() => Actions.pop()}>
-              <Icon type="Ionicons" name="ios-arrow-back" style={{ color: 'gray', fontSize: 30 }} />
+              <Icon type="Ionicons" name="ios-arrow-back" style={{ color: 'white', fontSize: 30 }} />
              </Button>
            </Left>
            <Right />
@@ -33,7 +33,7 @@ render() {
             <Text />
 
           <Button block onPress={this.onButtonPress.bind(this)}>
-            <Text style={{ fontFamily: 'Avenir Book', color: '#2B3035' }}>Create post</Text>
+            <Text style={{ fontFamily: 'Avenir Book', color: 'white' }}>Create post</Text>
           </Button>
         </MakeaPostCard>
     </Content>
