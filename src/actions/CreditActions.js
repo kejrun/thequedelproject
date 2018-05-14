@@ -3,6 +3,7 @@ import { USER_CREDITS, TRUSTED_USER, THANK_CREDIT, AGREE_CREDIT, DISAGREE_CREDIT
           TRUST_USER, USER_THANKS } from './types';
 
 export const userCredits = () => {
+  console.log('getting credits');
   const credits = 0;
   const userId = firebase.auth().currentUser.uid;
   return (dispatch) => {
@@ -42,7 +43,7 @@ export const trustedUser = () => {
   return (dispatch) => {
     firebase.database().ref(`/users/${userId}/trusted`)
     .on('value', snapshot => {
-      if (snapshot.val() === null || snapshot.val() < 100) {
+      if (snapshot.val() === null) {
         firebase.database().ref(`/users/${userId}/trusted/`)
         .set(trusted)
         .then(() => dispatch({ type: TRUSTED_USER, payload: false }));
@@ -53,14 +54,21 @@ export const trustedUser = () => {
   };
 };
 
-export const trustUser = () => {
+export const trustUser = (credits) => {
+  console.log(credits);
   const trusted = true;
   const userId = firebase.auth().currentUser.uid;
   return (dispatch) => {
-    firebase.database().ref(`/users/${userId}/trusted/`)
-    .set(trusted);
-    dispatch({ type: TRUST_USER, payload: true });
-    };
+    if (credits >= 100) {
+      firebase.database().ref(`/users/${userId}/trusted/`)
+      .set(trusted);
+      dispatch({ type: TRUST_USER });
+    } else {
+      firebase.database().ref(`/users/${userId}/trusted/`)
+      .set(!trusted);
+      dispatch({ type: TRUST_USER });
+    }
+  };
   };
 
 
@@ -70,17 +78,19 @@ export const thankCredit = (postUserId, followers) => {
   updateOwnCredits.transaction((currentRank) => {
     return currentRank + 3;
   });
-  const updateUserCredits = firebase.database().ref(`/users/${postUserId}/credits`);
-  updateUserCredits.transaction((currentRank) => {
-    return currentRank + followers;
-  });
+  if (userId !== postUserId) {
+    const updateUserCredits = firebase.database().ref(`/users/${postUserId}/credits`);
+    updateUserCredits.transaction((currentRank) => {
+      return currentRank + followers;
+    });
+  }
   const updateUserThanks = firebase.database().ref(`/users/${postUserId}/userthanks`);
   updateUserThanks.transaction((currentRank) => {
     return currentRank + 1;
   });
 
   return (dispatch) => {
-   dispatch({ type: THANK_CREDIT, payload: 3 });
+   dispatch({ type: THANK_CREDIT });
    dispatch({ type: USER_THANKS, payload: 1 });
   };
 };
@@ -91,26 +101,30 @@ export const agreeCredit = (postUserId) => {
   updateOwnCredits.transaction((currentRank) => {
     return currentRank + 5;
   });
-  const updateUserCredits = firebase.database().ref(`/users/${postUserId}/credits`);
-  updateUserCredits.transaction((currentRank) => {
-    return currentRank + 5;
-  });
+  if (userId !== postUserId) {
+    const updateUserCredits = firebase.database().ref(`/users/${postUserId}/credits`);
+    updateUserCredits.transaction((currentRank) => {
+      return currentRank + 5;
+    });
+  }
   return (dispatch) => {
-   dispatch({ type: AGREE_CREDIT, payload: 5 });
+   dispatch({ type: AGREE_CREDIT });
 };
 };
 
 export const disagreeCredit = (postUserId) => {
   const userId = firebase.auth().currentUser.uid;
-  const updateOwnCredits = firebase.database().ref(`/users/${userId}/credits`);
-  updateOwnCredits.transaction((currentRank) => {
-    return currentRank + 5;
-  });
-  const updateUserCredits = firebase.database().ref(`/users/${postUserId}/credits`);
-  updateUserCredits.transaction((currentRank) => {
-    return currentRank - 3;
-  });
-  return (dispatch) => {
-   dispatch({ type: DISAGREE_CREDIT, payload: 5 });
-};
+  if (userId !== postUserId) {
+    const updateOwnCredits = firebase.database().ref(`/users/${userId}/credits`);
+    updateOwnCredits.transaction((currentRank) => {
+      return currentRank + 5;
+    });
+    const updateUserCredits = firebase.database().ref(`/users/${postUserId}/credits`);
+    updateUserCredits.transaction((currentRank) => {
+      return currentRank - 3;
+    });
+  }
+    return (dispatch) => {
+     dispatch({ type: DISAGREE_CREDIT });
+    };
 };

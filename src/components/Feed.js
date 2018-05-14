@@ -71,9 +71,10 @@ componentWillReceiveProps(nextProps) {
   this.createDataSource(nextProps);
 }
 
-componentWillUpdate() {
-  if (this.props.credits >= 100 && !this.props.trusted) {
-    this.props.trustUser();
+componentWillUpdate(nextProps) {
+  console.log(nextProps);
+  if (this.props.credits !== nextProps.credits) {
+    this.props.trustUser(nextProps.credits);
   }
 }
 
