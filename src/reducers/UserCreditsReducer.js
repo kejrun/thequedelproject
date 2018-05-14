@@ -13,9 +13,9 @@ export default (state = INITIAL_STATE, action) => {
     case USER_CREDITS:
       return { ...state, credits: action.payload };
     case THANK_CREDIT:
-      return { ...state, credits: state.credits + action.payload };
+      return { ...state };
     case AGREE_CREDIT:
-      return { ...state, credits: state.credits + action.payload };
+      return { ...state };
     default:
       return state;
   }

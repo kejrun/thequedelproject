@@ -12,7 +12,7 @@ export default (state = INITIAL_STATE, action) => {
     case TRUSTED_USER:
       return { trusted: action.payload };
     case TRUST_USER:
-      return { trusted: action.payload };
+      return { ...state };
     default:
       return state;
   }

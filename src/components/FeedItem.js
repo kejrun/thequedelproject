@@ -4,7 +4,7 @@ import { Text, Card, CardItem, Icon, Right, Left } from 'native-base';
 import { connect } from 'react-redux';
 import { getId, updateThanks, updateAgreements, updateDisagreements, thankPost,
 agreePost, disagreePost, fetchThanks, thankCredit, agreeCredit, disagreeCredit,
-fetchingFollowers } from '../actions';
+fetchingFollowers, trustUser } from '../actions';
 
 class FeedItem extends Component {
 
@@ -178,5 +178,6 @@ export default connect(mapStateToProps, {
   thankCredit,
   agreeCredit,
   disagreeCredit,
-  fetchingFollowers
+  fetchingFollowers,
+  trustUser
 })(FeedItem);
