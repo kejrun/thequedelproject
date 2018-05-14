@@ -52,7 +52,7 @@ export default (variables = variable) => {
         }
       },
       "NativeBase.Icon": {
-        color: 'gray'
+        color: '#585858'
       },
       "NativeBase.IconNB": {
         color: 'gray'

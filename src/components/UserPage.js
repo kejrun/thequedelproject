@@ -4,18 +4,23 @@ import { connect } from 'react-redux';
 import { Title, Container, Content, Header, List, ListItem, Right, Left, Text, Icon, Body } from 'native-base';
 import { Col, Grid } from 'react-native-easy-grid';
 import { userThanks } from '../actions';
-import Footer from './Footer';
 import TitleCardUser from './TitleCards/TitleCardUser';
 import UserCard from './TitleCards/UserCard';
 import AboutCreditSystem from './UserModals/AboutCreditSystem';
 import AboutQuedel from './UserModals/AboutQuedel';
 import InviteFriends from './UserModals/InviteFriends';
+import DeleteAccount from './UserModals/DeleteAccount';
+import Contact from './UserModals/Contact';
+import Footer from './Footer';
 
 class UserPage extends Component {
   state = {
     showModalCreditSystem: false,
     showModalAboutQuedel: false,
-    showModalInviteFriends: false };
+    showModalInviteFriends: false,
+    showModalContact: false,
+    showModalDeleteAccount: false,
+    selectedTab: 'user' };
 
   componentWillMount() {
     this.props.userThanks();
@@ -25,9 +30,12 @@ class UserPage extends Component {
     this.setState({ showModalCreditSystem: false });
     this.setState({ showModalAboutQuedel: false });
     this.setState({ showModalInviteFriends: false });
+    this.setState({ showModalDeleteAccount: false });
+    this.setState({ showModalContact: false });
   }
 
   render() {
+    const { selectedTab } = this.state;
     const credits = this.props.credits;
     const userthanks = this.props.userthanks;
     const creditsLeft = 100 - credits;
@@ -138,6 +146,11 @@ class UserPage extends Component {
               onDecline={this.onDecline.bind(this)}
             />
 
+            <TouchableWithoutFeedback
+            onPress={() => {
+              this.setState({ showModalContact: !this.state.showModalContact });
+            }}
+            >
             <ListItem icon>
               <Left>
                 <Icon type='Ionicons' name='md-create' style={{ fontSize: 22 }} />
@@ -149,6 +162,17 @@ class UserPage extends Component {
                 <Icon name="arrow-forward" />
               </Right>
             </ListItem>
+            </TouchableWithoutFeedback>
+            <Contact
+              visible={this.state.showModalContact}
+              onDecline={this.onDecline.bind(this)}
+            />
+
+            <TouchableWithoutFeedback
+            onPress={() => {
+              this.setState({ showModalDeleteAccount: !this.state.showModalDeleteAccount });
+            }}
+            >
             <ListItem icon>
               <Left>
                 <Icon type='Ionicons' name='md-construct' style={{ fontSize: 22 }} />
@@ -160,10 +184,14 @@ class UserPage extends Component {
                 <Icon name="arrow-forward" />
               </Right>
             </ListItem>
-
+            </TouchableWithoutFeedback>
+            <DeleteAccount
+              visible={this.state.showModalDeleteAccount}
+              onDecline={this.onDecline.bind(this)}
+            />
           </List>
         </Content>
-        <Footer />
+        <Footer selectedTab={selectedTab} />
       </Container>
     );
   }
