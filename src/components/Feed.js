@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { ListView } from 'react-native';
+import { ListView, View } from 'react-native';
 import { Container, Content, Button, Text, Header, Left, Icon, Right, Toast } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import { feedFetch1, feedFetch2, feedFetch3, feedFetch4, feedFetch5,
@@ -143,16 +143,16 @@ renderRow(feedpost) {
       </Header>
       <TitleCardFeed>
       <Text style={{ color: '#2B3035', fontFamily: 'Avenir Book', fontSize: 20 }}>{this.props.title}</Text>
-      <Text
-      style={{ color: '#2B3035', fontFamily: 'Avenir Book', fontSize: 20 }}
-      >
-      {this.props.followers}
-      </Text>
       <Button
         transparent
         onPress={this.notifyPress.bind(this)}
       >
-        <Icon type="Entypo" name="bookmark" style={{ color: 'gray', fontSize: 30, marginTop: -14, marginLeft: -5 }} />
+        <Icon type="Entypo" name="bookmark" style={{ color: 'gray', fontSize: 30, marginTop: -14, marginRight: 0 }} />
+        <Text
+        style={{ color: '#2B3035', fontFamily: 'Avenir Book', fontSize: 16, marginLeft: 0, paddingLeft: 0, marginTop: -10 }}
+        >
+        {this.props.followers}
+        </Text>
       </Button>
       </TitleCardFeed>
       <Content>

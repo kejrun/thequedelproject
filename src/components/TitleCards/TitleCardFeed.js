@@ -9,9 +9,11 @@ const TitleCardFeed = (props) => (
 
 const styles = {
   containerStyle: {
+    justifyContent: 'space-between',
     flexDirection: 'row',
-    justifyContent: 'flex-start',
-    padding: 20,
+    paddingTop: 20,
+    paddingLeft: 20,
+    paddingBottom: 0,
     backgroundColor: '#F8DC97',
     borderWidth: 1,
     borderRadius: 2,
