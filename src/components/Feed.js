@@ -1,24 +1,23 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { ListView, RefreshControl } from 'react-native';
-import { Container, Content, Button, Text, Header, Left, Icon, Right, Toast } from 'native-base';
+import { ListView, RefreshControl, View, ActivityIndicator } from 'react-native';
+import { Container, Card, Content, Button, Text, Header, Left, Icon, Right, Toast } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import { feedFetch1, feedFetch2, feedFetch3, feedFetch4, feedFetch5,
         feedFetch6, feedFetch7, feedFetch8, feedFetch9, feedFetch10,
         feedFetch11, feedFetch12, feedFetch13, following, fetchVoted,
         userCredits, trustedUser, trustUser, setFollowed, fetchingFollowers } from '../actions';
 import FeedItem from './FeedItem';
+import Spinner from './common';
 import Footer from './Footer';
 import TitleCardFeed from './TitleCards/TitleCardFeed';
 
 class Feed extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { refreshing: false };
-  }
+  state = { refreshing: false, loading: true };
 
   componentWillMount() {
+  console.log(this.state.loading);
   this.props.userCredits();
   this.props.trustedUser();
   this.props.setFollowed();
@@ -71,8 +70,12 @@ class Feed extends Component {
   this.createDataSource(this.props);
 }
 
+componentDidMount() {
+}
+
 componentWillReceiveProps(nextProps) {
   this.createDataSource(nextProps);
+  this.setState({ loading: false });
 }
 
 componentWillUpdate(nextProps) {
@@ -113,6 +116,18 @@ const feedposts = _.map(feedpost, (val) => {
 return feedposts;
 }
 
+ifLoading() {
+  console.log(this.state.loading);
+  if (this.state.loading) {
+    console.log(<ActivityIndicator size="large" />);
+    return (
+      <View>
+        {console.log('hej')}
+        <ActivityIndicator size="large" />
+      </View>);
+  }
+}
+
 _onRefresh() {
   console.log('refreshing');
   this.setState({ refreshing: true });
@@ -127,6 +142,7 @@ createDataSource({ feedpost }) {
   const ds = new ListView.DataSource({
     rowHasChanged: (r1, r2) => r1 !== r2
   });
+  console.log('loading false');
 
   this.dataSource = ds.cloneWithRows(feedpost);
 }
@@ -168,6 +184,9 @@ renderRow(feedpost) {
       </Button>
       </TitleCardFeed>
       <Content>
+      <View>
+        {this.ifLoading()}
+      </View>
         <ListView
           enableEmptySections
           refreshControl={
