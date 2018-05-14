@@ -72,7 +72,6 @@ componentWillReceiveProps(nextProps) {
 }
 
 componentWillUpdate(nextProps) {
-  console.log(nextProps);
   if (this.props.credits !== nextProps.credits) {
     this.props.trustUser(nextProps.credits);
   }

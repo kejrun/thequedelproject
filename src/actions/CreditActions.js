@@ -3,7 +3,6 @@ import { USER_CREDITS, TRUSTED_USER, THANK_CREDIT, AGREE_CREDIT, DISAGREE_CREDIT
           TRUST_USER, USER_THANKS } from './types';
 
 export const userCredits = () => {
-  console.log('getting credits');
   const credits = 0;
   const userId = firebase.auth().currentUser.uid;
   return (dispatch) => {
@@ -55,7 +54,6 @@ export const trustedUser = () => {
 };
 
 export const trustUser = (credits) => {
-  console.log(credits);
   const trusted = true;
   const userId = firebase.auth().currentUser.uid;
   return (dispatch) => {
