@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { ListView, View } from 'react-native';
+import { ListView } from 'react-native';
 import { Container, Content, Button, Text, Header, Left, Icon, Right, Toast } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import { feedFetch1, feedFetch2, feedFetch3, feedFetch4, feedFetch5,
@@ -13,6 +13,7 @@ import Footer from './Footer';
 import TitleCardFeed from './TitleCards/TitleCardFeed';
 
 class Feed extends Component {
+  state = { followed: false };
 
   componentWillMount() {
   this.props.userCredits();
@@ -69,6 +70,16 @@ class Feed extends Component {
 
 componentWillReceiveProps(nextProps) {
   this.createDataSource(nextProps);
+  const { libraryId } = this.props;
+  if (this.props.followed !== nextProps.followed) {
+    if (nextProps.followed[libraryId]) {
+      console.log('is followed, unfollow');
+      this.setState({ followed: true });
+    } else {
+      console.log('is not follwed, follow');
+      this.setState({ followed: false });
+    }
+  }
 }
 
 componentWillUpdate(nextProps) {
@@ -82,13 +93,19 @@ onButtonPress() {
 }
 
 notifyPress() {
-  this.props.setFollowed();
   const { libraryId } = this.props;
-  following({ libraryId });
-
-  Toast.show({
-    text: '   Following',
-  });
+  const { followed } = this.state;
+  this.props.setFollowed();
+  this.props.following({ libraryId, followed });
+  if (!followed) {
+    Toast.show({
+      text: '   Following',
+    });
+  } else {
+    Toast.show({
+      text: '   Unfollowed',
+    });
+  }
 }
 
 ifInteracted(feedVotes, post) {
@@ -184,7 +201,9 @@ const mapStateToProps = state => {
   const { credits } = state.credits;
   const { trusted } = state.trusted;
   const { followers } = state.fetchFollowers;
-  return { feedpost, libraryId, title, feedVotes, credits, trusted, followers };
+  const followed = state.followedNations;
+  console.log(followed);
+  return { feedpost, libraryId, title, feedVotes, credits, trusted, followers, followed };
 };
 
 export default connect(mapStateToProps, {
@@ -206,4 +225,5 @@ export default connect(mapStateToProps, {
   trustedUser,
   trustUser,
   setFollowed,
+  following,
   fetchingFollowers })(Feed);
