@@ -24,12 +24,15 @@ const AboutQuedel = ({ visible, onDecline }) => {
           <CardItem>
             <Body>
               <Text style={{ fontFamily: 'Avenir Book', fontSize: 16 }}>
-                    This is a text about Quedel..
-                    A disabled button is unusable and un-clickable.
-                    The disabled prop of NativeBase Button is of type boolean. When present, it specifies that
-                    the button should be disabled. The disabled prop can be set to keep a user from clicking on
-                    the button until some other conditions are met (like selecting a checkbox, etc.). Then, a
-                    conditional code could remove the disabled value, and make the button usable.</Text>
+                  Uppsalas student nations all host different kind of events, ranging from spring proms,
+                  to stand up comedy, to nightclubs. But for many of the events can queuing time sometimes
+                  can be several hours long.
+
+                  An standard problem is that the student and his or her group of friends wants to leave as late as possible
+                  without having to stand in an hour-long queue, and this is the problem that Quedel solves!
+
+                  Quedel is an app where students can post estimations of the queuing time for a specific nation
+                  or event in a live feed to help others and collect credits.</Text>
               </Body>
           </CardItem>
         </Card>

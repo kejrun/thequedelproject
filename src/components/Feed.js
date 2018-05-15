@@ -13,7 +13,8 @@ import TitleCardFeed from './TitleCards/TitleCardFeed';
 import Footer from './Footer';
 
 class Feed extends Component {
-  state = { refreshing: false, loading: true, selectedTab: 'feed' };
+  state = { refreshing: false, loading: true, selectedTab: 'feed', followed: false };
+
 
   componentWillMount() {
   console.log(this.state.loading);
@@ -75,6 +76,16 @@ componentDidMount() {
 componentWillReceiveProps(nextProps) {
   this.createDataSource(nextProps);
   this.setState({ loading: false });
+  const { libraryId } = this.props;
+  if (this.props.followed !== nextProps.followed) {
+    if (nextProps.followed[libraryId]) {
+      console.log('is followed, unfollow');
+      this.setState({ followed: true });
+    } else {
+      console.log('is not follwed, follow');
+      this.setState({ followed: false });
+    }
+  }
 }
 
 componentWillUpdate(nextProps) {
@@ -88,13 +99,19 @@ onButtonPress() {
 }
 
 notifyPress() {
-  this.props.setFollowed();
   const { libraryId } = this.props;
-  following({ libraryId });
-
-  Toast.show({
-    text: '   Following',
-  });
+  const { followed } = this.state;
+  this.props.setFollowed();
+  this.props.following({ libraryId, followed });
+  if (!followed) {
+    Toast.show({
+      text: '   Following',
+    });
+  } else {
+    Toast.show({
+      text: '   Unfollowed',
+    });
+  }
 }
 
 ifInteracted(feedVotes, post) {
@@ -222,7 +239,9 @@ const mapStateToProps = state => {
   const { credits } = state.credits;
   const { trusted } = state.trusted;
   const { followers } = state.fetchFollowers;
-  return { feedpost, libraryId, title, feedVotes, credits, trusted, followers };
+  const followed = state.followedNations;
+  console.log(followed);
+  return { feedpost, libraryId, title, feedVotes, credits, trusted, followers, followed };
 };
 
 export default connect(mapStateToProps, {
@@ -244,4 +263,5 @@ export default connect(mapStateToProps, {
   trustedUser,
   trustUser,
   setFollowed,
+  following,
   fetchingFollowers })(Feed);

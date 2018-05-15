@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { CheckBox } from 'react-native-elements';
+import { Alert } from 'react-native';
 import { Text, Card, CardItem, Icon, Right, Left } from 'native-base';
 import { connect } from 'react-redux';
+import { Actions } from 'react-native-router-flux';
 import { getId, updateThanks, updateAgreements, updateDisagreements, thankPost,
 agreePost, disagreePost, fetchThanks, thankCredit, agreeCredit, disagreeCredit,
 fetchingFollowers, trustUser } from '../actions';
@@ -71,6 +73,15 @@ class FeedItem extends Component {
         this.props.disagreeCredit(this.props.feedpost.userId);
         this.props.disagreePost({ postId, disagree: true });
       }
+      Alert.alert(
+        '',
+        'Do you want to make your own post?',
+        [
+          { text: 'Yes', onPress: () => Actions.makenewpost() },
+          { text: 'No' },
+        ],
+        { cancelable: false }
+      );
     }
 
     ifTrusted() {
