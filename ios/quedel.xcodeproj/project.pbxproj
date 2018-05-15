@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -337,7 +338,6 @@
 		00E356F21AD99517003FC87E /* quedelTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = quedelTests.m; sourceTree = "<group>"; };
 		057E721C207E288F00C91537 /* ios */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ios; sourceTree = "<group>"; };
 		10329FA9EE6C44DEBF522D48 /* Roboto_medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Roboto_medium.ttf; path = "../node_modules/native-base/Fonts/Roboto_medium.ttf"; sourceTree = "<group>"; };
-		103BDA6A2AEA45839EE57CDA /* rubicon-icon-font.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "rubicon-icon-font.ttf"; path = "../node_modules/native-base/Fonts/rubicon-icon-font.ttf"; sourceTree = "<group>"; };
 		139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSettings.xcodeproj; path = "../node_modules/react-native/Libraries/Settings/RCTSettings.xcodeproj"; sourceTree = "<group>"; };
 		139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTWebSocket.xcodeproj; path = "../node_modules/react-native/Libraries/WebSocket/RCTWebSocket.xcodeproj"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* quedel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = quedel.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -564,7 +564,6 @@
 				F847A6E474734F7CA4C64541 /* Octicons.ttf */,
 				10329FA9EE6C44DEBF522D48 /* Roboto_medium.ttf */,
 				477976F4ADBE4B99A95FAC95 /* Roboto.ttf */,
-				103BDA6A2AEA45839EE57CDA /* rubicon-icon-font.ttf */,
 				2A4DDC05DF454173B847CCF0 /* SimpleLineIcons.ttf */,
 				3C5D78FA8908443F98FC06D7 /* Zocial.ttf */,
 			);

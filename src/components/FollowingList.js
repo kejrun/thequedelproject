@@ -41,11 +41,11 @@ class FollowingList extends Component {
 
     return (
       <Container>
-      <Header span />
-      <TitleCardFollowing>
-        <Text style={{ color: '#2B3035', fontFamily: 'Avenir Book', fontSize: 20 }}>Following</Text>
-        </TitleCardFollowing>
-        <Content>
+        <Header span />
+          <TitleCardFollowing>
+            <Text style={{ color: '#2B3035', fontFamily: 'Avenir Book', fontSize: 20 }}>Following</Text>
+          </TitleCardFollowing>
+          <Content>
           <List>
             <ListView
               enableEmptySections
@@ -53,8 +53,8 @@ class FollowingList extends Component {
               renderRow={this.renderRow}
             />
           </List>
-       </Content>
-       <Footer selectedTab={selectedTab} />
+        </Content>
+        <Footer selectedTab={selectedTab} />
       </Container>
     );
   }
@@ -64,6 +64,6 @@ const mapStateToProps = state => {
   const libraries = state.libraries;
   const followed = state.followedNations;
   return { libraries, followed };
-  };
+};
 
 export default connect(mapStateToProps)(FollowingList);

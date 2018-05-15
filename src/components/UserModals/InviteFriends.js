@@ -15,17 +15,17 @@ const InviteFriends = ({ visible, onDecline }) => {
       <View style={containerStyle}>
         <Card>
           <CardItem header>
-          <Left>
-            <Button transparent onPress={onDecline}>
-              <Icon type="Ionicons" name="ios-close" style={{ color: 'gray', fontSize: 50 }} />
-            </Button>
-          </Left>
+            <Left>
+              <Button transparent onPress={onDecline}>
+                <Icon type="Ionicons" name="ios-close" style={{ color: 'gray', fontSize: 50 }} />
+              </Button>
+            </Left>
           </CardItem>
           <CardItem>
             <Body>
-              <Text style={{ fontFamily: 'Avenir Book', fontSize: 16 }}>
-                Invite friends</Text>
-              </Body>
+            <Text style={{ fontFamily: 'Avenir Book', fontSize: 16 }}>
+            Invite friends</Text>
+            </Body>
           </CardItem>
         </Card>
       </View>

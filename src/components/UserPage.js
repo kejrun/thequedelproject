@@ -22,186 +22,186 @@ class UserPage extends Component {
     showModalDeleteAccount: false,
     selectedTab: 'user' };
 
-  componentWillMount() {
-    this.props.userThanks();
-  }
-
-  onDecline() {
-    this.setState({ showModalCreditSystem: false });
-    this.setState({ showModalAboutQuedel: false });
-    this.setState({ showModalInviteFriends: false });
-    this.setState({ showModalDeleteAccount: false });
-    this.setState({ showModalContact: false });
-  }
-
-  render() {
-    const { selectedTab } = this.state;
-    const credits = this.props.credits;
-    const userthanks = this.props.userthanks;
-    const creditsLeft = 100 - credits;
-    const yesMessage = (<Text style={{ fontFamily: 'Avenir Book', fontSize: 14 }}>
-                        Nice, you are a trusted user. Keep up the good work!</Text>);
-    const noMessage = (<Text style={{ fontFamily: 'Avenir Book', fontSize: 14 }}>
-                        You are not a trusted user yet. You have to collect {creditsLeft} more credits.</Text>);
-
-    let message;
-    if (this.props.trusted) {
-      message = yesMessage;
-    } else {
-      message = noMessage;
+    componentWillMount() {
+      this.props.userThanks();
     }
 
-    return (
-      <Container>
-        <Header span />
-        <TitleCardUser>
-          <Title style={{ color: '#2B3035', fontFamily: 'Avenir Book' }}>You</Title>
-        </TitleCardUser>
-        <Content>
-          <UserCard>
-            <Grid>
+    onDecline() {
+      this.setState({ showModalCreditSystem: false });
+      this.setState({ showModalAboutQuedel: false });
+      this.setState({ showModalInviteFriends: false });
+      this.setState({ showModalDeleteAccount: false });
+      this.setState({ showModalContact: false });
+    }
+
+    render() {
+      const { selectedTab } = this.state;
+      const credits = this.props.credits;
+      const userthanks = this.props.userthanks;
+      const creditsLeft = 100 - credits;
+      const yesMessage = (<Text style={{ fontFamily: 'Avenir Book', fontSize: 14 }}>
+      Nice, you are a trusted user. Keep up the good work!</Text>);
+      const noMessage = (<Text style={{ fontFamily: 'Avenir Book', fontSize: 14 }}>
+      You are not a trusted user yet. You have to collect {creditsLeft} more credits.</Text>);
+
+      let message;
+      if (this.props.trusted) {
+        message = yesMessage;
+      } else {
+        message = noMessage;
+      }
+
+      return (
+        <Container>
+          <Header span />
+            <TitleCardUser>
+              <Title style={{ color: '#2B3035', fontFamily: 'Avenir Book' }}>You</Title>
+            </TitleCardUser>
+          <Content>
+            <UserCard>
+              <Grid>
               <Col>
-                <Left>
-                  <Icon type='SimpleLineIcons' name='diamond' style={{ fontSize: 26 }} />
-                </Left>
-                <Left>
-                  <Text style={{ fontFamily: 'Avenir Book', fontSize: 18 }}>Credits: {credits} </Text>
-                </Left>
+              <Left>
+                <Icon type='SimpleLineIcons' name='diamond' style={{ fontSize: 26 }} />
+              </Left>
+              <Left>
+                <Text style={{ fontFamily: 'Avenir Book', fontSize: 18 }}>Credits: {credits} </Text>
+              </Left>
               </Col>
               <Col>
-                <Left>
-                  <Icon type='Ionicons' name='md-heart' style={{ fontSize: 26, color: '#fc3768' }} />
-                </Left>
-                <Left>
-                  <Text style={{ fontFamily: 'Avenir Book', fontSize: 18 }}>Thanks: {userthanks} </Text>
-                </Left>
+              <Left>
+                <Icon type='Ionicons' name='md-heart' style={{ fontSize: 26, color: '#fc3768' }} />
+              </Left>
+              <Left>
+                <Text style={{ fontFamily: 'Avenir Book', fontSize: 18 }}>Thanks: {userthanks} </Text>
+              </Left>
               </Col>
-            </Grid>
-            <Text>{message}</Text>
-          </UserCard>
+              </Grid>
+              <Text>{message}</Text>
+            </UserCard>
           <List>
-            <TouchableWithoutFeedback
-            onPress={() => {
-              this.setState({ showModalCreditSystem: !this.state.showModalCreditSystem });
-            }}
-            >
-            <ListItem icon>
-              <Left>
-                <Icon type='SimpleLineIcons' name='diamond' style={{ fontSize: 22 }} />
-              </Left>
-              <Body>
-                <Text style={{ fontFamily: 'Avenir Book', fontSize: 16 }}>About the Credit System</Text>
-              </Body>
-              <Right>
-                <Icon name="arrow-forward" />
-              </Right>
-            </ListItem>
-            </TouchableWithoutFeedback>
-            <AboutCreditSystem
-              visible={this.state.showModalCreditSystem}
-              onDecline={this.onDecline.bind(this)}
-            />
+          <TouchableWithoutFeedback
+          onPress={() => {
+            this.setState({ showModalCreditSystem: !this.state.showModalCreditSystem });
+          }}
+          >
+          <ListItem icon>
+          <Left>
+          <Icon type='SimpleLineIcons' name='diamond' style={{ fontSize: 22 }} />
+          </Left>
+          <Body>
+          <Text style={{ fontFamily: 'Avenir Book', fontSize: 16 }}>About the Credit System</Text>
+          </Body>
+          <Right>
+          <Icon name="arrow-forward" />
+          </Right>
+          </ListItem>
+          </TouchableWithoutFeedback>
+          <AboutCreditSystem
+          visible={this.state.showModalCreditSystem}
+          onDecline={this.onDecline.bind(this)}
+          />
 
-            <TouchableWithoutFeedback
-            onPress={() => {
-              this.setState({ showModalInviteFriends: !this.state.showModalInviteFriends });
-            }}
-            >
-            <ListItem icon>
-              <Left>
-                <Icon type='Ionicons' name='md-person-add' style={{ fontSize: 22 }} />
-              </Left>
-              <Body>
-                <Text style={{ fontFamily: 'Avenir Book', fontSize: 16 }}>Invite friends</Text>
-              </Body>
-              <Right>
-                <Icon name="arrow-forward" />
-              </Right>
-            </ListItem>
-            </TouchableWithoutFeedback>
-            <InviteFriends
-              visible={this.state.showModalInviteFriends}
-              onDecline={this.onDecline.bind(this)}
-            />
+          <TouchableWithoutFeedback
+          onPress={() => {
+            this.setState({ showModalInviteFriends: !this.state.showModalInviteFriends });
+          }}
+          >
+          <ListItem icon>
+          <Left>
+          <Icon type='Ionicons' name='md-person-add' style={{ fontSize: 22 }} />
+          </Left>
+          <Body>
+          <Text style={{ fontFamily: 'Avenir Book', fontSize: 16 }}>Invite friends</Text>
+          </Body>
+          <Right>
+          <Icon name="arrow-forward" />
+          </Right>
+          </ListItem>
+          </TouchableWithoutFeedback>
+          <InviteFriends
+          visible={this.state.showModalInviteFriends}
+          onDecline={this.onDecline.bind(this)}
+          />
 
-            <TouchableWithoutFeedback
-            onPress={() => {
-              this.setState({ showModalAboutQuedel: !this.state.showModalAboutQuedel });
-            }}
-            >
-            <ListItem icon>
-              <Left>
-                <Icon type='Ionicons' name='md-information-circle' style={{ fontSize: 22 }} />
-              </Left>
-              <Body>
-                <Text style={{ fontFamily: 'Avenir Book', fontSize: 16 }}>About Quedel</Text>
-              </Body>
-              <Right>
-                <Icon name="arrow-forward" />
-              </Right>
-            </ListItem>
-            </TouchableWithoutFeedback>
-            <AboutQuedel
-              visible={this.state.showModalAboutQuedel}
-              onDecline={this.onDecline.bind(this)}
-            />
+          <TouchableWithoutFeedback
+          onPress={() => {
+            this.setState({ showModalAboutQuedel: !this.state.showModalAboutQuedel });
+          }}
+          >
+          <ListItem icon>
+          <Left>
+          <Icon type='Ionicons' name='md-information-circle' style={{ fontSize: 22 }} />
+          </Left>
+          <Body>
+          <Text style={{ fontFamily: 'Avenir Book', fontSize: 16 }}>About Quedel</Text>
+          </Body>
+          <Right>
+          <Icon name="arrow-forward" />
+          </Right>
+          </ListItem>
+          </TouchableWithoutFeedback>
+          <AboutQuedel
+          visible={this.state.showModalAboutQuedel}
+          onDecline={this.onDecline.bind(this)}
+          />
 
-            <TouchableWithoutFeedback
-            onPress={() => {
-              this.setState({ showModalContact: !this.state.showModalContact });
-            }}
-            >
-            <ListItem icon>
-              <Left>
-                <Icon type='Ionicons' name='md-create' style={{ fontSize: 22 }} />
-              </Left>
-              <Body>
-                <Text style={{ fontFamily: 'Avenir Book', fontSize: 16 }}>Contact</Text>
-              </Body>
-              <Right>
-                <Icon name="arrow-forward" />
-              </Right>
-            </ListItem>
-            </TouchableWithoutFeedback>
-            <Contact
-              visible={this.state.showModalContact}
-              onDecline={this.onDecline.bind(this)}
-            />
+          <TouchableWithoutFeedback
+          onPress={() => {
+            this.setState({ showModalContact: !this.state.showModalContact });
+          }}
+          >
+          <ListItem icon>
+          <Left>
+          <Icon type='Ionicons' name='md-create' style={{ fontSize: 22 }} />
+          </Left>
+          <Body>
+          <Text style={{ fontFamily: 'Avenir Book', fontSize: 16 }}>Contact</Text>
+          </Body>
+          <Right>
+          <Icon name="arrow-forward" />
+          </Right>
+          </ListItem>
+          </TouchableWithoutFeedback>
+          <Contact
+          visible={this.state.showModalContact}
+          onDecline={this.onDecline.bind(this)}
+          />
 
-            <TouchableWithoutFeedback
-            onPress={() => {
-              this.setState({ showModalDeleteAccount: !this.state.showModalDeleteAccount });
-            }}
-            >
-            <ListItem icon>
-              <Left>
-                <Icon type='Ionicons' name='md-construct' style={{ fontSize: 22 }} />
-              </Left>
-              <Body>
-                <Text style={{ fontFamily: 'Avenir Book', fontSize: 16 }}>Delete account</Text>
-              </Body>
-              <Right>
-                <Icon name="arrow-forward" />
-              </Right>
-            </ListItem>
-            </TouchableWithoutFeedback>
-            <DeleteAccount
-              visible={this.state.showModalDeleteAccount}
-              onDecline={this.onDecline.bind(this)}
-            />
+          <TouchableWithoutFeedback
+          onPress={() => {
+            this.setState({ showModalDeleteAccount: !this.state.showModalDeleteAccount });
+          }}
+          >
+          <ListItem icon>
+          <Left>
+          <Icon type='Ionicons' name='md-construct' style={{ fontSize: 22 }} />
+          </Left>
+          <Body>
+          <Text style={{ fontFamily: 'Avenir Book', fontSize: 16 }}>Delete account</Text>
+          </Body>
+          <Right>
+          <Icon name="arrow-forward" />
+          </Right>
+          </ListItem>
+          </TouchableWithoutFeedback>
+          <DeleteAccount
+          visible={this.state.showModalDeleteAccount}
+          onDecline={this.onDecline.bind(this)}
+          />
           </List>
-        </Content>
-        <Footer selectedTab={selectedTab} />
-      </Container>
-    );
+          </Content>
+          <Footer selectedTab={selectedTab} />
+        </Container>
+      );
+    }
   }
-}
 
-const mapStateToProps = (state) => {
-  const { credits } = state.credits;
-  const { trusted } = state.trusted;
-  const { userthanks } = state.userthanks;
-  return { credits, trusted, userthanks };
-};
+  const mapStateToProps = (state) => {
+    const { credits } = state.credits;
+    const { trusted } = state.trusted;
+    const { userthanks } = state.userthanks;
+    return { credits, trusted, userthanks };
+  };
 
-export default connect(mapStateToProps, { userThanks })(UserPage);
+  export default connect(mapStateToProps, { userThanks })(UserPage);

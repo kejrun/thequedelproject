@@ -9,8 +9,8 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case FETCH_FOLLOWERS:
-      return { ...state, followers: action.payload };
+    return { ...state, followers: action.payload };
     default:
-      return state;
+    return state;
   }
 };

@@ -15,26 +15,26 @@ const AboutCreditSystem = ({ visible, onDecline }) => {
       <View style={containerStyle}>
         <Card>
           <CardItem header>
-          <Left>
-            <Button transparent onPress={onDecline}>
-              <Icon type="Ionicons" name="ios-close" style={{ color: 'gray', fontSize: 50 }} />
-            </Button>
-          </Left>
+            <Left>
+              <Button transparent onPress={onDecline}>
+                <Icon type="Ionicons" name="ios-close" style={{ color: 'gray', fontSize: 50 }} />
+              </Button>
+            </Left>
           </CardItem>
           <CardItem>
             <Body>
               <Text style={{ fontFamily: 'Avenir Book', fontSize: 20, fontWeight: 'bold'}} >
-                    {'\n'}How does the credit system work? 
-                    </Text>
-                    <Text style={{ fontFamily: 'Avenir Book', fontSize: 16 }}>
-                    Press Agree: Both you and the user who made the post receives 5 credits. {'\n'}{'\n'}
+              {'\n'}How does the credit system work?
+              </Text>
+              <Text style={{ fontFamily: 'Avenir Book', fontSize: 16 }}>
+              Press Agree: Both you and the user who made the post receives 5 credits. {'\n'}{'\n'}
 
-                    Press Disagree: You receive 5 credits. The user who made the post looses 3 credits.
-                    If you disagree with your own post you will not receive any credits. {'\n'}{'\n'}
+              Press Disagree: You receive 5 credits. The user who made the post looses 3 credits.
+              If you disagree with your own post you will not receive any credits. {'\n'}{'\n'}
 
-                    Press Thanks: You receive 3 credits. The user who made the post will receive as many
-                    credits as the number of followers of that specific student nation.</Text>
-              </Body>
+              Press Thanks: You receive 3 credits. The user who made the post will receive as many
+              credits as the number of followers of that specific student nation.</Text>
+            </Body>
           </CardItem>
         </Card>
       </View>

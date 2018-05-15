@@ -21,10 +21,10 @@ export const setFollowed = () => {
     11: false,
     12: false,
     13: false
-    }
-  };
-  const userId = firebase.auth().currentUser.uid;
-  return (dispatch) => {
+  }
+};
+const userId = firebase.auth().currentUser.uid;
+return (dispatch) => {
   firebase.database().ref(`/users/${userId}/following/libraryIds`).on('value', snapshot => {
     if (snapshot.val() === null) {
       firebase.database().ref(`/users/${userId}/following/`)

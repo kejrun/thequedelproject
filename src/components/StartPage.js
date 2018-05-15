@@ -17,10 +17,10 @@ class StartPage extends Component {
   render() {
     return (
       <Container style={styles.containerStyle}>
-          <Image
+        <Image
           style={styles.logoImgStyle}
           source={require('../images/Quedel_logga_bla_small.png')}
-          />
+        />
       </Container>
     );
   }
@@ -28,7 +28,6 @@ class StartPage extends Component {
 
 const screenHeight = Dimensions.get('window').height;
 const screenWidth = Dimensions.get('window').width;
-
 const styles = {
   containerStyle: {
     flex: 1,
@@ -55,7 +54,6 @@ const styles = {
 
 const mapStateToProps = ({ auth }) => {
   const { welcoming } = auth;
-
   return { welcoming };
 };
 

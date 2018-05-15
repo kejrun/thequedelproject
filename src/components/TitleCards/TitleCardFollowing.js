@@ -2,13 +2,13 @@ import React from 'react';
 import { ImageBackground } from 'react-native';
 
 const TitleCardFollowing = (props) => (
-    <ImageBackground
+  <ImageBackground
     source={require('../../images/gradient-background.png')}
     style={styles.containerStyle}
-    >
-    {props.children}
-    </ImageBackground>
-  );
+  >
+  {props.children}
+  </ImageBackground>
+);
 
 const styles = {
   containerStyle: {

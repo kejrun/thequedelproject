@@ -20,21 +20,20 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case POST_UPDATE:
-      // action.payload === { prop: 'name, value: 'Jane' }
-      return { ...state, [action.payload.prop]: action.payload.value };
+    return { ...state, [action.payload.prop]: action.payload.value };
     case NEW_POST_SAME_NATION:
-      return state;
+    return state;
     case GET_POST_ID:
-      return { ...state, pid: action.payload };
+    return { ...state, pid: action.payload };
     case UPDATE_AGREEMENTS:
-      return { ...state, agreements: 0 };
+    return { ...state, agreements: 0 };
     case UPDATE_DISAGREEMENTS:
-      return { ...state, disagreements: 0 };
+    return { ...state, disagreements: 0 };
     case UPDATE_FOLLOWERS:
-      return { ...state, followers: action.payload };
+    return { ...state, followers: action.payload };
     case 'select_library':
-      return { ...state, chosenNation: action.payload };
+    return { ...state, chosenNation: action.payload };
     default:
-      return state;
+    return state;
   }
 };

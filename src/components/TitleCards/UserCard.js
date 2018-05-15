@@ -2,10 +2,10 @@ import React from 'react';
 import { View } from 'react-native';
 
 const UserCard = (props) => (
-    <View style={styles.containerStyle}>
+  <View style={styles.containerStyle}>
     {props.children}
-    </View>
-  );
+  </View>
+);
 
 const styles = {
   containerStyle: {

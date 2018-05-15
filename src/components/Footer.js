@@ -7,11 +7,11 @@ export default class TheFooter extends Component {
     return (
         <Footer>
           <FooterTab>
-          <Button
-            active={this.props.selectedTab === 'following'}
-            onPress={() => { Actions.following(); }}
-          >
-            <Icon type="Entypo" name="bookmarks" style={{ fontSize: 30 }} />
+            <Button
+              active={this.props.selectedTab === 'following'}
+              onPress={() => { Actions.following(); }}
+            >
+              <Icon type="Entypo" name="bookmarks" style={{ fontSize: 30 }} />
             </Button>
             <Button
               active={this.props.selectedTab === 'feed'}
