@@ -23,9 +23,13 @@ const Contact = ({ visible, onDecline }) => {
           </CardItem>
           <CardItem>
             <Body>
-              <Text style={{ fontFamily: 'Avenir Book', fontSize: 16 }}>
+            <Text style={{ fontFamily: 'Avenir Book', fontSize: 20, fontWeight: 'bold' }}>
+                {'\n'}
                 Contact
-                Do you have any questions about Quedel?
+                </Text>
+              <Text style={{ fontFamily: 'Avenir Book', fontSize: 16 }}>
+                Do you have any questions about Quedel? {'\n'}
+                {'\n'}
                 Feel free to contact us at info@quedel.com</Text>
               </Body>
           </CardItem>
