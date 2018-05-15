@@ -24,7 +24,9 @@ const Contact = ({ visible, onDecline }) => {
           <CardItem>
             <Body>
               <Text style={{ fontFamily: 'Avenir Book', fontSize: 16 }}>
-                Contact</Text>
+                Contact
+                Do you have any questions about Quedel?
+                Feel free to contact us at info@quedel.com</Text>
               </Body>
           </CardItem>
         </Card>

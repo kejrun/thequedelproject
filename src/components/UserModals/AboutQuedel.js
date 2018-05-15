@@ -24,7 +24,7 @@ const AboutQuedel = ({ visible, onDecline }) => {
           <CardItem>
             <Body>
               <Text style={{ fontFamily: 'Avenir Book', fontSize: 16 }}>
-              Uppsalas 13 student nations all host different kind of events, ranging from spring proms,
+                  Uppsalas student nations all host different kind of events, ranging from spring proms,
                   to stand up comedy, to nightclubs. But for many of the events can queuing time sometimes
                   can be several hours long.
 
