@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Container, Header, Content, Button, Icon, Right, Left, Text } from 'native-base';
+import { Container, Header, Content, Button, Icon, Right, Left, Text, Toast } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import { makeNewPost } from '../actions';
 import NewPost from './NewPost';
@@ -9,7 +9,13 @@ import MakeaPostCard from './TitleCards/MakeaPostCard';
 class NewPostCreate extends Component {
   onButtonPress() {
   const { queueLength, chosenNation, agreements, disagreements, thanks, trusted } = this.props;
-  this.props.makeNewPost({ queueLength, chosenNation, agreements, disagreements, thanks, trusted });
+  if (queueLength !== '') {
+    this.props.makeNewPost({ queueLength, chosenNation, agreements, disagreements, thanks, trusted });
+  } else {
+    Toast.show({
+      text: '   Select a queueing time',
+    });
+  }
 }
 
 render() {
@@ -31,7 +37,6 @@ render() {
            <Text />
           <NewPost {...this.props} />
             <Text />
-
           <Button block onPress={this.onButtonPress.bind(this)}>
             <Text style={{ fontFamily: 'Avenir Book', color: 'white' }}>Create post</Text>
           </Button>
