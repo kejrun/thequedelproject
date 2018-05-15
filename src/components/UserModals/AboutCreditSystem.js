@@ -24,7 +24,7 @@ const AboutCreditSystem = ({ visible, onDecline }) => {
           <CardItem>
             <Body>
               <Text style={{ fontFamily: 'Avenir Book', fontSize: 20, fontWeight: 'bold'}} >
-                    How does the credit system work? {'\n'}
+                    {'\n'}How does the credit system work? 
                     </Text>
                     <Text style={{ fontFamily: 'Avenir Book', fontSize: 16 }}>
                     Press Agree: Both you and the user who made the post receives 5 credits. {'\n'}{'\n'}
