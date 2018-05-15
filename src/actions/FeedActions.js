@@ -41,7 +41,7 @@ export const makeNewPost = ({ queueLength, chosenNation, agreements, disagreemen
 export const deletePost = (uid) => {
   return (dispatch) => {
     const feedpost = firebase.database().ref('/feed_posts');
-    feedpost.child(`${uid}`).remove();
+    feedpost.child(`${uid}`).set(null);
     console.log('hej');
     dispatch({ type: DELETE_POST });
   };

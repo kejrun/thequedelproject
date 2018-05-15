@@ -47,8 +47,7 @@ class FeedItem extends Component {
 
     onAgreePress() {
       const postId = this.props.feedpost.uid;
-      const { agree, agreements, id } = this.state;
-      this.props.deletePost(id);
+      const { agree, agreements } = this.state;
       const { credits } = this.props;
       if (!agree) {
         this.setState({
@@ -75,23 +74,15 @@ class FeedItem extends Component {
         this.props.disagreeCredit(this.props.feedpost.userId);
         this.props.disagreePost({ postId, disagree: true });
       }
-      Alert.alert(
-        '',
-        'Do you want to make your own post?',
-        [
-          { text: 'Yes', onPress: () => Actions.makenewpost() },
-          { text: 'No' },
-        ],
-        { cancelable: false }
-      );
     }
 
     onMorePress() {
+      const { uid } = this.props.feedpost;
       Alert.alert(
         '',
         'Do you want to delete your post?',
         [
-          { text: 'Yes', onPress: this.props.deletePost(this.state.id) },
+          { text: 'Yes', onPress: this.props.deletePost(uid) },
           { text: 'No' },
         ],
         { cancelable: false }
@@ -181,7 +172,7 @@ class FeedItem extends Component {
           <Text style={{ fontFamily: 'Avenir Book' }}> {disagreements} disagree</Text>
           </CardItem>
             <CardItem style={{ marginTop: -21 }}>
-              <Button transparent style={styles.moreButtonStyle} onPress={this.onMorePress.bind(this)}>
+              <Button transparent style={styles.moreButtonStyle} onPress={() => this.onMorePress()}>
                 <Icon type="Entypo" name="dots-three-horizontal" style={{ fontSize: 18, color: 'black' }} />
               </Button>
             </CardItem>
