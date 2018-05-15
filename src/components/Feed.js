@@ -2,7 +2,7 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { ListView, RefreshControl, View, ActivityIndicator } from 'react-native';
-import { Container, Card, Content, Button, Text, Header, Left, Icon, Right, Toast } from 'native-base';
+import { Container, Content, Button, Text, Header, Left, Icon, Right, Toast } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import { feedFetch1, feedFetch2, feedFetch3, feedFetch4, feedFetch5,
         feedFetch6, feedFetch7, feedFetch8, feedFetch9, feedFetch10,
@@ -135,11 +135,12 @@ return feedposts;
 ifLoading() {
   console.log(this.state.loading);
   if (this.state.loading) {
-    console.log(<ActivityIndicator size="large" />);
     return (
       <View>
-        {console.log('hej')}
-        <ActivityIndicator size="large" />
+      <Text />
+      <Text />
+      <Text />
+        <ActivityIndicator size="large" color='black' />
       </View>);
   }
 }
