@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { CheckBox } from 'react-native-elements';
 import { Alert } from 'react-native';
-import { Text, Card, CardItem, Icon, Right, Left } from 'native-base';
+import { Text, Card, CardItem, Icon, Right, Left, Button } from 'native-base';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import { getId, updateThanks, updateAgreements, updateDisagreements, thankPost,
 agreePost, disagreePost, fetchThanks, thankCredit, agreeCredit, disagreeCredit,
-fetchingFollowers, trustUser } from '../actions';
+fetchingFollowers, trustUser, deletePost } from '../actions';
 
 class FeedItem extends Component {
 
@@ -25,7 +25,7 @@ class FeedItem extends Component {
         disagree,
         agreements,
         disagreements,
-        trusted
+        trusted,
       });
     }
 
@@ -47,7 +47,8 @@ class FeedItem extends Component {
 
     onAgreePress() {
       const postId = this.props.feedpost.uid;
-      const { agree, agreements } = this.state;
+      const { agree, agreements, id } = this.state;
+      this.props.deletePost(id);
       const { credits } = this.props;
       if (!agree) {
         this.setState({
@@ -61,8 +62,9 @@ class FeedItem extends Component {
     }
 
     onDisagreePress() {
-      const postId = this.props.feedpost.uid;
       const { disagree, disagreements } = this.state;
+      const postId = this.props.feedpost.uid;
+
       //const { credits } = this.props;
       if (!disagree) {
         this.setState({
@@ -78,6 +80,18 @@ class FeedItem extends Component {
         'Do you want to make your own post?',
         [
           { text: 'Yes', onPress: () => Actions.makenewpost() },
+          { text: 'No' },
+        ],
+        { cancelable: false }
+      );
+    }
+
+    onMorePress() {
+      Alert.alert(
+        '',
+        'Do you want to delete your post?',
+        [
+          { text: 'Yes', onPress: this.props.deletePost(this.state.id) },
           { text: 'No' },
         ],
         { cancelable: false }
@@ -166,10 +180,25 @@ class FeedItem extends Component {
           />
           <Text style={{ fontFamily: 'Avenir Book' }}> {disagreements} disagree</Text>
           </CardItem>
+            <CardItem style={{ marginTop: -21 }}>
+              <Button transparent style={styles.moreButtonStyle} onPress={this.onMorePress.bind(this)}>
+                <Icon type="Entypo" name="dots-three-horizontal" style={{ fontSize: 18, color: 'black' }} />
+              </Button>
+            </CardItem>
       </Card>
     );
   }
 }
+
+const styles = {
+  moreButtonStyle: {
+    marginTop: -10,
+    marginBottom: -10,
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center'
+  }
+};
 
 const mapStateToProps = (state) => {
   const followers = state.fetchFollowers.followers;
@@ -190,5 +219,6 @@ export default connect(mapStateToProps, {
   agreeCredit,
   disagreeCredit,
   fetchingFollowers,
-  trustUser
+  trustUser,
+  deletePost
 })(FeedItem);

@@ -7,6 +7,7 @@ import {
   UPDATE_DISAGREEMENTS,
   UPDATE_THANKS,
   NEW_POST_SAME_NATION,
+  DELETE_POST
 } from './types';
 
 export const updatePost = ({ prop, value }) => {
@@ -34,6 +35,15 @@ export const makeNewPost = ({ queueLength, chosenNation, agreements, disagreemen
       dispatch({ type: NEW_POST_SAME_NATION });
       Actions.feed();
     });
+  };
+};
+
+export const deletePost = (uid) => {
+  return (dispatch) => {
+    const feedpost = firebase.database().ref('/feed_posts');
+    feedpost.child(`${uid}`).remove();
+    console.log('hej');
+    dispatch({ type: DELETE_POST });
   };
 };
 
