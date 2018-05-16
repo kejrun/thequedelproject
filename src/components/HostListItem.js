@@ -49,7 +49,7 @@ class HostListItem extends Component {
           }
         })()}
         <Body>
-          <Text style={{ fontFamily: 'Avenir Book', fontSize: 16 }}>{title}</Text>
+          <Text style={{ fontFamily: 'Avenir Book', fontSize: 18 }}>{title}</Text>
         </Body>
         <Right>
           <Icon name="arrow-forward" />
