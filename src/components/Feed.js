@@ -167,23 +167,23 @@ import { feedFetch1, feedFetch2, feedFetch3, feedFetch4, feedFetch5,
                 </Button>
               </Left>
               <Right>
-                <Icon type='SimpleLineIcons' name='diamond' style={{ fontSize: 18, color: 'white', marginTop: 10 }} />
+                <Icon type='SimpleLineIcons' name='diamond' style={{ fontSize: 20, color: 'white', marginTop: 10 }} />
                 <Text
-                style={{ color: 'white', fontFamily: 'Avenir Book', fontSize: 18, marginTop: 10, marginLeft: 5, marginRight: 10 }}
+                style={{ color: 'white', fontFamily: 'Avenir Book', fontSize: 20, marginTop: 10, marginLeft: 5, marginRight: 10 }}
                 >
                 {this.props.credits}
                 </Text>
               </Right>
             </Header>
             <TitleCardFeed>
-              <Text style={{ color: '#2B3035', fontFamily: 'Avenir Book', fontSize: 20 }}>{this.props.title}</Text>
+              <Text style={{ color: '#2B3035', fontFamily: 'Avenir Book', fontSize: 22 }}>{this.props.title}</Text>
               <Button
                 transparent
                 onPress={this.notifyPress.bind(this)}
               >
                 <Icon type="Entypo" name="bookmark" style={{ color: '#2B3035', fontSize: 30, marginTop: -14, marginRight: 0 }} />
                 <Text
-                style={{ color: '#2B3035', fontFamily: 'Avenir Book', fontSize: 16, marginLeft: 0, paddingLeft: 0, marginTop: -10 }}
+                style={{ color: '#2B3035', fontFamily: 'Avenir Book', fontSize: 18, marginLeft: 0, paddingLeft: 0, marginTop: -10 }}
                 >
                 {this.props.followers}
                 </Text>
@@ -207,7 +207,7 @@ import { feedFetch1, feedFetch2, feedFetch3, feedFetch4, feedFetch5,
             </Content>
               <Button block iconLeft onPress={() => { this.onButtonPress(); }}>
                 <Icon type='MaterialIcons' name='playlist-add' style={{ color: 'white' }} />
-                <Text style={{ fontFamily: 'Avenir Book', color: 'white' }}>Make a post</Text>
+                <Text style={{ fontFamily: 'Avenir Book', color: 'white', fontSize: 18 }}>Make a post</Text>
               </Button>
             <Footer selectedTab={selectedTab} />
           </Container>

@@ -43,7 +43,7 @@ class FollowingList extends Component {
       <Container>
         <Header span />
           <TitleCardFollowing>
-            <Text style={{ color: '#2B3035', fontFamily: 'Avenir Book', fontSize: 20 }}>Following</Text>
+            <Text style={{ color: '#2B3035', fontFamily: 'Avenir Book', fontSize: 22 }}>Following</Text>
           </TitleCardFollowing>
           <Content>
           <List>

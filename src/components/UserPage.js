@@ -39,9 +39,9 @@ class UserPage extends Component {
       const credits = this.props.credits;
       const userthanks = this.props.userthanks;
       const creditsLeft = 100 - credits;
-      const yesMessage = (<Text style={{ fontFamily: 'Avenir Book', fontSize: 14 }}>
+      const yesMessage = (<Text style={{ fontFamily: 'Avenir Book', fontSize: 16 }}>
       Nice, you are a trusted user. Keep up the good work!</Text>);
-      const noMessage = (<Text style={{ fontFamily: 'Avenir Book', fontSize: 14 }}>
+      const noMessage = (<Text style={{ fontFamily: 'Avenir Book', fontSize: 16 }}>
       You are not a trusted user yet. You have to collect {creditsLeft} more credits.</Text>);
 
       let message;
@@ -55,7 +55,7 @@ class UserPage extends Component {
         <Container>
           <Header span />
             <TitleCardUser>
-              <Title style={{ color: '#2B3035', fontFamily: 'Avenir Book' }}>You</Title>
+              <Title style={{ color: '#2B3035', fontFamily: 'Avenir Book', fontSize: 22 }}>You</Title>
             </TitleCardUser>
           <Content>
             <UserCard>
@@ -90,7 +90,7 @@ class UserPage extends Component {
           <Icon type='SimpleLineIcons' name='diamond' style={{ fontSize: 22 }} />
           </Left>
           <Body>
-          <Text style={{ fontFamily: 'Avenir Book', fontSize: 16 }}>About the Credit System</Text>
+          <Text style={{ fontFamily: 'Avenir Book', fontSize: 18 }}>About the Credit System</Text>
           </Body>
           <Right>
           <Icon name="arrow-forward" />
@@ -112,7 +112,7 @@ class UserPage extends Component {
           <Icon type='Ionicons' name='md-person-add' style={{ fontSize: 22 }} />
           </Left>
           <Body>
-          <Text style={{ fontFamily: 'Avenir Book', fontSize: 16 }}>Invite friends</Text>
+          <Text style={{ fontFamily: 'Avenir Book', fontSize: 18 }}>Invite friends</Text>
           </Body>
           <Right>
           <Icon name="arrow-forward" />
@@ -134,7 +134,7 @@ class UserPage extends Component {
           <Icon type='Ionicons' name='md-information-circle' style={{ fontSize: 22 }} />
           </Left>
           <Body>
-          <Text style={{ fontFamily: 'Avenir Book', fontSize: 16 }}>About Quedel</Text>
+          <Text style={{ fontFamily: 'Avenir Book', fontSize: 18 }}>About Quedel</Text>
           </Body>
           <Right>
           <Icon name="arrow-forward" />
@@ -156,7 +156,7 @@ class UserPage extends Component {
           <Icon type='Ionicons' name='md-create' style={{ fontSize: 22 }} />
           </Left>
           <Body>
-          <Text style={{ fontFamily: 'Avenir Book', fontSize: 16 }}>Contact</Text>
+          <Text style={{ fontFamily: 'Avenir Book', fontSize: 18 }}>Contact</Text>
           </Body>
           <Right>
           <Icon name="arrow-forward" />
@@ -178,7 +178,7 @@ class UserPage extends Component {
           <Icon type='Ionicons' name='md-construct' style={{ fontSize: 22 }} />
           </Left>
           <Body>
-          <Text style={{ fontFamily: 'Avenir Book', fontSize: 16 }}>Delete account</Text>
+          <Text style={{ fontFamily: 'Avenir Book', fontSize: 18 }}>Delete account</Text>
           </Body>
           <Right>
           <Icon name="arrow-forward" />

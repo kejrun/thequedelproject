@@ -33,12 +33,12 @@ class NewPostCreate extends Component {
           <MakeaPostCard>
             <Text />
             <Text />
-            <Text style={{ fontFamily: 'Avenir Book' }}> How long is the queue at arrival?</Text>
+            <Text style={{ fontFamily: 'Avenir Book', fontSize: 18 }}> How long is the queue at arrival?</Text>
             <Text />
             <NewPost {...this.props} />
             <Text />
             <Button block onPress={this.onButtonPress.bind(this)}>
-              <Text style={{ fontFamily: 'Avenir Book', color: 'white' }}>Create post</Text>
+              <Text style={{ fontFamily: 'Avenir Book', color: 'white', fontSize: 18 }}>Create post</Text>
             </Button>
           </MakeaPostCard>
         </Content>
