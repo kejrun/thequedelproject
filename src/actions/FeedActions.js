@@ -44,6 +44,7 @@ export const deletePost = (uid) => {
     feedpost.child(`${uid}`).set(null);
     console.log('hej');
     dispatch({ type: DELETE_POST });
+    Actions.feed();
   };
 };
 

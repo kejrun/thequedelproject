@@ -82,7 +82,8 @@ class FeedItem extends Component {
         '',
         'Do you want to delete your post?',
         [
-          { text: 'Yes', onPress: this.props.deletePost(uid) },
+          { text: 'Yes', onPress: () => this.props.deletePost(uid)
+          },
           { text: 'No' },
         ],
         { cancelable: false }
