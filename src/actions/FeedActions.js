@@ -18,6 +18,7 @@ export const updatePost = ({ prop, value }) => {
 
 export const makeNewPost = ({ queueLength, chosenNation, agreements, disagreements, thanks, trusted }) => {
   const userId = firebase.auth().currentUser.uid;
+  console.log(firebase.auth());
   return (dispatch) => {
     firebase.database().ref('/feed_posts')
     .push({

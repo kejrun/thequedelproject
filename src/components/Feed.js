@@ -13,12 +13,13 @@ import { feedFetch1, feedFetch2, feedFetch3, feedFetch4, feedFetch5,
   import Footer from './Footer';
 
   class Feed extends Component {
-    state = { refreshing: false, loading: true, selectedTab: 'feed', followed: false };
+    state = { refreshing: false, selectedTab: 'feed', followed: false };
 
     componentWillMount() {
       this.props.userCredits();
       this.props.trustedUser();
       this.props.setFollowed();
+      this.setState({ loading: true });
 
       const { libraryId } = this.props;
       this.props.fetchingFollowers({ libraryId });
@@ -68,7 +69,9 @@ import { feedFetch1, feedFetch2, feedFetch3, feedFetch4, feedFetch5,
 
     componentWillReceiveProps(nextProps) {
       this.createDataSource(nextProps);
-      this.setState({ loading: false });
+      if (nextProps.feedpost !== []) {
+        this.setState({ loading: false });
+      }
       const { libraryId } = this.props;
       if (this.props.followed !== nextProps.followed) {
         if (nextProps.followed[libraryId]) {
