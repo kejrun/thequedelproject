@@ -13,7 +13,7 @@ import { getId, updateThanks, updateAgreements, updateDisagreements, thankPost,
 
     componentWillMount() {
       const { uid, queueLength, thanked, thanks, agree, disagree, agreements, disagreements,
-        chosenNation, trusted, userId } = this.props.feedpost;
+        chosenNation, trusted } = this.props.feedpost;
         const { libraryId } = chosenNation;
         this.props.fetchingFollowers({ libraryId });
         this.props.getId(uid);
