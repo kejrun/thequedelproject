@@ -43,12 +43,17 @@ class UserPage extends Component {
       Nice, you are a trusted user. Keep up the good work!</Text>);
       const noMessage = (<Text style={{ fontFamily: 'Avenir Book', fontSize: 16 }}>
       You are not a trusted user yet. You have to collect {creditsLeft} more credits.</Text>);
+      const yesRibbon = (<Icon type="Ionicons" name="md-ribbon" style={{ fontSize: 30, color: '#87C190' }} />);
+      const noRibbon = (<Icon type="Ionicons" name="md-ribbon" style={{ fontSize: 30, color: 'gray' }} />);
 
       let message;
+      let ribbon;
       if (this.props.trusted) {
         message = yesMessage;
+        ribbon = yesRibbon;
       } else {
         message = noMessage;
+        ribbon = noRibbon;
       }
 
       return (
@@ -77,7 +82,8 @@ class UserPage extends Component {
               </Left>
               </Col>
               </Grid>
-              <Text>{message}</Text>
+              <Text style={{ textAlign: 'center' }}>{ribbon}</Text>
+              <Text style={{ textAlign: 'center' }}>{message}</Text>
             </UserCard>
           <List>
           <TouchableWithoutFeedback

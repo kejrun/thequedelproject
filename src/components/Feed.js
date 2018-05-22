@@ -167,16 +167,21 @@ import { feedFetch1, feedFetch2, feedFetch3, feedFetch4, feedFetch5,
                 </Button>
               </Left>
               <Right>
-                <Icon type='SimpleLineIcons' name='diamond' style={{ fontSize: 20, color: 'white', marginTop: 10 }} />
-                <Text
-                style={{ color: 'white', fontFamily: 'Avenir Book', fontSize: 20, marginTop: 10, marginLeft: 5, marginRight: 10 }}
+                <Button
+                  transparent
+                  onPress={() => Actions.userPage()}
                 >
-                {this.props.credits}
-                </Text>
+                  <Icon type='SimpleLineIcons' name='diamond' style={{ fontSize: 20, color: 'white' }} />
+                  <Text
+                  style={{ color: 'white', fontFamily: 'Avenir Book', fontSize: 20, paddingTop: 10, paddingLeft: 5, paddingRight: 0 }}
+                  >
+                  {this.props.credits}
+                  </Text>
+                </Button>
               </Right>
             </Header>
             <TitleCardFeed>
-              <Text style={{ color: '#2B3035', fontFamily: 'Avenir Book', fontSize: 22 }}>{this.props.title}</Text>
+              <Text style={{ color: '#2B3035', fontFamily: 'Avenir Book', fontSize: 20 }}>{this.props.title}</Text>
               <Button
                 transparent
                 onPress={this.notifyPress.bind(this)}
