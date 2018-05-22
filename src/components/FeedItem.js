@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import firebase from 'firebase';
 import { CheckBox } from 'react-native-elements';
 import { Alert } from 'react-native';
 import { Text, Card, CardItem, Icon, Right, Left } from 'native-base';
@@ -30,10 +31,11 @@ import { getId, updateThanks, updateAgreements, updateDisagreements, thankPost,
       }
 
       onThanksPressed() {
+        const userId = firebase.auth().currentUser.uid;
         const postId = this.props.feedpost.uid;
         const { thanked, thanks } = this.state;
         const { credits } = this.props;
-        if (!thanked) {
+        if (!thanked && userId !== this.props.feedpost.userId) {
           this.setState({
             thanked: true,
             thanks: thanks + 1,
@@ -46,10 +48,11 @@ import { getId, updateThanks, updateAgreements, updateDisagreements, thankPost,
       }
 
       onAgreePress() {
+        const userId = firebase.auth().currentUser.uid;
         const postId = this.props.feedpost.uid;
         const { agree, agreements } = this.state;
         const { credits } = this.props;
-        if (!agree) {
+        if (!agree && userId !== this.props.feedpost.userId) {
           this.setState({
             agree: true,
             agreements: agreements + 1,
@@ -61,9 +64,10 @@ import { getId, updateThanks, updateAgreements, updateDisagreements, thankPost,
         }
 
         onDisagreePress() {
+          const userId = firebase.auth().currentUser.uid;
           const postId = this.props.feedpost.uid;
           const { disagree, disagreements } = this.state;
-          if (!disagree) {
+          if (!disagree && userId !== this.props.feedpost.userId) {
             this.setState({
               disagree: true,
               disagreements: disagreements + 1
@@ -71,16 +75,16 @@ import { getId, updateThanks, updateAgreements, updateDisagreements, thankPost,
             this.props.updateDisagreements(postId);
             this.props.disagreeCredit(this.props.feedpost.userId);
             this.props.disagreePost({ postId, disagree: true });
+            Alert.alert(
+              '',
+              'Do you want to make your own post?',
+              [
+                { text: 'Yes', onPress: () => Actions.makenewpost() },
+                { text: 'No' },
+              ],
+              { cancelable: false }
+            );
           }
-          Alert.alert(
-            '',
-            'Do you want to make your own post?',
-            [
-              { text: 'Yes', onPress: () => Actions.makenewpost() },
-              { text: 'No' },
-            ],
-            { cancelable: false }
-          );
         }
 
         ifTrusted() {
