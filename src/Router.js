@@ -16,7 +16,7 @@ const RouterComponent = () => {
         <Scene key='startpage' component={StartPage} hideNavBar />
       </Scene>
 
-      <Scene key='hostOverview' hideNavBar>
+      <Scene key='hostOverview' direction="leftToRight" hideNavBar>
         <Scene key='HostList' component={HostList} title='' />
       </Scene>
 
