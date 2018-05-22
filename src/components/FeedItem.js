@@ -168,6 +168,11 @@ import { getId, updateThanks, updateAgreements, updateDisagreements, thankPost,
               />
               <Text style={{ fontFamily: 'Avenir Book' }}> {disagreements} disagree</Text>
               </CardItem>
+              <CardItem style={{ marginTop: -21 }}>
+                <Button transparent style={styles.moreButtonStyle} onPress={() => this.onMorePress()}>
+                  <Icon type="Entypo" name="dots-three-horizontal" style={{ fontSize: 18, color: 'black' }} />
+                </Button>
+              </CardItem>
             </Card>
           );
         }
