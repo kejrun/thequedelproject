@@ -31,9 +31,9 @@ class FeedItem extends Component {
         this.props.updateThanks(uid);
         this.props.thankCredit(userId, this.props.followers);
         this.props.thankPost({ uid, thanked: true });
-
       }
-      
+    }
+
     onAgreePress() {
       const thisUserId = firebase.auth().currentUser.uid;
       const { uid, userId, agree } = this.props.feedpost;
@@ -42,8 +42,8 @@ class FeedItem extends Component {
         this.props.updateAgreements(uid);
         this.props.agreeCredit(userId);
         this.props.agreePost({ uid, agree: true });
-
       }
+    }
 
     onDisagreePress() {
       const thisUserId = firebase.auth().currentUser.uid;
@@ -83,14 +83,6 @@ class FeedItem extends Component {
       firebase.database().ref(`/feed_posts/${uid}`).remove();
     }
 
-    ifTrusted() {
-      return (
-        <Right>
-        <Icon type="Ionicons" name="md-ribbon" style={{ fontSize: 25, marginRight: -36, color: '#87C190' }} />
-        </Right>
-      );
-    }
-
   render() {
     const {
       queueLength,
@@ -103,7 +95,8 @@ class FeedItem extends Component {
     const utcSeconds = this.props.feedpost.time;
     const options = { weekday: 'short', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
     const date = new Date(utcSeconds).toLocaleDateString('en-SE', options);
-          
+    const thisUserId = firebase.auth().currentUser.uid;
+
     let isTrusted;
     if (trusted) {
       isTrusted = (
@@ -112,7 +105,18 @@ class FeedItem extends Component {
         </Right>
        );
       }
-    
+
+      let moreButton;
+      if (thisUserId === this.props.feedpost.userId) {
+        moreButton = (
+          <CardItem style={{ marginTop: -21 }}>
+            <Button transparent style={styles.moreButtonStyle} onPress={() => this.onMorePress()}>
+              <Icon type="Entypo" name="dots-three-horizontal" style={{ fontSize: 18, color: 'black' }} />
+            </Button>
+          </CardItem>
+        );
+      }
+
           return (
             <Card>
               <CardItem header>
@@ -162,25 +166,11 @@ class FeedItem extends Component {
               />
               <Text style={{ fontFamily: 'Avenir Book' }}> {disagreements} disagree</Text>
               </CardItem>
-              <CardItem style={{ marginTop: -21 }}>
-                <Button transparent style={styles.moreButtonStyle} onPress={() => this.onMorePress()}>
-                  <Icon type="Entypo" name="dots-three-horizontal" style={{ fontSize: 18, color: 'black' }} />
-                </Button>
-              </CardItem>
+              {moreButton}
             </Card>
           );
         }
       }
-      
-      const styles = {
-  moreButtonStyle: {
-    marginTop: -10,
-    marginBottom: -10,
-    width: '100%',
-    justifyContent: 'center',
-    alignItems: 'center'
-  }
-};
 
       const styles = {
         moreButtonStyle: {
