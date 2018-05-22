@@ -9,116 +9,110 @@ import { getId, updateThanks, updateAgreements, updateDisagreements, thankPost,
   agreePost, disagreePost, fetchThanks, thankCredit, agreeCredit, disagreeCredit,
   fetchingFollowers, trustUser } from '../actions';
 
-  class FeedItem extends Component {
+class FeedItem extends Component {
+  state = {
+    thanked: this.props.feedpost.thanked,
+    agree: this.props.feedpost.agree,
+    disagree: this.props.feedpost.disagree
+  }
 
-    componentWillMount() {
-      const { uid, queueLength, thanked, thanks, agree, disagree, agreements, disagreements,
-        chosenNation, trusted } = this.props.feedpost;
-        const { libraryId } = chosenNation;
-        this.props.fetchingFollowers({ libraryId });
-        this.props.getId(uid);
-        this.setState({
-          id: uid,
-          queueLength,
-          thanked,
-          thanks,
-          agree,
-          disagree,
-          agreements,
-          disagreements,
-          trusted
-        });
+  componentWillMount() {
+    const { uid, chosenNation } = this.props.feedpost;
+    const { libraryId } = chosenNation;
+    this.props.fetchingFollowers({ libraryId });
+    this.props.getId(uid);
+    }
+
+    onThanksPressed() {
+      const thisUserId = firebase.auth().currentUser.uid;
+      const { uid, userId, thanked } = this.props.feedpost;
+      if (!thanked && thisUserId !== userId) {
+        this.setState({ thanked: true });
+        this.props.updateThanks(uid);
+        this.props.thankCredit(userId, this.props.followers);
+        this.props.thankPost({ uid, thanked: true });
+
+      }
+      
+    onAgreePress() {
+      const thisUserId = firebase.auth().currentUser.uid;
+      const { uid, userId, agree } = this.props.feedpost;
+      if (!agree && thisUserId !== this.props.feedpost.userId) {
+        this.setState({ agree: true });
+        this.props.updateAgreements(uid);
+        this.props.agreeCredit(userId);
+        this.props.agreePost({ uid, agree: true });
+
       }
 
-      onThanksPressed() {
-        const userId = firebase.auth().currentUser.uid;
-        const postId = this.props.feedpost.uid;
-        const { thanked, thanks } = this.state;
-        const { credits } = this.props;
-        if (!thanked && userId !== this.props.feedpost.userId) {
-          this.setState({
-            thanked: true,
-            thanks: thanks + 1,
-            credits: credits + 1
-          });
-          this.props.updateThanks(postId);
-          this.props.thankCredit(this.props.feedpost.userId, this.props.followers);
-          this.props.thankPost({ postId, thanked: true });
-        }
-      }
-
-      onAgreePress() {
-        const userId = firebase.auth().currentUser.uid;
-        const postId = this.props.feedpost.uid;
-        const { agree, agreements } = this.state;
-        const { credits } = this.props;
-        if (!agree && userId !== this.props.feedpost.userId) {
-          this.setState({
-            agree: true,
-            agreements: agreements + 1,
-            credits: credits + 1 });
-            this.props.updateAgreements(postId);
-            this.props.agreeCredit(this.props.feedpost.userId);
-            this.props.agreePost({ postId, agree: true });
-          }
-        }
-
-        onDisagreePress() {
-          const userId = firebase.auth().currentUser.uid;
-          const postId = this.props.feedpost.uid;
-          const { disagree, disagreements } = this.state;
-          if (!disagree && userId !== this.props.feedpost.userId) {
-            this.setState({
-              disagree: true,
-              disagreements: disagreements + 1
-            });
-            this.props.updateDisagreements(postId);
-            this.props.disagreeCredit(this.props.feedpost.userId);
-            this.props.disagreePost({ postId, disagree: true });
-            Alert.alert(
-              '',
-              'Do you want to make your own post?',
-              [
-                { text: 'Yes', onPress: () => Actions.makenewpost() },
-                { text: 'No' },
-              ],
-              { cancelable: false }
-            );
-          }
-        }
-
-        ifTrusted() {
-          return (
-            <Right>
-            <Icon type="Ionicons" name="md-ribbon" style={{ fontSize: 25, marginRight: -36, color: '#87C190' }} />
-            </Right>
+    onDisagreePress() {
+      const thisUserId = firebase.auth().currentUser.uid;
+      const { uid, userId, disagree } = this.props.feedpost;
+      if (!disagree && thisUserId !== userId) {
+        this.setState({ disagree: true });
+        this.props.disagreePost({ uid, disagree: true });
+        this.props.updateDisagreements(uid);
+        this.props.disagreeCredit(userId);
+        Alert.alert(
+            '',
+            'Do you want to make your own post?',
+            [
+              { text: 'Yes', onPress: () => Actions.makenewpost() },
+              { text: 'No' },
+            ],
+            { cancelable: false }
           );
-        }
+      }
+    }
 
-        render() {
-          const {
-            queueLength,
-            agreements,
-            disagreements,
-            thanks,
-            thanked,
-            agree,
-            disagree,
-            trusted
-          } = this.state;
-          const utcSeconds = this.props.feedpost.time;
-          const options = { weekday: 'short', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
-          const date = new Date(utcSeconds).toLocaleDateString('en-SE', options);
+    onMorePress() {
+      Alert.alert(
+        '',
+        'Do you want to delete your post?',
+        [
+          { text: 'Yes', onPress: () => this.deletePost()
+          },
+          { text: 'No' },
+        ],
+        { cancelable: false }
+      );
+    }
 
-          let isTrusted;
-          if (trusted) {
-            isTrusted = (
-              <Right>
-              <Icon type="Ionicons" name="md-ribbon" style={{ fontSize: 25, marginRight: -36, color: '#87C190' }} />
-              </Right>
-            );
-          }
+    deletePost() {
+      const { uid } = this.props.feedpost;
+      firebase.database().ref(`/feed_posts/${uid}`).remove();
+    }
 
+    ifTrusted() {
+      return (
+        <Right>
+        <Icon type="Ionicons" name="md-ribbon" style={{ fontSize: 25, marginRight: -36, color: '#87C190' }} />
+        </Right>
+      );
+    }
+
+  render() {
+    const {
+      queueLength,
+      agreements,
+      disagreements,
+      thanks,
+      trusted
+    } = this.props.feedpost;
+    const { agree, disagree, thanked } = this.state;
+    const utcSeconds = this.props.feedpost.time;
+    const options = { weekday: 'short', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+    const date = new Date(utcSeconds).toLocaleDateString('en-SE', options);
+          
+    let isTrusted;
+    if (trusted) {
+      isTrusted = (
+        <Right>
+        <Icon type="Ionicons" name="md-ribbon" style={{ fontSize: 25, marginRight: -36, color: '#87C190' }} />
+        </Right>
+       );
+      }
+    
           return (
             <Card>
               <CardItem header>
@@ -177,6 +171,16 @@ import { getId, updateThanks, updateAgreements, updateDisagreements, thankPost,
           );
         }
       }
+      
+      const styles = {
+  moreButtonStyle: {
+    marginTop: -10,
+    marginBottom: -10,
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center'
+  }
+};
 
       const styles = {
         moreButtonStyle: {
@@ -193,6 +197,7 @@ import { getId, updateThanks, updateAgreements, updateDisagreements, thankPost,
         const credits = state.credits;
         return { followers, credits };
       };
+
 
       export default connect(mapStateToProps, {
         getId,
