@@ -36,7 +36,8 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'center',
     position: 'absolute',
-    flexDirection: 'row'
+    flexDirection: 'row',
+    backgroundColor: '#00c2ff'
   },
   logoImgStyle: {
     position: 'absolute',

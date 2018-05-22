@@ -8,7 +8,9 @@ export default (variables = variable) => {
 
   const headerTheme = {
     ".span": {
-      height: 70,
+      // Change height for IphoneX (=90)
+      //height: 70,
+      height: 90,
       "NativeBase.Left": {
         alignSelf: "flex-start"
       },

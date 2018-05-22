@@ -33,7 +33,10 @@ const AboutCreditSystem = ({ visible, onDecline }) => {
               If you disagree with your own post you will not receive any credits. {'\n'}{'\n'}
 
               Press Thanks: You receive 3 credits. The user who made the post will receive as many
-              credits as the number of followers of that specific student nation.</Text>
+              credits as the number of followers of that specific student nation.{'\n'}{'\n'}
+
+              If you collect 100 points, you become a trusted user. If you are a trusted user, it is
+              shown in the posts you make as you get certified with a green ribbon.</Text>
             </Body>
           </CardItem>
         </Card>
