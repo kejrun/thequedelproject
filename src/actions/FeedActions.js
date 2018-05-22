@@ -7,6 +7,7 @@ import {
   UPDATE_DISAGREEMENTS,
   UPDATE_THANKS,
   NEW_POST_SAME_NATION,
+  DELETE_POST
 } from './types';
 
 export const updatePost = ({ prop, value }) => {

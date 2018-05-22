@@ -10,6 +10,7 @@ export const UPDATE_AGREEMENTS = 'update_agreements';
 export const UPDATE_DISAGREEMENTS = 'update_disagreements';
 export const UPDATE_THANKS = 'update_thanks';
 export const NEW_POST_SAME_NATION = 'new_post_same_nation';
+export const DELETE_POST = 'delete_post';
 //FeedFetchActions
 export const FEED_FETCH_SUCCESS = 'feed_fetch_success';
 //FollowingActions
