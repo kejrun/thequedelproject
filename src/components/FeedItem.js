@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import firebase from 'firebase';
 import { CheckBox } from 'react-native-elements';
 import { Alert } from 'react-native';
 import { Text, Card, CardItem, Icon, Right, Left, Button } from 'native-base';
@@ -6,88 +7,62 @@ import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import { getId, updateThanks, updateAgreements, updateDisagreements, thankPost,
 agreePost, disagreePost, fetchThanks, thankCredit, agreeCredit, disagreeCredit,
-fetchingFollowers, trustUser, deletePost } from '../actions';
+fetchingFollowers, trustUser } from '../actions';
 
 class FeedItem extends Component {
 
   componentWillMount() {
-    const { uid, queueLength, thanked, thanks, agree, disagree, agreements, disagreements,
-    chosenNation, trusted } = this.props.feedpost;
+    const { uid, chosenNation } = this.props.feedpost;
     const { libraryId } = chosenNation;
     this.props.fetchingFollowers({ libraryId });
     this.props.getId(uid);
-    this.setState({
-        id: uid,
-        queueLength,
-        thanked,
-        thanks,
-        agree,
-        disagree,
-        agreements,
-        disagreements,
-        trusted,
-      });
     }
 
     onThanksPressed() {
-      const postId = this.props.feedpost.uid;
-      const { thanked, thanks } = this.state;
-      const { credits } = this.props;
+      const { uid, userId, thanked } = this.props.feedpost;
       if (!thanked) {
-        this.setState({
-          thanked: true,
-          thanks: thanks + 1,
-          credits: credits + 1
-        });
-        this.props.updateThanks(postId);
-        this.props.thankCredit(this.props.feedpost.userId, this.props.followers);
-        this.props.thankPost({ postId, thanked: true });
+        this.props.updateThanks(uid);
+        this.props.thankCredit(userId, this.props.followers);
+        this.props.thankPost({ uid, thanked: true });
       }
     }
 
     onAgreePress() {
-      const postId = this.props.feedpost.uid;
-      const { agree, agreements } = this.state;
-      const { credits } = this.props;
+      const { uid, userId, agree } = this.props.feedpost;
       if (!agree) {
-        this.setState({
-          agree: true,
-          agreements: agreements + 1,
-          credits: credits + 1 });
-        this.props.updateAgreements(postId);
-        this.props.agreeCredit(this.props.feedpost.userId);
-        this.props.agreePost({ postId, agree: true });
+        this.props.updateAgreements(uid);
+        this.props.agreeCredit(userId);
+        this.props.agreePost({ uid, agree: true });
       }
     }
 
     onDisagreePress() {
-      const { disagree, disagreements } = this.state;
-      const postId = this.props.feedpost.uid;
-
-      //const { credits } = this.props;
+      const { uid, userId, disagree } = this.props.feedpost;
+      console.log('disagree1', disagree);
       if (!disagree) {
-        this.setState({
-          disagree: true,
-          disagreements: disagreements + 1
-        });
-        this.props.updateDisagreements(postId);
-        this.props.disagreeCredit(this.props.feedpost.userId);
-        this.props.disagreePost({ postId, disagree: true });
+        this.props.disagreePost({ uid, disagree: true });
+        this.props.updateDisagreements(uid);
+        this.props.disagreeCredit(userId);
+        console.log('disagree2', disagree);
       }
     }
 
     onMorePress() {
-      const { uid } = this.props.feedpost;
       Alert.alert(
         '',
         'Do you want to delete your post?',
         [
-          { text: 'Yes', onPress: () => this.props.deletePost(uid)
+          { text: 'Yes', onPress: () => this.deletePost()
           },
           { text: 'No' },
         ],
         { cancelable: false }
       );
+    }
+
+    deletePost() {
+      const { uid } = this.props.feedpost;
+      firebase.database().ref(`/feed_posts/${uid}`).remove();
     }
 
     ifTrusted() {
@@ -108,7 +83,7 @@ class FeedItem extends Component {
       agree,
       disagree,
       trusted
-    } = this.state;
+    } = this.props.feedpost;
     const utcSeconds = this.props.feedpost.time;
     const options = { weekday: 'short', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
     const date = new Date(utcSeconds).toLocaleDateString('en-SE', options);
@@ -211,6 +186,5 @@ export default connect(mapStateToProps, {
   agreeCredit,
   disagreeCredit,
   fetchingFollowers,
-  trustUser,
-  deletePost
+  trustUser
 })(FeedItem);

@@ -1,28 +1,28 @@
 import firebase from 'firebase';
 import { THANK_POST, AGREE_POST, DISAGREE_POST, FETCH_VOTED } from './types';
 
-export const thankPost = ({ postId, thanked }) => {
+export const thankPost = ({ uid, thanked }) => {
   const userId = firebase.auth().currentUser.uid;
   return (dispatch) => {
-  firebase.database().ref(`/users/${userId}/interacted_posts/${postId}`)
+  firebase.database().ref(`/users/${userId}/interacted_posts/${uid}`)
   .update({ thanked })
   .then(() => dispatch({ type: THANK_POST }));
 };
 };
 
-export const agreePost = ({ postId, agree }) => {
+export const agreePost = ({ uid, agree }) => {
   const userId = firebase.auth().currentUser.uid;
   return (dispatch) => {
-  firebase.database().ref(`/users/${userId}/interacted_posts/${postId}`)
+  firebase.database().ref(`/users/${userId}/interacted_posts/${uid}`)
   .update({ agree })
   .then(() => dispatch({ type: AGREE_POST }));
 };
 };
 
-export const disagreePost = ({ postId, disagree }) => {
+export const disagreePost = ({ uid, disagree }) => {
   const userId = firebase.auth().currentUser.uid;
   return (dispatch) => {
-  firebase.database().ref(`/users/${userId}/interacted_posts/${postId}`)
+  firebase.database().ref(`/users/${userId}/interacted_posts/${uid}`)
   .update({ disagree })
   .then(() => dispatch({ type: DISAGREE_POST }));
 };
