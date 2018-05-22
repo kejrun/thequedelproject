@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import firebase from 'firebase';
 import { CheckBox } from 'react-native-elements';
 import { Alert } from 'react-native';
-import { Text, Card, CardItem, Icon, Right, Left } from 'native-base';
+import { Text, Card, CardItem, Icon, Right, Left, Button } from 'native-base';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import { getId, updateThanks, updateAgreements, updateDisagreements, thankPost,
@@ -177,6 +177,16 @@ import { getId, updateThanks, updateAgreements, updateDisagreements, thankPost,
           );
         }
       }
+
+      const styles = {
+        moreButtonStyle: {
+          marginTop: -10,
+          marginBottom: -10,
+          width: '100%',
+          justifyContent: 'center',
+          alignItems: 'center'
+        }
+      };
 
       const mapStateToProps = (state) => {
         const followers = state.fetchFollowers.followers;
