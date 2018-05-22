@@ -8,6 +8,7 @@ export const thankPost = ({ uid, thanked }) => {
   .update({ thanked })
   .then(() => dispatch({ type: THANK_POST }));
 };
+
 };
 
 export const agreePost = ({ uid, agree }) => {

@@ -15,17 +15,23 @@ const Contact = ({ visible, onDecline }) => {
       <View style={containerStyle}>
         <Card>
           <CardItem header>
-          <Left>
-            <Button transparent onPress={onDecline}>
-              <Icon type="Ionicons" name="ios-close" style={{ color: 'gray', fontSize: 50 }} />
-            </Button>
-          </Left>
+            <Left>
+              <Button transparent onPress={onDecline}>
+                <Icon type="Ionicons" name="ios-close" style={{ color: 'gray', fontSize: 50 }} />
+              </Button>
+            </Left>
           </CardItem>
           <CardItem>
             <Body>
+              <Text style={{ fontFamily: 'Avenir Book', fontSize: 20, fontWeight: 'bold' }}>
+              {'\n'}
+              Contact
+              </Text>
               <Text style={{ fontFamily: 'Avenir Book', fontSize: 16 }}>
-                Contact</Text>
-              </Body>
+              Do you have any questions about Quedel? {'\n'}
+              {'\n'}
+              Feel free to contact us at info@quedel.com</Text>
+            </Body>
           </CardItem>
         </Card>
       </View>

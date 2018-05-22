@@ -8,8 +8,8 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case SET_FOLLOWED:
-      return action.payload;
+    return action.payload;
     default:
-      return state;
+    return state;
   }
 };

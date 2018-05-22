@@ -11,12 +11,12 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case USER_CREDITS:
-      return { ...state, credits: action.payload };
+    return { ...state, credits: action.payload };
     case THANK_CREDIT:
-      return { ...state };
+    return { ...state };
     case AGREE_CREDIT:
-      return { ...state };
+    return { ...state };
     default:
-      return state;
+    return state;
   }
 };

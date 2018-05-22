@@ -19,7 +19,7 @@ export const updatePost = ({ prop, value }) => {
 
 export const makeNewPost = ({ queueLength, chosenNation, agreements, disagreements, thanks, trusted }) => {
   const userId = firebase.auth().currentUser.uid;
-
+  console.log(firebase.auth());
   return (dispatch) => {
     firebase.database().ref('/feed_posts')
     .push({
@@ -31,60 +31,49 @@ export const makeNewPost = ({ queueLength, chosenNation, agreements, disagreemen
       disagreements,
       thanks,
       trusted })
-    .then(() => {
-      dispatch({ type: NEW_POST_SAME_NATION });
-      Actions.feed();
+      .then(() => {
+        dispatch({ type: NEW_POST_SAME_NATION });
+        Actions.feed();
+      });
+    };
+  };
+
+  export const updateAgreements = (postId) => {
+    const updates =
+    firebase.database().ref(`/feed_posts/${postId}/agreements`);
+    updates.transaction((currentRank) => {
+      return currentRank + 1;
     });
-  };
-};
-
-export const deletePost = (uid) => {
-  return (dispatch) => {
-    const feedpost = firebase.database().ref('/feed_posts');
-    feedpost.child(`${uid}`).set(null);
-    console.log('hej');
-    dispatch({ type: DELETE_POST });
-    Actions.feed();
-  };
-};
-
-
-export const updateAgreements = (postId) => {
-  const updates =
-  firebase.database().ref(`/feed_posts/${postId}/agreements`);
-  updates.transaction((currentRank) => {
-    return currentRank + 1;
-  });
     return (dispatch) => {
       dispatch({ type: UPDATE_AGREEMENTS });
     };
-};
+  };
 
-export const updateDisagreements = (postId) => {
-  const updates =
-  firebase.database().ref(`/feed_posts/${postId}/disagreements`);
-  updates.transaction((currentRank) => {
-    return currentRank + 1;
-  });
+  export const updateDisagreements = (postId) => {
+    const updates =
+    firebase.database().ref(`/feed_posts/${postId}/disagreements`);
+    updates.transaction((currentRank) => {
+      return currentRank + 1;
+    });
     return (dispatch) => {
       dispatch({ type: UPDATE_DISAGREEMENTS });
     };
-};
+  };
 
-export const updateThanks = (postId) => {
-  const updates =
-  firebase.database().ref(`/feed_posts/${postId}/thanks`);
-  updates.transaction((currentRank) => {
-    return currentRank + 1;
-  });
+  export const updateThanks = (postId) => {
+    const updates =
+    firebase.database().ref(`/feed_posts/${postId}/thanks`);
+    updates.transaction((currentRank) => {
+      return currentRank + 1;
+    });
     return (dispatch) => {
       dispatch({ type: UPDATE_THANKS });
     };
-};
-
-export const getId = (feedpostId) => {
-  return {
-  type: GET_ID,
-  payload: feedpostId
   };
-};
+
+  export const getId = (feedpostId) => {
+    return {
+      type: GET_ID,
+      payload: feedpostId
+    };
+  };

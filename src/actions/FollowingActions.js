@@ -21,10 +21,10 @@ export const setFollowed = () => {
     11: false,
     12: false,
     13: false
-    }
-  };
-  const userId = firebase.auth().currentUser.uid;
-  return (dispatch) => {
+  }
+};
+const userId = firebase.auth().currentUser.uid;
+return (dispatch) => {
   firebase.database().ref(`/users/${userId}/following/libraryIds`).on('value', snapshot => {
     if (snapshot.val() === null) {
       firebase.database().ref(`/users/${userId}/following/`)
@@ -37,15 +37,18 @@ export const setFollowed = () => {
   };
 };
 
-export const following = ({ libraryId }) => {
-  const isFollowing = true;
+export const following = ({ libraryId, followed }) => {
+  const isFollowing = !followed;
   const userId = firebase.auth().currentUser.uid;
   firebase.database().ref(`/users/${userId}/following/libraryIds/${libraryId}`)
   .set(isFollowing);
 
   const currentFollowers = firebase.database().ref(`/feed_following/${libraryId}/followers`);
   currentFollowers.transaction((currentRank) => {
-    return currentRank + 1;
+    if (isFollowing) {
+      return currentRank + 1;
+    }
+    return currentRank - 1;
   });
   return (dispatch) => {
     dispatch({ type: UPDATE_FOLLOWERS });

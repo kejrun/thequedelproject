@@ -3,8 +3,8 @@ import { ImageBackground } from 'react-native';
 
 const TitleCardFeed = (props) => (
   <ImageBackground
-  source={require('../../images/gradient-background.png')}
-  style={styles.containerStyle}
+    source={require('../../images/gradient-background.png')}
+    style={styles.containerStyle}
   >
   {props.children}
   </ImageBackground>
@@ -16,7 +16,7 @@ const styles = {
     paddingTop: 20,
     paddingLeft: 20,
     paddingBottom: 0,
-    }
-  };
+  }
+};
 
 export default TitleCardFeed;

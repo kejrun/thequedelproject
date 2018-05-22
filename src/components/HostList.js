@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 import { ListView } from 'react-native';
 import { Container, Content, List, Header } from 'native-base';
@@ -6,13 +5,11 @@ import { connect } from 'react-redux';
 import HostListItem from './HostListItem';
 import { userCredits } from '../actions';
 
-
 class HostList extends Component {
   componentWillMount() {
     const ds = new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 !== r2
     });
-
     this.dataSource = ds.cloneWithRows(this.props.libraries);
   }
 
@@ -23,7 +20,7 @@ class HostList extends Component {
   render() {
     return (
       <Container>
-      <Header span />
+        <Header span />
         <Content>
           <List>
             <ListView
@@ -31,7 +28,7 @@ class HostList extends Component {
               renderRow={this.renderRow}
             />
           </List>
-       </Content>
+        </Content>
       </Container>
     );
   }
