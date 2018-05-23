@@ -4,66 +4,26 @@ import { connect } from 'react-redux';
 import { ListView, RefreshControl, View, ActivityIndicator } from 'react-native';
 import { Container, Content, Button, Text, Header, Left, Icon, Right, Toast } from 'native-base';
 import { Actions } from 'react-native-router-flux';
-import { feedFetch1, feedFetch2, feedFetch3, feedFetch4, feedFetch5,
-  feedFetch6, feedFetch7, feedFetch8, feedFetch9, feedFetch10,
-  feedFetch11, feedFetch12, feedFetch13, following, fetchVoted,
+import { feedFetch, following, fetchVoted,
   userCredits, trustedUser, trustUser, setFollowed, fetchingFollowers } from '../actions';
   import FeedItem from './FeedItem';
   import TitleCardFeed from './TitleCards/TitleCardFeed';
   import Footer from './Footer';
 
   class Feed extends Component {
-    state = { refreshing: false, selectedTab: 'feed', followed: false };
+    state = { refreshing: false, selectedTab: 'feed', followed: false, loading: true };
 
     componentWillMount() {
+      this.setState({ loading: true });
       this.props.userCredits();
       this.props.trustedUser();
       this.props.setFollowed();
-      this.setState({ loading: true });
 
       const { libraryId } = this.props;
       this.props.fetchingFollowers({ libraryId });
       this.props.fetchVoted();
 
-      if (libraryId === 1) {
-        this.props.feedFetch1();
-      }
-      if (libraryId === 2) {
-        this.props.feedFetch2();
-      }
-      if (libraryId === 3) {
-        this.props.feedFetch3();
-      }
-      if (libraryId === 4) {
-        this.props.feedFetch4();
-      }
-      if (libraryId === 5) {
-        this.props.feedFetch5();
-      }
-      if (libraryId === 6) {
-        this.props.feedFetch6();
-      }
-      if (libraryId === 7) {
-        this.props.feedFetch7();
-      }
-      if (libraryId === 8) {
-        this.props.feedFetch8();
-      }
-      if (libraryId === 9) {
-        this.props.feedFetch9();
-      }
-      if (libraryId === 10) {
-        this.props.feedFetch10();
-      }
-      if (libraryId === 11) {
-        this.props.feedFetch11();
-      }
-      if (libraryId === 12) {
-        this.props.feedFetch12();
-      }
-      if (libraryId === 13) {
-        this.props.feedFetch13();
-      }
+      this.props.feedFetch(libraryId);
       this.createDataSource(this.props);
     }
 
@@ -138,11 +98,23 @@ import { feedFetch1, feedFetch2, feedFetch3, feedFetch4, feedFetch5,
         }
       }
 
+      doRefresh() {
+        const { libraryId } = this.props;
+        this.props.fetchingFollowers({ libraryId });
+        this.props.fetchVoted();
+        this.props.feedFetch(libraryId);
+        this.createDataSource(this.props);
+      }
+
       _onRefresh() {
         this.setState({ refreshing: true });
-        this.componentWillMount().then(() => {
+        this.doRefresh().then(() => {
           this.setState({ refreshing: false });
         });
+      }
+
+      componentWillUnMount() {
+        this.setState({ loading: true });
       }
 
       createDataSource({ feedpost }) {
@@ -240,19 +212,7 @@ import { feedFetch1, feedFetch2, feedFetch3, feedFetch4, feedFetch5,
     };
 
     export default connect(mapStateToProps, {
-      feedFetch1,
-      feedFetch2,
-      feedFetch3,
-      feedFetch4,
-      feedFetch5,
-      feedFetch6,
-      feedFetch7,
-      feedFetch8,
-      feedFetch9,
-      feedFetch10,
-      feedFetch11,
-      feedFetch12,
-      feedFetch13,
+      feedFetch,
       fetchVoted,
       userCredits,
       trustedUser,
