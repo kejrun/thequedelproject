@@ -10,11 +10,11 @@ import { getId, updateThanks, updateAgreements, updateDisagreements, thankPost,
   fetchingFollowers, trustUser } from '../actions';
 
 class FeedItem extends Component {
-  state = {
+  /*state = {
     thanked: this.props.feedpost.thanked,
     agree: this.props.feedpost.agree,
     disagree: this.props.feedpost.disagree
-  }
+  }*/
 
   componentWillMount() {
     const { uid, chosenNation } = this.props.feedpost;
@@ -23,11 +23,21 @@ class FeedItem extends Component {
     this.props.getId(uid);
     }
 
+  /*componentWillReceiveProps(nextProps) {
+    if (nextProps.uid !== this.props.feedpost.uid) {
+      this.setState({
+        thanked: nextProps.thanked,
+        agree: nextProps.agree,
+        disagree: nextProps.disagree
+      });
+    }
+  }*/
+
     onThanksPressed() {
       const thisUserId = firebase.auth().currentUser.uid;
       const { uid, userId, thanked } = this.props.feedpost;
       if (!thanked && thisUserId !== userId) {
-        this.setState({ thanked: true });
+        //this.setState({ thanked: true });
         this.props.updateThanks(uid);
         this.props.thankCredit(userId, this.props.followers);
         this.props.thankPost({ uid, thanked: true });
@@ -38,7 +48,7 @@ class FeedItem extends Component {
       const thisUserId = firebase.auth().currentUser.uid;
       const { uid, userId, agree } = this.props.feedpost;
       if (!agree && thisUserId !== this.props.feedpost.userId) {
-        this.setState({ agree: true });
+        //this.setState({ agree: true });
         this.props.updateAgreements(uid);
         this.props.agreeCredit(userId);
         this.props.agreePost({ uid, agree: true });
@@ -49,7 +59,7 @@ class FeedItem extends Component {
       const thisUserId = firebase.auth().currentUser.uid;
       const { uid, userId, disagree } = this.props.feedpost;
       if (!disagree && thisUserId !== userId) {
-        this.setState({ disagree: true });
+      //  this.setState({ disagree: true });
         this.props.disagreePost({ uid, disagree: true });
         this.props.updateDisagreements(uid);
         this.props.disagreeCredit(userId);
@@ -85,13 +95,15 @@ class FeedItem extends Component {
 
   render() {
     const {
+      agree,
+      disagree,
+      thanked,
       queueLength,
       agreements,
       disagreements,
       thanks,
       trusted
     } = this.props.feedpost;
-    const { agree, disagree, thanked } = this.state;
     const utcSeconds = this.props.feedpost.time;
     const options = { weekday: 'short', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
     const date = new Date(utcSeconds).toLocaleDateString('en-SE', options);
