@@ -131,7 +131,21 @@ import { feedFetch, following, fetchVoted,
       }
 
       render() {
-        const { selectedTab } = this.state;
+        const { selectedTab, followed } = this.state;
+
+        let bookMark;
+        if (followed) {
+          console.log('is followed');
+          bookMark = (
+            <Icon type="Entypo" name="bookmark" style={{ color: '#202428', fontSize: 30, marginTop: -14, marginRight: 0 }} />
+          );
+        } else {
+          console.log('is not followed');
+          bookMark = (
+            <Icon type="Entypo" name="bookmark" style={{ color: '#393F44', fontSize: 30, marginTop: -14, marginRight: 0 }} />
+          );
+        }
+
 
         return (
           <Container>
@@ -161,7 +175,7 @@ import { feedFetch, following, fetchVoted,
                 transparent
                 onPress={this.notifyPress.bind(this)}
               >
-                <Icon type="Entypo" name="bookmark" style={{ color: '#2B3035', fontSize: 30, marginTop: -14, marginRight: 0 }} />
+                {bookMark}
                 <Text
                 style={{ color: '#2B3035', fontFamily: 'Avenir Book', fontSize: 18, marginLeft: 0, paddingLeft: 0, marginTop: -10 }}
                 >
