@@ -6,12 +6,18 @@ import { Container, Content, Button, Text, Header, Left, Icon, Right, Toast } fr
 import { Actions } from 'react-native-router-flux';
 import { feedFetch, following, fetchVoted,
   userCredits, trustedUser, trustUser, setFollowed, fetchingFollowers } from '../actions';
-  import FeedItem from './FeedItem';
-  import TitleCardFeed from './TitleCards/TitleCardFeed';
-  import Footer from './Footer';
+import FeedItem from './FeedItem';
+import TitleCardFeed from './TitleCards/TitleCardFeed';
+import Footer from './Footer';
+import AboutCreditSystem from './UserModals/AboutCreditSystem';
 
   class Feed extends Component {
-    state = { refreshing: false, selectedTab: 'feed', followed: false, loading: true };
+    state = {
+      refreshing: false,
+      selectedTab: 'feed',
+      followed: false,
+      loading: true,
+      showModalCreditSystem: false, };
 
     componentWillMount() {
       this.setState({ loading: true });
@@ -50,6 +56,10 @@ import { feedFetch, following, fetchVoted,
 
     onButtonPress() {
       Actions.makenewpost();
+    }
+
+    onDecline() {
+      this.setState({ showModalCreditSystem: false });
     }
 
     notifyPress() {
@@ -158,7 +168,9 @@ import { feedFetch, following, fetchVoted,
               <Right>
                 <Button
                   transparent
-                  onPress={() => Actions.userPage()}
+                  onPress={() => {
+                    this.setState({ showModalCreditSystem: !this.state.showModalCreditSystem });
+                  }}
                 >
                   <Icon type='SimpleLineIcons' name='diamond' style={{ fontSize: 20, color: 'white' }} />
                   <Text
@@ -197,6 +209,10 @@ import { feedFetch, following, fetchVoted,
                 }
               dataSource={this.dataSource}
               renderRow={this.renderRow}
+              />
+              <AboutCreditSystem
+              visible={this.state.showModalCreditSystem}
+              onDecline={this.onDecline.bind(this)}
               />
             </Content>
               <Button block iconLeft onPress={() => { this.onButtonPress(); }}>

@@ -70,7 +70,7 @@ class UserPage extends Component {
                 <Icon type='SimpleLineIcons' name='diamond' style={{ fontSize: 26 }} />
               </Left>
               <Left>
-                <Text style={{ fontFamily: 'Avenir Book', fontSize: 18 }}>Credits: {credits} </Text>
+                <Text style={{ fontFamily: 'Avenir Book', fontSize: 18, marginTop: 2 }}>Credits: {credits} </Text>
               </Left>
               </Col>
               <Col>
