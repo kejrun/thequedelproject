@@ -30,8 +30,8 @@ class FeedItem extends Component {
 
     onAgreePress() {
       const thisUserId = firebase.auth().currentUser.uid;
-      const { uid, userId, agree } = this.props.feedpost;
-      if (!agree && thisUserId !== this.props.feedpost.userId) {
+      const { uid, userId, agree, disagree } = this.props.feedpost;
+      if (!agree && !disagree && thisUserId !== this.props.feedpost.userId) {
         this.props.updateAgreements(uid);
         this.props.agreeCredit(userId);
         this.props.agreePost({ uid, agree: true });
@@ -40,8 +40,8 @@ class FeedItem extends Component {
 
     onDisagreePress() {
       const thisUserId = firebase.auth().currentUser.uid;
-      const { uid, userId, disagree } = this.props.feedpost;
-      if (!disagree && thisUserId !== userId) {
+      const { uid, userId, disagree, agree } = this.props.feedpost;
+      if (!disagree && !agree && thisUserId !== userId) {
         this.props.disagreePost({ uid, disagree: true });
         this.props.updateDisagreements(uid);
         this.props.disagreeCredit(userId);
@@ -100,16 +100,27 @@ class FeedItem extends Component {
        );
       }
 
-      let moreButton;
-      if (thisUserId === this.props.feedpost.userId) {
-        moreButton = (
-          <CardItem style={{ marginTop: -21 }}>
-            <Button transparent style={styles.moreButtonStyle} onPress={() => this.onMorePress()}>
-              <Icon type="Entypo" name="dots-three-horizontal" style={{ fontSize: 18, color: 'black' }} />
-            </Button>
-          </CardItem>
-        );
-      }
+    let colorAgreeDisagree;
+    if (agree || disagree || thisUserId === this.props.feedpost.userId) {
+      colorAgreeDisagree = 'lightgrey';
+    } else {
+      colorAgreeDisagree = '#2B3035';
+    }
+
+    let moreButton;
+    let colorThanks;
+    if (thisUserId === this.props.feedpost.userId) {
+      moreButton = (
+        <CardItem style={{ marginTop: -21 }}>
+          <Button transparent style={styles.moreButtonStyle} onPress={() => this.onMorePress()}>
+            <Icon type="Entypo" name="dots-three-horizontal" style={{ fontSize: 18, color: 'black' }} />
+          </Button>
+        </CardItem>
+      );
+      colorThanks = 'lightgrey';
+    } else {
+      colorThanks = '#fc3768'
+    }
 
           return (
             <Card>
@@ -133,7 +144,7 @@ class FeedItem extends Component {
                 checkedIcon='md-heart'
                 uncheckedIcon='md-heart-outline'
                 checkedColor='#fc3768'
-                uncheckedColor='#fc3768'
+                uncheckedColor={colorThanks}
               />
             </Right>
             </CardItem>
@@ -145,7 +156,7 @@ class FeedItem extends Component {
                 checkedIcon='ios-thumbs-up'
                 uncheckedIcon='ios-thumbs-up-outline'
                 checkedColor='#2B3035'
-                uncheckedColor='#2B3035'
+                uncheckedColor={colorAgreeDisagree}
               />
               <Text style={{ fontFamily: 'Avenir Book' }}>{agreements} agree</Text>
               <Text>                             </Text>
@@ -156,7 +167,7 @@ class FeedItem extends Component {
                 checkedIcon='ios-thumbs-down'
                 uncheckedIcon='ios-thumbs-down-outline'
                 checkedColor='#2B3035'
-                uncheckedColor='#2B3035'
+                uncheckedColor={colorAgreeDisagree}
               />
               <Text style={{ fontFamily: 'Avenir Book' }}> {disagreements} disagree</Text>
               </CardItem>
