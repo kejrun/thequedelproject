@@ -20,7 +20,7 @@ That should enable you to run Quedel on a simulator! If you have any trouble, ch
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore -->
-[<img src="https://avatars3.githubusercontent.com/u/34298655?s=460&v=4" width="100px;"/><br /><sub><b>Siri Eksvärd</b></sub>](https://github.com/siriek) | [<img src="https://avatars3.githubusercontent.com/u/34298655?s=460&v=4" width="100px;"/><br /><sub><b>Karin Svensson](https://github.com/kejrun)</b></sub> | 
+[<img src="https://avatars3.githubusercontent.com/u/34298655?s=460&v=4" width="100px;"/><br /><sub><b>Siri Eksvärd</b></sub>](https://github.com/siriek) | [<img src="https://avatars1.githubusercontent.com/u/29158573?s=400&v=4" width="100px;"/><br /><sub><b>Karin Svensson](https://github.com/kejrun)</b></sub> | 
 | :---: | :---: | 
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
