@@ -9,7 +9,7 @@ The project resulted in the smart phone application Quedel. Quedel is an applica
 
 *May 2018*
 
-## Run the app in a simulator
+## Run the app on a simulator
 To be able to run Quedel on a simluator Xcode is required. This means that you need be be on a MacOS computer to be able to simulate the app. So, the first step is to install Xcode. The easiest way to install Xcode is via the Mac App Store. Installing Xcode will also install the iOS Simulator and all the necessary tools to build the iOS app.
 
 1. Install Node JS
