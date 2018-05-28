@@ -35,7 +35,7 @@ import AboutCreditSystem from './UserModals/AboutCreditSystem';
 
     componentWillReceiveProps(nextProps) {
       this.createDataSource(nextProps);
-      if (nextProps.feedpost !== []) {
+      if (nextProps.feedpost !== [] || nextProps.librariId !== this.props.libraryId) {
         this.setState({ loading: false });
       }
       const { libraryId } = this.props;
@@ -46,13 +46,16 @@ import AboutCreditSystem from './UserModals/AboutCreditSystem';
           this.setState({ followed: false });
         }
       }
-    }
-
-    componentWillUpdate(nextProps) {
       if (this.props.credits !== nextProps.credits) {
         this.props.trustUser(nextProps.credits);
       }
     }
+
+    /*componentWillUpdate(nextProps) {
+      if (this.props.credits !== nextProps.credits) {
+        this.props.trustUser(nextProps.credits);
+      }
+    }*/
 
     onButtonPress() {
       Actions.makenewpost();
@@ -145,12 +148,10 @@ import AboutCreditSystem from './UserModals/AboutCreditSystem';
 
         let bookMark;
         if (followed) {
-          console.log('is followed');
           bookMark = (
             <Icon type="Entypo" name="bookmark" style={{ color: '#202428', fontSize: 30, marginTop: -14, marginRight: 0 }} />
           );
         } else {
-          console.log('is not followed');
           bookMark = (
             <Icon type="Entypo" name="bookmark" style={{ color: '#393F44', fontSize: 30, marginTop: -14, marginRight: 0 }} />
           );

@@ -88,7 +88,14 @@ class FeedItem extends Component {
     } = this.props.feedpost;
     const utcSeconds = this.props.feedpost.time;
     const options = { weekday: 'short', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
-    const date = new Date(utcSeconds).toLocaleDateString('en-SE', options);
+    let date = new Date(utcSeconds).toLocaleDateString('en-SE', options);
+    const currentDate = new Date(Date.now()).getDate();
+    const postDate = new Date(utcSeconds).getDate();
+    if (postDate === currentDate) {
+      const todayOptions = { hour: '2-digit', minute: '2-digit' };
+      const postTime = new Date(utcSeconds).toLocaleTimeString('en-SE', todayOptions);
+      date = `Today, ${postTime}`;
+    }
     const thisUserId = firebase.auth().currentUser.uid;
 
     let isTrusted;
@@ -119,7 +126,7 @@ class FeedItem extends Component {
       );
       colorThanks = 'lightgrey';
     } else {
-      colorThanks = '#fc3768'
+      colorThanks = '#fc3768';
     }
 
           return (
